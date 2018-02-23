@@ -74,9 +74,6 @@ public class MembreTest {
     @Test
     public void testSetMotDePasse() {
         try {
-            /**
-             * Changement de pseudo pour voir si c'est bon.
-             */
             String pseudo = "zzzzzzzzzzzzzz";
             String mdp1 = "XXXXXXXXXXXXX";
             String mdp2 = "xxxxxxxxxxxxx";
@@ -86,8 +83,8 @@ public class MembreTest {
             u.setMotDePasse(mdp2);
             assertTrue(u.connexion(mdp2));
             assertFalse(!u.connexion(mdp2));
-        } catch (ScoreException | ConnexionException ex) {
-            ex.printStackTrace();
+        } catch (ConnexionException ex) {
+            Logger.getLogger(MembreTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

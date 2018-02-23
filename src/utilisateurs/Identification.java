@@ -14,6 +14,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -52,13 +54,34 @@ public class Identification {
         }
     }
 
-    public void addMembre(Membre m) {
+    public boolean addMembre(Membre m) {
         comptes.put(m.getPseudo(), m);
+        return true;
     }
 
-    public void removeMembre(Membre m) throws ConnexionException {
-        if (!comptes.remove(m.getPseudo(), m)) {
-            throw new ConnexionException("Le membre n'as pas ete trouve.");
+    public boolean addMembre(String pseudo, String mdp) {
+        try {
+            Membre m = new Membre(pseudo, mdp);
+            comptes.put(pseudo, m);
+            return true;
+        } catch (ConnexionException ex) {
+            return false;
+        }
+
+    }
+
+    public boolean removeMembre(Membre m) {
+        return comptes.remove(m.getPseudo(), m);
+    }
+
+    public boolean removeMembre(String pseudo, String mdp) {
+        try {
+            Membre m = new Membre(pseudo, mdp);
+            boolean test = comptes.remove(pseudo, m);
+            return test;
+        } catch (ConnexionException ex) {
+            System.out.println("Exception");
+            return false;
         }
     }
 

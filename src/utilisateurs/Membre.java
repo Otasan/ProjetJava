@@ -12,7 +12,7 @@ import java.util.HashMap;
  *
  * @author Dobby
  */
-public class Membre extends Utilisateur implements Serializable {
+public class Membre extends Utilisateur implements Serializable{
 
     private HashMap<String, Integer[]> scores;
     private int mdp;
@@ -41,7 +41,10 @@ public class Membre extends Utilisateur implements Serializable {
     }
 
     public static boolean estMdpValide(String mdp) {
-        if (mdp.equals("") || mdp == null) {
+        if (mdp == null || mdp.equals("")){
+            return false;
+        }
+        if (mdp.length() < 6 || mdp.length() > 30) {
             return false;
         } else {
             return mdp.matches("[[a-z][A-Z][0-9]]*");
@@ -83,11 +86,11 @@ public class Membre extends Utilisateur implements Serializable {
         }
     }
 
-    public void setMotDePasse(String mdp) throws ScoreException {
+    public void setMotDePasse(String mdp) throws ConnexionException {
         if (Membre.estMdpValide(mdp)) {
             this.mdp = this.keyGen(this.getPseudo(), mdp);
         } else {
-            throw new ScoreException();
+            throw new ConnexionException();
         }
     }
 
@@ -115,9 +118,11 @@ public class Membre extends Utilisateur implements Serializable {
     public boolean connexion(String mdp) {
 
         if (Membre.estMdpValide(mdp)) {
+
             int testMdp = this.keyGen(this.getPseudo(), mdp);
 
             return testMdp == this.mdp;
+
         } else {
             return false;
         }

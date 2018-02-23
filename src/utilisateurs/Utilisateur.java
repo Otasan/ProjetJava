@@ -15,11 +15,12 @@ public class Utilisateur implements Serializable {
 
     private String pseudo;
 
-    public Utilisateur(String pseudo) throws ConnexionException{
+    public Utilisateur(String pseudo) throws ConnexionException {
         if (Utilisateur.estPseudoValide(pseudo)) {
             this.pseudo = pseudo;
+        } else {
+            throw new ConnexionException();
         }
-        else throw new ConnexionException();
     }
 
     public String getPseudo() {
@@ -37,6 +38,14 @@ public class Utilisateur implements Serializable {
             return false;
         } else {
             return pseudo.matches("[[a-z][A-Z][0-9]]*");
+        }
+    }
+
+    public boolean equals(Utilisateur u){
+        if(this.pseudo.equals(u.pseudo)){
+            return true;
+        } else {
+            return false;
         }
     }
 }
