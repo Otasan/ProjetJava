@@ -74,15 +74,8 @@ public class Identification {
         return comptes.remove(m.getPseudo(), m);
     }
 
-    public boolean removeMembre(String pseudo, String mdp) {
-        try {
-            Membre m = new Membre(pseudo, mdp);
-            boolean test = comptes.remove(pseudo, m);
-            return test;
-        } catch (ConnexionException ex) {
-            System.out.println("Exception");
-            return false;
-        }
+    public boolean removeMembre(String pseudo) {
+        return comptes.remove(pseudo)!=null;
     }
 
     public void sauvegarde(String path) {

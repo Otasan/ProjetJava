@@ -7,8 +7,6 @@ package utilisateurs;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -34,7 +32,7 @@ public class IdentificationTest {
 
             i.addMembre(pseudo, mdp);
             i.sauvegarde(path);
-
+ 
         } catch (ConnexionException ex) {
             System.out.println("Sauvegarde Exception");
 
@@ -74,9 +72,8 @@ public class IdentificationTest {
         }
 
         try {
-            m = new Membre(pseudo, mdp);
-            assertEquals(i.connexion(pseudo, mdp), m);
-            assertNotEquals(i.connexion(pseudo, mdp + "x"), m);
+            assertTrue(i.connexion(pseudo, mdp).equals(new Membre(pseudo,mdp)));
+            assertFalse(i.connexion(pseudo, mdp).equals(new Membre(pseudo+"x",mdp)));
         } catch (ConnexionException ex) {
             System.out.println("Connexion Exception");
         }
@@ -147,12 +144,9 @@ public class IdentificationTest {
         Identification i = new Identification();
         i.addMembre(pseudo, mdp);
 
-        assertFalse(i.removeMembre(pseudo, mdp + "x"));
-        assertFalse(i.removeMembre(pseudo + "X", mdp));
-        assertFalse(i.removeMembre(pseudo + "X", mdp + "x"));
+        assertFalse(i.removeMembre(pseudo + "X"));
 
-        assertTrue(i.removeMembre(pseudo, mdp));
-        assertFalse(i.removeMembre(pseudo, mdp));
+        assertTrue(i.removeMembre(pseudo));
+        assertFalse(i.removeMembre(pseudo));
     }
-
 }

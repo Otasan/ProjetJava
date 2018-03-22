@@ -33,8 +33,11 @@ public class Utilisateur implements Serializable {
     }
 
     public static boolean estPseudoValide(String pseudo) {
+        if (pseudo==null){
+            return false;
+        }
         int length = pseudo.length();
-        if (pseudo.equals("") || pseudo == null || length < 6 || length > 30) {
+        if (pseudo.equals("") || length < 6 || length > 30) {
             return false;
         } else {
             return pseudo.matches("[[a-z][A-Z][0-9]]*");
