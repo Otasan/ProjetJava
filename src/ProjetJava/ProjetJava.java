@@ -19,9 +19,14 @@ public class ProjetJava {
             @Override
             public void run() {
                 MainGUI gui = new MainGUI();
-                gui.interfaceConnexion();
-                gui.interfaceConnexion();
 
+                boolean i = false;
+                if (i) {
+                    gui.interfaceConnexion();
+                } else {
+                    gui.interfaceInscription();
+                    i = true;
+                }
                 gui.setVisible(true);
             }
         });

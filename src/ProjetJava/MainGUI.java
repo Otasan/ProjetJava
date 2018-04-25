@@ -38,10 +38,24 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    public void interfaceConnexion(){
-        this.setContentPane(new ConnexionPannel());
+    /*
+    Initialisation de la fenetre de Connexion.
+     */
+    public void interfaceConnexion() {
+        this.getContentPane().removeAll();
+        this.getContentPane().add(new ConnexionPannel());
+        this.revalidate();
+        this.pack();
     }
 
-
+    /*
+    Initialisation de la fenetre d'inscription.
+     */
+    public void interfaceInscription() {
+        this.getContentPane().removeAll();
+        this.getContentPane().add(new InscriptionPannel());
+        this.revalidate();
+        this.pack();
+    }
 
 }
