@@ -3,28 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utilisateurs;
+package ProjetJava;
 
 /**
  *
  * @author Dobby
  */
-public class ConnexionException extends Exception {
+public class ScoreException extends Exception {
 
     /**
-     * Creates a new instance of <code>ConnexionException</code> without detail
+     * Creates a new instance of <code>ScoreException</code> without detail
      * message.
      */
-    public ConnexionException() {
+    public ScoreException() {
     }
 
     /**
-     * Constructs an instance of <code>ConnexionException</code> with the
-     * specified detail message.
+     * Constructs an instance of <code>ScoreException</code> with the specified
+     * detail message.
      *
      * @param msg the detail message.
      */
-    public ConnexionException(String msg) {
+    public ScoreException(String msg) {
         super(msg);
     }
 }

@@ -5,6 +5,9 @@
  */
 package utilisateurs;
 
+import ProjetJava.ConnexionException;
+import ProjetJava.Membre;
+import ProjetJava.ScoreException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.Test;

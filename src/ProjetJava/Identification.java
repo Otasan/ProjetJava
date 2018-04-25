@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utilisateurs;
+package ProjetJava;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,9 +13,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
-import java.io.OutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

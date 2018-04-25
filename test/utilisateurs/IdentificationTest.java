@@ -5,6 +5,9 @@
  */
 package utilisateurs;
 
+import ProjetJava.Identification;
+import ProjetJava.ConnexionException;
+import ProjetJava.Membre;
 import java.io.File;
 import java.io.FileNotFoundException;
 import org.junit.Test;
