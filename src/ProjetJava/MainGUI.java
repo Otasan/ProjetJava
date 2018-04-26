@@ -30,19 +30,46 @@ public class MainGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Boite De Jeux");
         setMaximumSize(new java.awt.Dimension(1280, 720));
-        setMinimumSize(new java.awt.Dimension(600, 480));
-        setPreferredSize(new java.awt.Dimension(600, 480));
+        setMinimumSize(new java.awt.Dimension(640, 360));
+        setPreferredSize(new java.awt.Dimension(854, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
- 
-    public void interfaceConnexion(){
-        this.setContentPane(new ConnexionPannel());
+
+    /*
+    Initialisation de la fenetre de Connexion.
+     */
+    public void interfaceConnexion() {
+        this.getContentPane().removeAll();
+        this.getContentPane().add(new ConnexionPanel());
+        this.revalidate();
+        this.pack();
     }
 
+    /*
+    Initialisation de la fenetre d'inscription.
+     */
+    public void interfaceInscription() {
+        this.getContentPane().removeAll();
+        this.getContentPane().add(new InscriptionPanel());
+        this.revalidate();
+        this.pack();
+    }
+    
+    public void interfaceInfoJeu(){
+        this.getContentPane().removeAll();
+        this.getContentPane().add(new InfoJeuPanel());
+        this.revalidate();
+        this.pack();
+    }
 
-
+    public void interfaceChoixJeu(){
+        this.getContentPane().removeAll();
+        this.getContentPane().add(new ChoixJeuPanel());
+        this.revalidate();
+        this.pack();
+    }
 }

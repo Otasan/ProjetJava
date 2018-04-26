@@ -19,9 +19,8 @@ public class ProjetJava {
             @Override
             public void run() {
                 MainGUI gui = new MainGUI();
-                gui.interfaceConnexion();
-                gui.interfaceConnexion();
 
+                gui.interfaceChoixJeu();
                 gui.setVisible(true);
             }
         });
