@@ -9,12 +9,12 @@ package ProjetJava;
  *
  * @author deux
  */
-public class ConnexionPanel extends javax.swing.JPanel {
+public class ConnexionPannel extends javax.swing.JPanel {
 
     /**
      * Creates new form ConnexionPannel
      */
-    public ConnexionPanel() {
+    public ConnexionPannel() {
         initComponents();
     }
 

@@ -20,7 +20,13 @@ public class ProjetJava {
             public void run() {
                 MainGUI gui = new MainGUI();
 
-                gui.interfaceChoixJeu();
+                boolean i = false;
+                if (i) {
+                    gui.interfaceConnexion();
+                } else {
+                    gui.interfaceInscription();
+                    i = true;
+                }
                 gui.setVisible(true);
             }
         });
