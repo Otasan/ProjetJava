@@ -9,12 +9,12 @@ package ProjetJava;
  *
  * @author deux
  */
-public class ConnexionPannel extends javax.swing.JPanel {
+public class ConnexionPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ConnexionPannel
      */
-    public ConnexionPannel() {
+    public ConnexionPanel() {
         initComponents();
     }
 
@@ -32,7 +32,7 @@ public class ConnexionPannel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jTextFieldPseudo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordFieldPassword = new javax.swing.JPasswordField();
+        jPasswordField = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jButtonInscription = new javax.swing.JButton();
         jButtonInvite = new javax.swing.JButton();
@@ -79,15 +79,15 @@ public class ConnexionPannel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         jPanel1.add(jLabel2, gridBagConstraints);
 
-        jPasswordFieldPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jPasswordFieldPassword.setText("MotDePasse");
-        jPasswordFieldPassword.setMaximumSize(new java.awt.Dimension(200, 25));
-        jPasswordFieldPassword.setMinimumSize(new java.awt.Dimension(100, 25));
-        jPasswordFieldPassword.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPasswordField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPasswordField.setText("MotDePasse");
+        jPasswordField.setMaximumSize(new java.awt.Dimension(200, 25));
+        jPasswordField.setMinimumSize(new java.awt.Dimension(100, 25));
+        jPasswordField.setPreferredSize(new java.awt.Dimension(150, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        jPanel1.add(jPasswordFieldPassword, gridBagConstraints);
+        jPanel1.add(jPasswordField, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -140,7 +140,7 @@ public class ConnexionPannel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordFieldPassword;
+    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField jTextFieldPseudo;
     // End of variables declaration//GEN-END:variables
 }
