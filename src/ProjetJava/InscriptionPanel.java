@@ -140,7 +140,6 @@ public class InscriptionPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldPseudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPseudoActionPerformed
-
     }//GEN-LAST:event_jTextFieldPseudoActionPerformed
 
 

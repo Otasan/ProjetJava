@@ -16,6 +16,7 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() {
         initComponents();
+        this.setExtendedState(this.MAXIMIZED_BOTH);
     }
 
     /**
@@ -32,6 +33,7 @@ public class MainGUI extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(640, 360));
         setPreferredSize(new java.awt.Dimension(854, 480));
+        getContentPane().setLayout(new java.awt.BorderLayout(5, 5));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -55,7 +57,12 @@ public class MainGUI extends javax.swing.JFrame {
     public void interfaceInscription() {
         this.getContentPane().removeAll();
         this.getContentPane().add(new InscriptionPanel());
-        this.revalidate();
+        this.pack();
+    }
+
+    public void interfaceBatailleNavale() {
+        this.getContentPane().removeAll();
+        this.getContentPane().add(new JeuPanel("Batalle Navale"));
         this.pack();
     }
 
