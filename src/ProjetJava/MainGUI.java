@@ -60,10 +60,9 @@ public class MainGUI extends javax.swing.JFrame {
         this.pack();
     }
 
-    public void interfaceBatailleNavale() {
+    public void interfaceJeu() {
         this.getContentPane().removeAll();
-        this.getContentPane().add(new JeuPanel("Batalle Navale"));
+        this.getContentPane().add(new JeuPanel("Bataille Navale"));
         this.pack();
     }
-
 }

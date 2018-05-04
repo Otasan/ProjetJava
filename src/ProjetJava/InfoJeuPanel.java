@@ -48,7 +48,6 @@ public class InfoJeuPanel extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 2;
         add(jLabel1, gridBagConstraints);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setForeground(new java.awt.Color(51, 51, 31));
         jPanel1.setMinimumSize(new java.awt.Dimension(640, 298));
         jPanel1.setPreferredSize(new java.awt.Dimension(854, 384));

@@ -5,6 +5,8 @@
  */
 package ProjetJava;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author deux
@@ -17,6 +19,7 @@ public class JeuPanel extends javax.swing.JPanel {
     public JeuPanel(String jeu) {
         initComponents();
         this.titleLabel.setText(jeu);
+        image(jeu);
     }
 
     /**
@@ -30,8 +33,10 @@ public class JeuPanel extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        quitButton = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(640, 360));
@@ -41,22 +46,29 @@ public class JeuPanel extends javax.swing.JPanel {
         layout.rowWeights = new double[] {0.15, 0.7, 0.15};
         setLayout(layout);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setAlignmentX(0.0F);
         jPanel1.setAlignmentY(0.0F);
         jPanel1.setMinimumSize(new java.awt.Dimension(640, 298));
         jPanel1.setPreferredSize(new java.awt.Dimension(32767, 32767));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
+        jPanel1Layout.columnWeights = new double[] {0.4, 0.6};
+        jPanel1Layout.rowWeights = new double[] {1.0};
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 812, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 368, Short.MAX_VALUE)
-        );
+
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        jPanel1.add(jPanel3, gridBagConstraints);
+
+        jPanel4.setBackground(new java.awt.Color(255, 0, 0));
+        jPanel4.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        jPanel1.add(jPanel4, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -73,18 +85,27 @@ public class JeuPanel extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 2;
         add(titleLabel, gridBagConstraints);
 
-        jButton1.setText("Quitter");
-        jButton1.setMargin(new java.awt.Insets(3, 20, 3, 20));
+        quitButton.setText("Quitter");
+        quitButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        add(jButton1, gridBagConstraints);
+        add(quitButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void image(String nomJeu){
+        ImageJeuPanel img = new ImageJeuPanel(nomJeu);
+        java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        jPanel3.add(img,gridBagConstraints);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JButton quitButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
