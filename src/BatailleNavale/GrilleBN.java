@@ -38,6 +38,9 @@ public class GrilleBN {
         if(lesCases.ceiling(cI).getCase()==TypeCase.bateau){
             throw new BatailleNavaleException("Bateaux en collision : "+lesCases.ceiling(cI));
         }
+        else{
+            lesCases.ceiling(cI).setCase(TypeCase.bateau);
+        }
         if(cI.getX()<10 && cI.getY()<10){
             typeBateau=typeBateau.toLowerCase();
             switch(typeBateau){
@@ -72,6 +75,9 @@ public class GrilleBN {
                         else{
                             for(int i=cI.getX()+1;i<cI.getX()+b.getTaille();i++){
                                 if(lesCases.ceiling(new CaseBatailleNavale(i,cI.getY())).getCase()==TypeCase.bateau){
+                                    for(int o=i-1; o>=cI.getX();o--){//hey
+                                        lesCases.ceiling(new CaseBatailleNavale(o,cI.getY())).setCase(TypeCase.vierge);
+                                    }
                                     throw new BatailleNavaleException("Bateaux en collision : "+lesCases.ceiling(new CaseBatailleNavale(i,cI.getY())).toString());
                                 }
                                 else{
@@ -87,6 +93,9 @@ public class GrilleBN {
                         else{
                             for(int i=cI.getY()+1;i<cI.getY()+b.getTaille();i++){
                                 if(lesCases.ceiling(new CaseBatailleNavale(cI.getX(),i)).getCase()==TypeCase.bateau){
+                                    for(int o=i-1; o>=cI.getY();o--){
+                                        lesCases.ceiling(new CaseBatailleNavale(cI.getX(),o)).setCase(TypeCase.vierge);
+                                    }
                                     throw new BatailleNavaleException("Bateaux en collision : "+lesCases.ceiling(new CaseBatailleNavale(cI.getX(),i)).toString());
                                 }
                                 else{

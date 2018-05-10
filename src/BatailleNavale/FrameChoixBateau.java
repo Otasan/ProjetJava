@@ -48,6 +48,9 @@ public class FrameChoixBateau extends javax.swing.JDialog {
         valider = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Choix bateau");
+        setAlwaysOnTop(true);
+        setResizable(false);
 
         choixBateau.add(selPorteAvion);
         selPorteAvion.setSelected(true);

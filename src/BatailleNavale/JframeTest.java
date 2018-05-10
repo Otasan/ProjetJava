@@ -23,11 +23,13 @@ public class JframeTest extends javax.swing.JFrame {
     public JframeTest() throws Exception {
         initComponents();
         GrilleBN g = new GrilleBN();
-        //g.placerBateau("Torpilleur", new CaseBatailleNavale(0,0), Direction.horizontal);
-        grille = new PanelGrilleBN(g, true);
+        //g.placerBateau("PorteAvion", new CaseBatailleNavale(1,0), Direction.horizontal);
+        grille = new PanelGrilleBNJ(g);
         add(grille, BorderLayout.CENTER);
         grille.redimensionner(380);
         this.setVisible(true);
+        //grille.placerBateau("Torpilleur", new CaseBatailleNavale(0,0), Direction.horizontal);
+        //grille.setTour(EtatsGrilleBN.tour);
     }
 
     /**

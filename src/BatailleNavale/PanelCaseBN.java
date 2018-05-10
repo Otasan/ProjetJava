@@ -17,9 +17,9 @@ import javax.swing.ImageIcon;
  *
  * @author aabdo
  */
-public class PanelCaseBN extends javax.swing.JButton{
-    private CaseBatailleNavale caseBN;
-    private ImageIcon image;
+public  abstract class PanelCaseBN extends javax.swing.JButton{
+    protected CaseBatailleNavale caseBN;
+    protected ImageIcon image;
     
     /**
      * crée un Panel à partir de la case c et charge l'image correspondante
@@ -30,75 +30,14 @@ public class PanelCaseBN extends javax.swing.JButton{
         initComponents();
         caseBN=c;
         image=new ImageIcon();
-        chargeImage();
         setSize(16,16);
-    }
-    
-    /**
-     * charge l'image correspondante au type de la case
-     * @throws IOException 
-     */
-    public void chargeImage() throws IOException{
-        //System.out.println(caseBN.getCase().toString());
-        //image = ImageIO.read(new File("BatailleNavaleIMG\\"+caseBN.getCase().toString()+".png"));
-        image.setImage(ImageIO.read(new File("BatailleNavaleIMG\\"+caseBN.getCase().toString()+".png")));
-        this.setIcon(image);
-        //TODO: Charger les images des bateaux séparément.
     }
     
     /**
      * mets à jour l'image de la case
      * @throws IOException 
      */
-    public void updateImage() throws IOException{
-        int lo=this.getSize().height;
-        image.setImage(ImageIO.read(new File("BatailleNavaleIMG\\"+caseBN.getCase().toString()+".png")));
-        this.setIcon(image);
-        redimensionner(lo);
-        this.setVisible(true);
-    }
-    
-    /**
-     * mets à jour l'image de la case si un bateau est placé dessus
-     * @param bateaux
-     * @throws IOException 
-     */
-    public void updateImage(HashSet<Bateau> bateaux) throws IOException{
-        int lo=this.getSize().height;
-        String nomFic = "BatailleNavaleIMG\\";
-        if(caseBN.getCase()!=TypeCase.bateau){
-            nomFic+=caseBN.getCase().toString();
-        }
-        else{
-            Bateau bat = null;
-            int i=0;
-            for(Bateau b:bateaux){
-                switch(b.getSens()){
-                    case horizontal:
-                        if(b.getCaseInitiale().getY()==caseBN.getY() && b.getCaseInitiale().getX()<=caseBN.getX() && b.getCaseInitiale().getX()+b.getTaille()>caseBN.getX()){
-                           bat=b;
-                           i=caseBN.getX()-b.getCaseInitiale().getX();
-                        }
-                        break;
-                    case vertical:
-                        if(b.getCaseInitiale().getX()==caseBN.getX() && b.getCaseInitiale().getY()<=caseBN.getY() && b.getCaseInitiale().getY()+b.getTaille()>caseBN.getY()){
-                           bat=b;
-                           i=caseBN.getY()-b.getCaseInitiale().getY();
-                        }
-                        break;
-                }
-            }
-            if(bat!=null){
-                nomFic+=bat.getClass().getSimpleName()+"_"+bat.getSens()+"_"+i;
-            }
-        }
-        nomFic+=".png";
-        //System.out.println(nomFic);
-        image.setImage(ImageIO.read(new File(nomFic)));
-        this.setIcon(image);
-        redimensionner(lo);
-        this.setVisible(true);
-    }
+    abstract public void updateImage() throws IOException;
     
     /**
      * 

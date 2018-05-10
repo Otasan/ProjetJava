@@ -11,5 +11,5 @@ package BatailleNavale;
  * @author Utilisateur
  */
 public enum EtatsGrilleBN {
-    jPlacerBateau, iAPlacerBateau, tourJ, tourIA
+    placerBateau,tour
 }
