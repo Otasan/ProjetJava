@@ -9,12 +9,12 @@ package ProjetJava;
  *
  * @author deux
  */
-public class MainPanel extends javax.swing.JPanel {
+public class ChoixJeuPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form MainPanel
+     * Creates new form ChoixJeuPanel
      */
-    public MainPanel() {
+    public ChoixJeuPanel() {
         initComponents();
     }
 
