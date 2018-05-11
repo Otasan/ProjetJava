@@ -24,7 +24,7 @@ public class JframeTest extends javax.swing.JFrame {
         initComponents();
         GrilleBN g = new GrilleBN();
         //g.placerBateau("PorteAvion", new CaseBatailleNavale(1,0), Direction.horizontal);
-        grille = new PanelGrilleBNJ(g);
+        grille = new PanelGrilleBNIA(g);
         add(grille, BorderLayout.CENTER);
         grille.redimensionner(380);
         this.setVisible(true);

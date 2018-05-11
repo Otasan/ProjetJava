@@ -27,8 +27,8 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
         initComponents();
         grille=g;
         grilleB=new ArrayList();
-        setLayout(new GridLayout(10,10));
-        setSize(160,160);
+        setLayout(new GridLayout(11,11));
+        setSize(180,180);
     }
     
     /**
@@ -44,7 +44,7 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
      * génère la grille qà être affichée. utile uniquement dans le constructeur
      * @throws IOException 
      */
-    abstract public void createGrille() throws IOException;
+    abstract protected void createGrille() throws IOException;
     
     /**
      * tes à jour toutes toutes les images de la grille (lent, à utiliser rarement)

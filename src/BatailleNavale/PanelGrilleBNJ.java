@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.TreeSet;
+import javax.swing.JLabel;
 
 /**
  *
@@ -30,15 +31,28 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
      * @throws IOException 
      */
     @Override
-    public void createGrille() throws IOException{
+    protected void createGrille() throws IOException{
         TreeSet g = grille.getGrille();
         Iterator it = g.iterator();
         int i=0;
+        int o=0;
         while(it.hasNext()){
-            grilleB.add(new PanelCaseBNJ((CaseBatailleNavale)it.next(), grille.getBateaux()));
-            add(grilleB.get(i));
-            PanelCaseBN caseB=grilleB.get(i);
-            grilleB.get(i).addActionListener(event->caseClick(caseB));
+            if(i==0){
+                add(new JLabel(""));
+            }
+            else if(i<11){
+                add(new JLabel(Character.toString((char) (i+64))));
+            }
+            else if(i%11==0){
+                add(new JLabel(Integer.toString(i/11)));
+            }
+            else{
+                grilleB.add(new PanelCaseBNJ((CaseBatailleNavale)it.next(), grille.getBateaux()));
+                add(grilleB.get(o));
+                PanelCaseBN caseB=grilleB.get(o);
+                grilleB.get(o).addActionListener(event->caseClick(caseB));
+                o++;
+            }
             i++;
         }
     }
