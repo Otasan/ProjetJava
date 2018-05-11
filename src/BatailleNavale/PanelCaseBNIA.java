@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
  */
 public class PanelCaseBNIA extends PanelCaseBN{
 
-    public PanelCaseBNIA(CaseBatailleNavale c) throws IOException {
+    public PanelCaseBNIA(CaseBN c) throws IOException {
         super(c);
         if(caseBN.getCase()==TypeCase.bateau){
             image.setImage(ImageIO.read(new File("BatailleNavaleIMG\\vierge.png")));

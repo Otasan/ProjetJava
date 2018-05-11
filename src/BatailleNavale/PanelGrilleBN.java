@@ -19,7 +19,7 @@ import java.util.TreeSet;
 public abstract class PanelGrilleBN extends javax.swing.JPanel{
     protected ArrayList<PanelCaseBN> grilleB;
     protected GrilleBN grille;
-    protected EtatsGrilleBN etat;
+    protected EtatsBN etat;
     /**
      * crée un PanelGrille BN carrée de longueur 160 (redimensionable avec la methode redimentionner)
      */
@@ -36,7 +36,7 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
      * TODO: remplacer par une variable etat qui permet de placer des bateaux
      * @param t 
      */
-    public void setTour(EtatsGrilleBN t){
+    public void setTour(EtatsBN t){
         etat=t;
     }
     
@@ -83,7 +83,7 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
      * @param sens
      * @throws Exception 
      */
-    public void placerBateau(String typeBateau, CaseBatailleNavale cI, Direction sens) throws Exception{
+    public void placerBateau(String typeBateau, CaseBN cI, Direction sens) throws Exception{
         grille.placerBateau(typeBateau, cI, sens);
         System.out.println(grille.getGrille().toString());
         updateGrille();

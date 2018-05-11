@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
 public class PanelCaseBNJ extends PanelCaseBN {
     private HashSet<Bateau> lesBateaux;
     
-    public PanelCaseBNJ(CaseBatailleNavale c, HashSet<Bateau> b) throws IOException {
+    public PanelCaseBNJ(CaseBN c, HashSet<Bateau> b) throws IOException {
         super(c);
         lesBateaux=b;
         image.setImage(ImageIO.read(new File("BatailleNavaleIMG\\"+caseBN.getCase().toString()+".png")));

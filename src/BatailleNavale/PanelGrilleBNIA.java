@@ -20,7 +20,7 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
     public PanelGrilleBNIA(GrilleBN g) throws Exception {
         super(g);
         createGrille();
-        etat=EtatsGrilleBN.placerBateau;
+        etat=EtatsBN.placerBateau;
     }
     
     @Override
@@ -40,7 +40,7 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
                 add(new JLabel(Integer.toString(i/11)));
             }
             else{
-                grilleB.add(new PanelCaseBNIA((CaseBatailleNavale)it.next()));
+                grilleB.add(new PanelCaseBNIA((CaseBN)it.next()));
                 add(grilleB.get(o));
                 PanelCaseBN caseB=grilleB.get(o);
                 grilleB.get(o).addActionListener(event->caseClick(caseB));
@@ -58,13 +58,13 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
     @Override
     public void caseClick(PanelCaseBN caseP) {
         //System.out.println(caseP);
-        if (etat == EtatsGrilleBN.tour) {
+        if (etat == EtatsBN.tour) {
             try {
                 grille.tire(caseP.getCase());
                 caseP.updateImage();
                 //updateGrille();
             }
-            catch (BatailleNavaleException e) {
+            catch (BNException e) {
                 System.out.println(e);
             }
             catch (IOException e) {

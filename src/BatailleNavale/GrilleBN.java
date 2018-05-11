@@ -11,7 +11,7 @@ import java.util.HashSet;
  * @author aabdo
  */
 public class GrilleBN {
-    private TreeSet<CaseBatailleNavale> lesCases;
+    private TreeSet<CaseBN> lesCases;
     private HashSet<Bateau> lesBateaux;
     
     /**
@@ -21,22 +21,22 @@ public class GrilleBN {
         lesBateaux=new HashSet();
         lesCases=new TreeSet();
         for(int i=0;i<100;i++){
-            lesCases.add(new CaseBatailleNavale(i%10,(int)i/10));
+            lesCases.add(new CaseBN(i%10,(int)i/10));
         }
     }
     
     /**
      * place un bateau du type typeBateau dont la case la plus en haut ou à gauche est cI et dont la direction est s
-     * lance des BatailleNavaleException si une des cases occupées par le nouveau bateau est déjà occupée ou en dehors de la grille
+ lance des BNException si une des cases occupées par le nouveau bateau est déjà occupée ou en dehors de la grille
      * @param typeBateau string du nom de classe du bateau (ne respecte pas la case)
      * @param cI case la plus en haut ou à gauche du bateau
      * @param d direction du bateau
-     * @throws BatailleNavaleException 
+     * @throws BNException 
      */
-    public void placerBateau(String typeBateau, CaseBatailleNavale cI, Direction d)throws BatailleNavaleException{
+    public void placerBateau(String typeBateau, CaseBN cI, Direction d)throws BNException{
         Bateau b;
         if(lesCases.ceiling(cI).getCase()==TypeCase.bateau){
-            throw new BatailleNavaleException("Bateaux en collision : "+lesCases.ceiling(cI));
+            throw new BNException("Bateaux en collision : "+lesCases.ceiling(cI));
         }
         else{
             lesCases.ceiling(cI).setCase(TypeCase.bateau);
@@ -60,46 +60,46 @@ public class GrilleBN {
                     b=new Torpilleur(cI,d);
                     break;
                 default:
-                    throw new BatailleNavaleException("Bateau type : "+typeBateau+" n'existe pas");
+                    throw new BNException("Bateau type : "+typeBateau+" n'existe pas");
             }
             //System.out.println(b+"\n"+lesCases);
             if(lesBateaux.contains(b)){
-                throw new BatailleNavaleException("Bateau déjà existant sur cete grille : "+typeBateau+" : "+lesBateaux.toString());
+                throw new BNException("Bateau déjà existant sur cete grille : "+typeBateau+" : "+lesBateaux.toString());
             }
             else{
                 switch(d){
                     case horizontal:
                         if(cI.getX()+b.getTaille()>10){
-                            throw new BatailleNavaleException("Bateau hors de la grille "+cI.toString()+" taille : "+b.getTaille()+" direction : "+d);
+                            throw new BNException("Bateau hors de la grille "+cI.toString()+" taille : "+b.getTaille()+" direction : "+d);
                         }
                         else{
                             for(int i=cI.getX()+1;i<cI.getX()+b.getTaille();i++){
-                                if(lesCases.ceiling(new CaseBatailleNavale(i,cI.getY())).getCase()==TypeCase.bateau){
+                                if(lesCases.ceiling(new CaseBN(i,cI.getY())).getCase()==TypeCase.bateau){
                                     for(int o=i-1; o>=cI.getX();o--){//hey
-                                        lesCases.ceiling(new CaseBatailleNavale(o,cI.getY())).setCase(TypeCase.vierge);
+                                        lesCases.ceiling(new CaseBN(o,cI.getY())).setCase(TypeCase.vierge);
                                     }
-                                    throw new BatailleNavaleException("Bateaux en collision : "+lesCases.ceiling(new CaseBatailleNavale(i,cI.getY())).toString());
+                                    throw new BNException("Bateaux en collision : "+lesCases.ceiling(new CaseBN(i,cI.getY())).toString());
                                 }
                                 else{
-                                    lesCases.ceiling(new CaseBatailleNavale(i,cI.getY())).setCase(TypeCase.bateau);
+                                    lesCases.ceiling(new CaseBN(i,cI.getY())).setCase(TypeCase.bateau);
                                 }
                             }
                         }
                         break;
                     case vertical:
                         if(cI.getY()+b.getTaille()>10){
-                            throw new BatailleNavaleException("Bateau hors de la grille "+cI.toString()+" taille : "+b.getTaille()+" direction : "+d);
+                            throw new BNException("Bateau hors de la grille "+cI.toString()+" taille : "+b.getTaille()+" direction : "+d);
                         }
                         else{
                             for(int i=cI.getY()+1;i<cI.getY()+b.getTaille();i++){
-                                if(lesCases.ceiling(new CaseBatailleNavale(cI.getX(),i)).getCase()==TypeCase.bateau){
+                                if(lesCases.ceiling(new CaseBN(cI.getX(),i)).getCase()==TypeCase.bateau){
                                     for(int o=i-1; o>=cI.getY();o--){
-                                        lesCases.ceiling(new CaseBatailleNavale(cI.getX(),o)).setCase(TypeCase.vierge);
+                                        lesCases.ceiling(new CaseBN(cI.getX(),o)).setCase(TypeCase.vierge);
                                     }
-                                    throw new BatailleNavaleException("Bateaux en collision : "+lesCases.ceiling(new CaseBatailleNavale(cI.getX(),i)).toString());
+                                    throw new BNException("Bateaux en collision : "+lesCases.ceiling(new CaseBN(cI.getX(),i)).toString());
                                 }
                                 else{
-                                    lesCases.ceiling(new CaseBatailleNavale(cI.getX(),i)).setCase(TypeCase.bateau);
+                                    lesCases.ceiling(new CaseBN(cI.getX(),i)).setCase(TypeCase.bateau);
                                 }
                             }
                         }
@@ -109,31 +109,31 @@ public class GrilleBN {
             }
         }
         else{
-            throw new BatailleNavaleException("Case externe à la grille:"+cI.toString());
+            throw new BNException("Case externe à la grille:"+cI.toString());
         }
         
     }
     
     /**
      * "touche" la case [x;y] et vérifie si un bateau à été coulé.
-     * Lance une BatailleNavaleException si la case est déjà touchée
+     * Lance une BNException si la case est déjà touchée
      * @param x
      * @param y
-     * @throws BatailleNavaleException 
+     * @throws BNException 
      */
-    public void tire(int x, int y) throws BatailleNavaleException{
-        if(lesCases.ceiling(new CaseBatailleNavale(x, y)).touche()==TypeCase.touche){
+    public void tire(int x, int y) throws BNException{
+        if(lesCases.ceiling(new CaseBN(x, y)).touche()==TypeCase.touche){
             chkBateauCoule();
         }
     }
     
     /**
      * "touche" une case à la même position que c et vérifie si un bateau à été coulé.
-     * Lance une BatailleNavaleException si la case est déjà touchée
+     * Lance une BNException si la case est déjà touchée
      * @param c
-     * @throws BatailleNavaleException 
+     * @throws BNException 
      */
-    public void tire(CaseBatailleNavale c) throws BatailleNavaleException{
+    public void tire(CaseBN c) throws BNException{
         if(lesCases.ceiling(c).touche()==TypeCase.touche){
             chkBateauCoule();
         }
@@ -149,14 +149,14 @@ public class GrilleBN {
             switch(b.getSens()){
                 case horizontal:
                     for(int i=b.getCaseInitiale().getX();i<b.getTaille()+b.getCaseInitiale().getX();i++){
-                        if(lesCases.ceiling(new CaseBatailleNavale(i, b.getCaseInitiale().getY())).getCase()==TypeCase.touche){
+                        if(lesCases.ceiling(new CaseBN(i, b.getCaseInitiale().getY())).getCase()==TypeCase.touche){
                             nbTouche++;
                         }
                     }
                     break;
                 case vertical:
                     for(int i=b.getCaseInitiale().getY();i<b.getTaille()+b.getCaseInitiale().getY();i++){
-                        if(lesCases.ceiling(new CaseBatailleNavale(b.getCaseInitiale().getX(), i)).getCase()==TypeCase.touche){
+                        if(lesCases.ceiling(new CaseBN(b.getCaseInitiale().getX(), i)).getCase()==TypeCase.touche){
                             nbTouche++;
                         }
                     }
@@ -192,7 +192,7 @@ public class GrilleBN {
      * 
      * @return une TreeSet des cases
      */
-    public TreeSet<CaseBatailleNavale> getGrille(){
+    public TreeSet<CaseBN> getGrille(){
         return lesCases;
     }
     
@@ -202,8 +202,8 @@ public class GrilleBN {
      * @param y
      * @return la case à la position [x;y]
      */
-    public CaseBatailleNavale getCase(int x, int y){
-        return lesCases.ceiling(new CaseBatailleNavale(x,y));
+    public CaseBN getCase(int x, int y){
+        return lesCases.ceiling(new CaseBN(x,y));
     }
     
     /**
@@ -211,7 +211,7 @@ public class GrilleBN {
      * @param c
      * @return la case à la même position que c
      */
-    public CaseBatailleNavale getCase(CaseBatailleNavale c){
+    public CaseBN getCase(CaseBN c){
         return lesCases.ceiling(c);
     }
 }

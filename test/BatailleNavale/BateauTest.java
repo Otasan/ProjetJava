@@ -12,7 +12,7 @@ import BatailleNavale.Croiseur;
 import BatailleNavale.Direction;
 import BatailleNavale.TypeCase;
 import BatailleNavale.SousMarin;
-import BatailleNavale.CaseBatailleNavale;
+import BatailleNavale.CaseBN;
 import BatailleNavale.ContreTorpilleur;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -51,25 +51,25 @@ public class BateauTest {
      */
     @Test
     public void testGetTaille() {
-        ContreTorpilleur c = new ContreTorpilleur(new CaseBatailleNavale(0,0), Direction.horizontal);
+        ContreTorpilleur c = new ContreTorpilleur(new CaseBN(0,0), Direction.horizontal);
         assertEquals(c.getTaille(), 3);
-        Croiseur co = new Croiseur(new CaseBatailleNavale(0,0), Direction.horizontal);
+        Croiseur co = new Croiseur(new CaseBN(0,0), Direction.horizontal);
         assertEquals(co.getTaille(), 4);
-        PorteAvion p = new PorteAvion(new CaseBatailleNavale(0,0), Direction.horizontal);
+        PorteAvion p = new PorteAvion(new CaseBN(0,0), Direction.horizontal);
         assertEquals(p.getTaille(), 5);
-        SousMarin s = new SousMarin(new CaseBatailleNavale(0,0), Direction.horizontal);
+        SousMarin s = new SousMarin(new CaseBN(0,0), Direction.horizontal);
         assertEquals(s.getTaille(), 3);
-        Torpilleur t = new Torpilleur(new CaseBatailleNavale(0,0), Direction.horizontal);
+        Torpilleur t = new Torpilleur(new CaseBN(0,0), Direction.horizontal);
         assertEquals(t.getTaille(), 2);
-        ContreTorpilleur c1 = new ContreTorpilleur(new CaseBatailleNavale(0,0), Direction.vertical);
+        ContreTorpilleur c1 = new ContreTorpilleur(new CaseBN(0,0), Direction.vertical);
         assertEquals(c1.getTaille(), 3);
-        Croiseur co1 = new Croiseur(new CaseBatailleNavale(0,0), Direction.vertical);
+        Croiseur co1 = new Croiseur(new CaseBN(0,0), Direction.vertical);
         assertEquals(co1.getTaille(), 4);
-        PorteAvion p1 = new PorteAvion(new CaseBatailleNavale(0,0), Direction.vertical);
+        PorteAvion p1 = new PorteAvion(new CaseBN(0,0), Direction.vertical);
         assertEquals(p1.getTaille(), 5);
-        SousMarin s1 = new SousMarin(new CaseBatailleNavale(0,0), Direction.vertical);
+        SousMarin s1 = new SousMarin(new CaseBN(0,0), Direction.vertical);
         assertEquals(s1.getTaille(), 3);
-        Torpilleur t1 = new Torpilleur(new CaseBatailleNavale(0,0), Direction.vertical);
+        Torpilleur t1 = new Torpilleur(new CaseBN(0,0), Direction.vertical);
         assertEquals(t1.getTaille(), 2);
     }
     
@@ -101,8 +101,8 @@ public class BateauTest {
      */
     @Test
     public void testGetCaseInitiale() {
-        Bateau b = new Torpilleur(new CaseBatailleNavale(0,0), Direction.vertical);
-        CaseBatailleNavale c = b.getCaseInitiale();
+        Bateau b = new Torpilleur(new CaseBN(0,0), Direction.vertical);
+        CaseBN c = b.getCaseInitiale();
         assertTrue(c.getX()==0 && c.getY()==0 && c.getCase()==TypeCase.bateau);
     }
 
@@ -111,9 +111,9 @@ public class BateauTest {
      */
     @Test
     public void testGetSens() {
-        Bateau b = new Torpilleur(new CaseBatailleNavale(0, 0), Direction.horizontal);
+        Bateau b = new Torpilleur(new CaseBN(0, 0), Direction.horizontal);
         assertEquals(b.getSens(), Direction.horizontal);
-        Bateau c = new ContreTorpilleur(new CaseBatailleNavale(0,0), Direction.vertical);
+        Bateau c = new ContreTorpilleur(new CaseBN(0,0), Direction.vertical);
         assertEquals(c.getSens(), Direction.vertical);
     }
 
@@ -122,11 +122,11 @@ public class BateauTest {
      */
     @Test
     public void testEquals() {
-        Bateau b = new Torpilleur(new CaseBatailleNavale(0, 0), Direction.horizontal);
+        Bateau b = new Torpilleur(new CaseBN(0, 0), Direction.horizontal);
         assertTrue(b.equals(b));
-        Bateau pa = new PorteAvion(new CaseBatailleNavale(0,0),Direction.horizontal);
+        Bateau pa = new PorteAvion(new CaseBN(0,0),Direction.horizontal);
         assertFalse(b.equals(pa));
-        Bateau b1 = new Torpilleur(new CaseBatailleNavale(50,12), Direction.vertical);
+        Bateau b1 = new Torpilleur(new CaseBN(50,12), Direction.vertical);
         assertTrue(b.equals(b1));
         assertFalse(b1.equals(pa));
     }

@@ -9,7 +9,7 @@ package BatailleNavale;
  *
  * @author aabdo
  */
-public class CaseBatailleNavale implements Comparable {
+public class CaseBN implements Comparable {
     private TypeCase zone;
     private int x;
     private int y;
@@ -19,7 +19,7 @@ public class CaseBatailleNavale implements Comparable {
      * @param x position x ([0;9] de gauche à droite)
      * @param y position y ([0;9] de haut en bas)
      */
-    public CaseBatailleNavale(int x, int y){
+    public CaseBN(int x, int y){
         this.x=x;
         this.y=y;
         zone=TypeCase.vierge;
@@ -27,11 +27,11 @@ public class CaseBatailleNavale implements Comparable {
     
     /**
      * Change une case "vierge" en "toucheVierge" et une case "bateau" en "touche" et return le nouveau type de la case
-     * lève une BatailleNavaleException si une case est de type "touche" ou "toucheVierge"
+ lève une BNException si une case est de type "touche" ou "toucheVierge"
      * @return le nouveau type de la case
-     * @throws BatailleNavaleException 
+     * @throws BNException 
      */
-    public TypeCase touche() throws BatailleNavaleException{
+    public TypeCase touche() throws BNException{
         if(zone != TypeCase.touche && zone != TypeCase.toucheVierge){
             switch(zone){
                 case vierge:
@@ -44,7 +44,7 @@ public class CaseBatailleNavale implements Comparable {
             return zone;
         }
         else{
-            throw new BatailleNavaleException("Case déjà touchée "+zone);
+            throw new BNException("Case déjà touchée "+zone);
         }
     }
     
@@ -88,7 +88,7 @@ public class CaseBatailleNavale implements Comparable {
      */
     @Override
     public int compareTo(Object o) {
-        CaseBatailleNavale c = (CaseBatailleNavale)o;
+        CaseBN c = (CaseBN)o;
         if(y == c.y){
             return x-c.x;
         }

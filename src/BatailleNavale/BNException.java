@@ -9,13 +9,13 @@ package BatailleNavale;
  *
  * @author aabdo
  */
-public class BatailleNavaleException extends Exception {
+public class BNException extends Exception {
 
     /**
      * Creates a new instance of <code>BatailleNavaleException</code> without
      * detail message.
      */
-    public BatailleNavaleException() {
+    public BNException() {
     }
 
     /**
@@ -24,7 +24,7 @@ public class BatailleNavaleException extends Exception {
      *
      * @param msg the detail message.
      */
-    public BatailleNavaleException(String msg) {
+    public BNException(String msg) {
         super(msg);
     }
 }

@@ -10,6 +10,6 @@ package BatailleNavale;
  *
  * @author Utilisateur
  */
-public enum EtatsGrilleBN {
+public enum EtatsBN {
     placerBateau,tour
 }

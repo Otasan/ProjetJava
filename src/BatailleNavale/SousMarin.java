@@ -16,7 +16,7 @@ public class SousMarin extends Bateau{
      * @param cI la case la plus en haut à gauche du bateau
      * @param s la direction (horizontale ou verticale)
      */
-    public SousMarin(CaseBatailleNavale cI, Direction s) {
+    public SousMarin(CaseBN cI, Direction s) {
         super(cI, s, 3);
     }
     

@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
  * @author aabdo
  */
 public  abstract class PanelCaseBN extends javax.swing.JButton{
-    protected CaseBatailleNavale caseBN;
+    protected CaseBN caseBN;
     protected ImageIcon image;
     
     /**
@@ -26,7 +26,7 @@ public  abstract class PanelCaseBN extends javax.swing.JButton{
      * @param c
      * @throws IOException si l'image n'est pas trouvée
      */
-    public PanelCaseBN(CaseBatailleNavale c) throws IOException {
+    public PanelCaseBN(CaseBN c) throws IOException {
         initComponents();
         caseBN=c;
         image=new ImageIcon();
@@ -43,7 +43,7 @@ public  abstract class PanelCaseBN extends javax.swing.JButton{
      * 
      * @return case logique correspondante
      */
-    public CaseBatailleNavale getCase(){
+    public CaseBN getCase(){
         return caseBN;
     }
     

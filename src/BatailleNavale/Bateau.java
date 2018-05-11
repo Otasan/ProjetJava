@@ -12,7 +12,7 @@ import java.util.TreeSet;
  * @author Utilisateur
  */
 public abstract class Bateau {
-    private CaseBatailleNavale caseInitiale;
+    private CaseBN caseInitiale;
     private Direction sens;
     private int taille;
     //private boolean coule;
@@ -23,7 +23,7 @@ public abstract class Bateau {
      * @param s la direction du bateau(horizontale ou verticale)
      * @param t la taille du bateau en case
      */
-    public Bateau(CaseBatailleNavale cI, Direction s, int t){
+    public Bateau(CaseBN cI, Direction s, int t){
         cI.setCase(TypeCase.bateau);
         caseInitiale=cI;
         sens=s;
@@ -62,7 +62,7 @@ public abstract class Bateau {
      * renvoie la case la plus en haut ou à gauche du bateau
      * @return caseInitiale
      */
-    public CaseBatailleNavale getCaseInitiale(){
+    public CaseBN getCaseInitiale(){
         return caseInitiale;
     }
     

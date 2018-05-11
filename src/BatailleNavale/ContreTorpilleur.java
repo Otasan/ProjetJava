@@ -16,7 +16,7 @@ public class ContreTorpilleur extends Bateau{
      * @param cI la case la plus en haut à gauche du bateau
      * @param s la direction (horizontale ou verticale)
      */
-    public ContreTorpilleur(CaseBatailleNavale cI, Direction s) {
+    public ContreTorpilleur(CaseBN cI, Direction s) {
         super(cI, s, 3);
     }
     

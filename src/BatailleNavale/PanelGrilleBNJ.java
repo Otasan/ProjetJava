@@ -23,7 +23,7 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
         super(g);
         createGrille();
         choix = new FrameChoixBateau();
-        etat=EtatsGrilleBN.placerBateau;
+        etat=EtatsBN.placerBateau;
     }
     
     /**
@@ -47,7 +47,7 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
                 add(new JLabel(Integer.toString(i/11)));
             }
             else{
-                grilleB.add(new PanelCaseBNJ((CaseBatailleNavale)it.next(), grille.getBateaux()));
+                grilleB.add(new PanelCaseBNJ((CaseBN)it.next(), grille.getBateaux()));
                 add(grilleB.get(o));
                 PanelCaseBN caseB=grilleB.get(o);
                 grilleB.get(o).addActionListener(event->caseClick(caseB));
@@ -65,7 +65,7 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
     @Override
     public void caseClick(PanelCaseBN caseP){
         //System.out.println(caseP);
-        if(etat==EtatsGrilleBN.placerBateau){
+        if(etat==EtatsBN.placerBateau){
             if(choix.getValide()){
                 try{
                     grille.placerBateau(choix.getBateau(),caseP.getCase(),choix.getSens());
@@ -80,7 +80,7 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
             }
             else{
                 choix.dispatchEvent(new WindowEvent(choix, WindowEvent.WINDOW_CLOSING));
-                etat=EtatsGrilleBN.tour;
+                etat=EtatsBN.tour;
             }
         }
         //TODO: ajouter fenetre erreur sinon
