@@ -33,6 +33,7 @@ public class ConnexionPanel extends javax.swing.JPanel {
         jTextFieldPseudo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPasswordField = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButtonInscription = new javax.swing.JButton();
         jButtonInvite = new javax.swing.JButton();
@@ -89,6 +90,12 @@ public class ConnexionPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         jPanel1.add(jPasswordField, gridBagConstraints);
 
+        jLabel3.setText("Pas de comte ?");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        jPanel1.add(jLabel3, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -138,6 +145,7 @@ public class ConnexionPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButtonInvite;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField;

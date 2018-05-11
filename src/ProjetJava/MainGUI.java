@@ -16,7 +16,7 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() {
         initComponents();
-        this.setExtendedState(this.MAXIMIZED_BOTH);
+        this.setExtendedState(this.MAXIMIZED_BOTH);        
     }
 
     /**
@@ -28,6 +28,8 @@ public class MainGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainPanel = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Boite De Jeux");
         setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -35,10 +37,14 @@ public class MainGUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(854, 480));
         getContentPane().setLayout(new java.awt.BorderLayout(5, 5));
 
+        mainPanel.setLayout(new java.awt.CardLayout());
+        getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 
     /*
@@ -47,7 +53,6 @@ public class MainGUI extends javax.swing.JFrame {
     public void interfaceConnexion() {
         this.getContentPane().removeAll();
         this.getContentPane().add(new ConnexionPanel());
-        this.revalidate();
         this.pack();
     }
 
@@ -60,9 +65,21 @@ public class MainGUI extends javax.swing.JFrame {
         this.pack();
     }
 
-    public void interfaceJeu() {
+    /*
+    Initialisation de la fenetre de jeu.
+     */
+    public void interfaceJeu(String jeu) {
         this.getContentPane().removeAll();
-        this.getContentPane().add(new JeuPanel("Bataille Navale"));
+        this.getContentPane().add(new JeuPanel(jeu));
+        this.pack();
+    }
+
+    /*
+    Initialisation de la fenetre d'administration.
+     */
+    public void interfaceAdmin() {
+        this.getContentPane().removeAll();
+        this.getContentPane().add(new AdminPanel());
         this.pack();
     }
 }

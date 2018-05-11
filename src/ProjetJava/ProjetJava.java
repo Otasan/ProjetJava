@@ -20,7 +20,7 @@ public class ProjetJava {
             @Override
             public void run() {
                 MainGUI gui = new MainGUI();
-                gui.interfaceJeu();
+                gui.interfaceAdmin();
                 gui.setVisible(true);
             }
         });
