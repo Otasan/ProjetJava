@@ -22,14 +22,16 @@ public class JframeTest extends javax.swing.JFrame {
      */
     public JframeTest() throws Exception {
         initComponents();
-        GrilleBN g = new GrilleBN();
-        //g.placerBateau("PorteAvion", new CaseBatailleNavale(1,0), Direction.horizontal);
+        
+        /*GrilleBN g = new GrilleBN();
         grille = new PanelGrilleBNIA(g);
         add(grille, BorderLayout.CENTER);
-        grille.redimensionner(380);
+        grille.redimensionner(380);*/
+        
+        BatailleNavale b = new BatailleNavale(0);
+        add(b, BorderLayout.CENTER);
+        
         this.setVisible(true);
-        //grille.placerBateau("Torpilleur", new CaseBatailleNavale(0,0), Direction.horizontal);
-        //grille.setTour(EtatsGrilleBN.tour);
     }
 
     /**
@@ -42,7 +44,7 @@ public class JframeTest extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(500, 500));
+        setPreferredSize(new java.awt.Dimension(800, 800));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

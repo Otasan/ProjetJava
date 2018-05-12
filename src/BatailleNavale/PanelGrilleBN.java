@@ -41,7 +41,7 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
     }
     
     /**
-     * génère la grille qà être affichée. utile uniquement dans le constructeur
+     * génère la grille qui va être affichée. utile uniquement dans le constructeur
      * @throws IOException 
      */
     abstract protected void createGrille() throws IOException;

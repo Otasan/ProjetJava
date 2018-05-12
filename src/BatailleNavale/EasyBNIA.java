@@ -24,7 +24,7 @@ public class EasyBNIA extends BNIA{
         Random rand = new Random();
         Direction dir=Direction.vertical;
         int x=0,y=0;
-        int i=0;
+        int i=0, c=0;
         String bateau="";
         while(i<5){
             switch(i){
@@ -101,7 +101,9 @@ public class EasyBNIA extends BNIA{
                 i--;
             }
             i++;
+            c++;
         }
+        System.out.println("Effectué en "+c+" tours");
     }
 
     /**
