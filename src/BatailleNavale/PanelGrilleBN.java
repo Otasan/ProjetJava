@@ -26,6 +26,7 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
     public PanelGrilleBN(GrilleBN g) throws Exception {
         initComponents();
         grille=g;
+        etat=EtatsBN.rien;
         grilleB=new ArrayList();
         setLayout(new GridLayout(11,11));
         setSize(180,180);
@@ -38,6 +39,14 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
      */
     public void setTour(EtatsBN t){
         etat=t;
+    }
+    
+    /**
+     * Donne l'état actuel de la grille
+     * @return 
+     */
+    public EtatsBN getTour(){
+        return etat;
     }
     
     /**

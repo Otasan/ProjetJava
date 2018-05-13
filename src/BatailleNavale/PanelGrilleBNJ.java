@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.TreeSet;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,8 +23,15 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
     public PanelGrilleBNJ(GrilleBN g) throws Exception {
         super(g);
         createGrille();
-        choix = new FrameChoixBateau();
-        etat=EtatsBN.placerBateau;
+        System.out.println("Je suis crée");
+    }
+    
+    @Override
+    public void setTour(EtatsBN val){
+        super.setTour(val);
+        if(val==EtatsBN.placerBateau){
+            choix = new FrameChoixBateau();
+        }
     }
     
     /**
@@ -64,7 +72,7 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
      */
     @Override
     public void caseClick(PanelCaseBN caseP){
-        //System.out.println(caseP);
+        System.out.println(etat);
         if(etat==EtatsBN.placerBateau){
             if(choix.getValide()){
                 try{
@@ -82,6 +90,9 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
                 choix.dispatchEvent(new WindowEvent(choix, WindowEvent.WINDOW_CLOSING));
                 etat=EtatsBN.tour;
             }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Vous ne pouvez pas/pas encore faire ça", "Erreur", JOptionPane.INFORMATION_MESSAGE);
         }
         //TODO: ajouter fenetre erreur sinon
     }

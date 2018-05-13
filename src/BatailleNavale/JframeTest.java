@@ -32,6 +32,7 @@ public class JframeTest extends javax.swing.JFrame {
         add(b, BorderLayout.CENTER);
         
         this.setVisible(true);
+        b.jeu();
     }
 
     /**

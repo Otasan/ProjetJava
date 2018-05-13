@@ -73,6 +73,7 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
             catch (Exception e) {
                 System.out.println(e + " " + grille.getBateaux().toString());
             }
+            etat=EtatsBN.rien;
         }
     }
 }

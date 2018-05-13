@@ -112,9 +112,11 @@ public class EasyBNIA extends BNIA{
     @Override
     public void tirer() {
         Random rand=new Random();
-        int x=rand.nextInt(10),y=rand.nextInt(10);
+        int x=0,y=0;
         boolean aTire = false;
         while(!aTire){
+            x=rand.nextInt(10);
+            y=rand.nextInt(10);
             aTire=true;
             try{
                 joueur.tire(x, y);
@@ -123,6 +125,7 @@ public class EasyBNIA extends BNIA{
                 aTire=false;
             }
         }
+        System.out.println(joueur.getCase(x, y).toString());
     }
     
 }
