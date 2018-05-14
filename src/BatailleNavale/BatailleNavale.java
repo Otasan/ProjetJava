@@ -99,6 +99,8 @@ public class BatailleNavale extends javax.swing.JPanel{
      * @return 
      */
     public int jeu() throws IOException{
+        //pJoueur.updateGrille();
+        pIa.updateGrille();
         setTour(EtatsBN.placerBateau);
         ia.placerBateaux();
         while(pJoueur.getTour()==EtatsBN.placerBateau){

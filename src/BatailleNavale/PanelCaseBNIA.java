@@ -42,6 +42,7 @@ public class PanelCaseBNIA extends PanelCaseBN{
         this.setIcon(image);
         redimensionner(lo);
         this.setVisible(true);
+        this.repaint();
     }
     
     @Override

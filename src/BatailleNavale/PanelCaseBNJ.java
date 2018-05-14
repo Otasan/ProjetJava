@@ -65,6 +65,7 @@ public class PanelCaseBNJ extends PanelCaseBN {
         this.setIcon(image);
         redimensionner(lo);
         this.setVisible(true);
+        this.repaint();
     }
     
     @Override

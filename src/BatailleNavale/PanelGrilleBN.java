@@ -65,6 +65,7 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
             g.updateImage();
         }
         this.setVisible(true);
+        this.repaint();
     }
     
     /**
