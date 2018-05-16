@@ -11,5 +11,5 @@ package BatailleNavale;
  * @author Utilisateur
  */
 public enum EtatsBN {
-    placerBateau,tour,rien
+    placerBateau,tourj,touria,rien
 }

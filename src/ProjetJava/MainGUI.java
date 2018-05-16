@@ -5,6 +5,10 @@
  */
 package ProjetJava;
 
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author deux
@@ -16,7 +20,14 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() {
         initComponents();
-        this.setExtendedState(this.MAXIMIZED_BOTH);        
+        this.setExtendedState(this.MAXIMIZED_BOTH);
+        this.interfaceConnexion();
+        this.setVisible(true);
+        try {
+            Identification id = new Identification("Sauvegarde.save");
+        } catch (FileNotFoundException ex) {
+            Identification id = new Identification();
+        }
     }
 
     /**
@@ -50,25 +61,33 @@ public class MainGUI extends javax.swing.JFrame {
     /*
     Initialisation de la fenetre de Connexion.
      */
-    public void interfaceConnexion() {
+    private void interfaceConnexion() {
         this.getContentPane().removeAll();
-        this.getContentPane().add(new ConnexionPanel());
+        ConnexionPanel connexion = new ConnexionPanel();
+        connexion.getInscriptionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceInscription();
+        });
+        this.getContentPane().add(connexion);
         this.pack();
     }
 
     /*
     Initialisation de la fenetre d'inscription.
      */
-    public void interfaceInscription() {
+    private void interfaceInscription() {
         this.getContentPane().removeAll();
-        this.getContentPane().add(new InscriptionPanel());
+        InscriptionPanel inscription = new InscriptionPanel();
+        inscription.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceConnexion();
+        });
+        this.getContentPane().add(inscription);
         this.pack();
     }
 
     /*
     Initialisation de la fenetre de jeu.
      */
-    public void interfaceJeu(String jeu) {
+    private void interfaceJeu(String jeu) {
         this.getContentPane().removeAll();
         this.getContentPane().add(new JeuPanel(jeu));
         this.pack();
@@ -77,7 +96,7 @@ public class MainGUI extends javax.swing.JFrame {
     /*
     Initialisation de la fenetre d'administration.
      */
-    public void interfaceAdmin() {
+    private void interfaceAdmin() {
         this.getContentPane().removeAll();
         this.getContentPane().add(new AdminPanel());
         this.pack();

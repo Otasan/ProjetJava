@@ -60,11 +60,6 @@ public class InscriptionPanel extends javax.swing.JPanel {
         jTextFieldPseudo.setMaximumSize(new java.awt.Dimension(200, 25));
         jTextFieldPseudo.setMinimumSize(new java.awt.Dimension(100, 25));
         jTextFieldPseudo.setPreferredSize(new java.awt.Dimension(150, 25));
-        jTextFieldPseudo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPseudoActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -139,10 +134,14 @@ public class InscriptionPanel extends javax.swing.JPanel {
         add(jPanel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldPseudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPseudoActionPerformed
-    }//GEN-LAST:event_jTextFieldPseudoActionPerformed
-
-
+    public javax.swing.JButton getInscriptionButton(){
+        return jButtonInscription;
+    }
+    
+    public javax.swing.JButton getRetourButton(){
+        return jButtonRetour;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonInscription;
     private javax.swing.JButton jButtonRetour;

@@ -460,7 +460,7 @@
         </Constraint>
       </Constraints>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButtonInscription">
+        <Component class="javax.swing.JButton" name="jButtonConnexion">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
@@ -476,7 +476,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonInvite">
+        <Component class="javax.swing.JButton" name="jButtonInscription">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
@@ -492,7 +492,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonConnexion">
+        <Component class="javax.swing.JButton" name="jButtonInvite">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
@@ -599,11 +599,11 @@
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="31_jButtonInscription">
-              <CodeVariable name="jButtonInscription" type="8194" declaredType="javax.swing.JButton"/>
+            <CodeExpression id="31_jButtonConnexion">
+              <CodeVariable name="jButtonConnexion" type="8194" declaredType="javax.swing.JButton"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">
-                  <ComponentRef name="jButtonInscription"/>
+                  <ComponentRef name="jButtonConnexion"/>
                 </ExpressionProvider>
               </ExpressionOrigin>
             </CodeExpression>
@@ -655,11 +655,11 @@
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="35_jButtonInvite">
-              <CodeVariable name="jButtonInvite" type="8194" declaredType="javax.swing.JButton"/>
+            <CodeExpression id="35_jButtonInscription">
+              <CodeVariable name="jButtonInscription" type="8194" declaredType="javax.swing.JButton"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">
-                  <ComponentRef name="jButtonInvite"/>
+                  <ComponentRef name="jButtonInscription"/>
                 </ExpressionProvider>
               </ExpressionOrigin>
             </CodeExpression>
@@ -711,11 +711,11 @@
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
           </StatementProvider>
           <Parameters>
-            <CodeExpression id="39_jButtonConnexion">
-              <CodeVariable name="jButtonConnexion" type="8194" declaredType="javax.swing.JButton"/>
+            <CodeExpression id="39_jButtonInvite">
+              <CodeVariable name="jButtonInvite" type="8194" declaredType="javax.swing.JButton"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">
-                  <ComponentRef name="jButtonConnexion"/>
+                  <ComponentRef name="jButtonInvite"/>
                 </ExpressionProvider>
               </ExpressionOrigin>
             </CodeExpression>

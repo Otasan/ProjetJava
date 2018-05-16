@@ -12,7 +12,7 @@ package BatailleNavale;
 public abstract class BNIA {
     protected GrilleBN joueur;
     protected GrilleBN ia;
-    protected EtatsBN etat;
+    protected volatile EtatsBN etat;
     
     public BNIA(GrilleBN adv, GrilleBN j){
         joueur=j;

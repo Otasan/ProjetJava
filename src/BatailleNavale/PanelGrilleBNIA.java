@@ -58,7 +58,7 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
     @Override
     public void caseClick(PanelCaseBN caseP) {
         //System.out.println(caseP);
-        if (etat == EtatsBN.tour) {
+        if (etat == EtatsBN.tourj) {
             try {
                 grille.tire(caseP.getCase());
                 caseP.updateImage();
@@ -73,7 +73,7 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
             catch (Exception e) {
                 System.out.println(e + " " + grille.getBateaux().toString());
             }
-            etat=EtatsBN.rien;
+            etat=EtatsBN.touria;
         }
     }
 }

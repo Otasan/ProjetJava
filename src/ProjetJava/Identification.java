@@ -51,12 +51,7 @@ public class Identification {
         }
     }
 
-    public boolean addMembre(Membre m) {
-        comptes.put(m.getPseudo(), m);
-        return true;
-    }
-
-    public boolean addMembre(String pseudo, String mdp) {
+    public boolean addMembre(String pseudo, String mdp, boolean admin) {
         try {
             Membre m = new Membre(pseudo, mdp);
             comptes.put(pseudo, m);

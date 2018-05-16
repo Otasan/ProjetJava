@@ -19,7 +19,7 @@ import java.util.TreeSet;
 public abstract class PanelGrilleBN extends javax.swing.JPanel{
     protected ArrayList<PanelCaseBN> grilleB;
     protected GrilleBN grille;
-    protected EtatsBN etat;
+    protected volatile EtatsBN etat;
     /**
      * crée un PanelGrille BN carrée de longueur 160 (redimensionable avec la methode redimentionner)
      */

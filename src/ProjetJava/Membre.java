@@ -16,6 +16,7 @@ public class Membre extends Utilisateur implements Serializable{
 
     private HashMap<String, Integer[]> scores;
     private int mdp;
+    private boolean admin;
 
     public Membre(String pseudo, String mdp) throws ConnexionException {
         super(pseudo);
@@ -51,6 +52,10 @@ public class Membre extends Utilisateur implements Serializable{
         }
     }
 
+    public boolean estAdmin(){
+        return admin;
+    }
+    
     public static boolean estScoreValide(Integer[] score) {
         if (score == null) {
             return false;
@@ -97,6 +102,9 @@ public class Membre extends Utilisateur implements Serializable{
     @Override
     public String toString() {
         String retour = super.toString();
+        if (admin){
+            retour += " admin";
+        }
         for (String jeu : scores.keySet()) {
             try {
                 retour += " " + jeu + ": [" + this.getScore(jeu)[0] + ", " + this.getScore(jeu)[1] + "]";
