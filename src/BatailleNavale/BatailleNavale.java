@@ -23,7 +23,7 @@ public class BatailleNavale extends javax.swing.JPanel{
     private PanelGrilleBNJ pJoueur;
     private PanelGrilleBNIA pIa;
     private BNIA ia;
-    private EtatsBN etat;
+    private volatile EtatsBN etat;
     
     /**
      * 
@@ -103,17 +103,19 @@ public class BatailleNavale extends javax.swing.JPanel{
         pIa.updateGrille();
         setTour(EtatsBN.placerBateau);
         ia.placerBateaux();
-        while(pJoueur.getTour()==EtatsBN.placerBateau){
+        while(etat==EtatsBN.placerBateau){
+            setTour(pJoueur.getTour());
             System.out.println(5-gJoueur.nbBateauRestant()+" Bateaux à placer");
         }
-        setTour(EtatsBN.tour);
+        setTour(EtatsBN.tourj);
         while(gJoueur.nbBateauRestant()>0 && gIa.nbBateauRestant()>0){
-            while(pIa.getTour()==EtatsBN.tour){
+            while(etat==EtatsBN.tourj){
+                setTour(pIa.getTour());
                 System.out.println("Tire");
             }
             ia.tirer();
             pJoueur.updateGrille();
-            setTour(EtatsBN.tour);
+            setTour(EtatsBN.tourj);
         }
         System.out.println("fin");
         return 1;

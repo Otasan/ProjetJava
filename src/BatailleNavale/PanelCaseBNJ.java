@@ -1,6 +1,5 @@
 package BatailleNavale;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 import javax.imageio.ImageIO;
@@ -21,7 +20,9 @@ public class PanelCaseBNJ extends PanelCaseBN {
     public PanelCaseBNJ(CaseBN c, HashSet<Bateau> b) throws IOException {
         super(c);
         lesBateaux=b;
-        image.setImage(ImageIO.read(new File("BatailleNavaleIMG\\"+caseBN.getCase().toString()+".png")));
+        //image.setImage(ImageIO.read(new File("BatailleNavaleIMG\\"+caseBN.getCase().toString()+".png")));
+        //image.setImage(ImageIO.read(getClass().getResource("BatailleNavaleIMG/"+caseBN.getCase().toString()+".png")));
+        image.setImage(ImageIO.read(getClass().getResourceAsStream("/BatailleNavaleIMG/"+caseBN.getCase().toString()+".png")));
         this.setIcon(image);
     }
     
@@ -32,7 +33,7 @@ public class PanelCaseBNJ extends PanelCaseBN {
     @Override
     public void updateImage() throws IOException{
         int lo=this.getSize().height;
-        String nomFic = "BatailleNavaleIMG\\";
+        String nomFic = "/BatailleNavaleIMG/";
         if(caseBN.getCase()!=TypeCase.bateau){
             nomFic+=caseBN.getCase().toString();
         }
@@ -61,7 +62,8 @@ public class PanelCaseBNJ extends PanelCaseBN {
         }
         nomFic+=".png";
         //System.out.println(nomFic);
-        image.setImage(ImageIO.read(new File(nomFic)));
+        //image.setImage(ImageIO.read(new File(nomFic)));
+        image.setImage(ImageIO.read(getClass().getResourceAsStream(nomFic)));
         this.setIcon(image);
         redimensionner(lo);
         this.setVisible(true);

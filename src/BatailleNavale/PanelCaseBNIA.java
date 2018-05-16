@@ -18,10 +18,10 @@ public class PanelCaseBNIA extends PanelCaseBN{
     public PanelCaseBNIA(CaseBN c) throws IOException {
         super(c);
         if(caseBN.getCase()==TypeCase.bateau){
-            image.setImage(ImageIO.read(new File("BatailleNavaleIMG\\vierge.png")));
+            image.setImage(ImageIO.read(getClass().getResourceAsStream("/BatailleNavaleIMG/vierge.png")));
         }
         else{
-            image.setImage(ImageIO.read(new File("BatailleNavaleIMG\\"+caseBN.getCase().toString()+".png")));
+            image.setImage(ImageIO.read(getClass().getResourceAsStream("/BatailleNavaleIMG/"+caseBN.getCase().toString()+".png")));
         }
         this.setIcon(image);
     }
@@ -34,10 +34,10 @@ public class PanelCaseBNIA extends PanelCaseBN{
     public void updateImage() throws IOException{
         int lo=this.getSize().height;
         if(caseBN.getCase()==TypeCase.bateau){
-            image.setImage(ImageIO.read(new File("BatailleNavaleIMG\\vierge.png")));
+            image.setImage(ImageIO.read(getClass().getResourceAsStream("/BatailleNavaleIMG/vierge.png")));
         }
         else{
-            image.setImage(ImageIO.read(new File("BatailleNavaleIMG\\"+caseBN.getCase().toString()+".png")));
+            image.setImage(ImageIO.read(getClass().getResourceAsStream("/BatailleNavaleIMG/"+caseBN.getCase().toString()+".png")));
         }
         this.setIcon(image);
         redimensionner(lo);

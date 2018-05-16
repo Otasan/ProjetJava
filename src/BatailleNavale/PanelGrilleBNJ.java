@@ -29,7 +29,7 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
     @Override
     public void setTour(EtatsBN val){
         super.setTour(val);
-        if(val==EtatsBN.placerBateau){
+        if(val==EtatsBN.placerBateau && choix == null){
             choix = new FrameChoixBateau();
         }
     }
@@ -79,6 +79,9 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
                     grille.placerBateau(choix.getBateau(),caseP.getCase(),choix.getSens());
                     updateGrille();
                 }
+                catch(BNException e){
+                    JOptionPane.showMessageDialog(this, e.toString(), "Bateau mal placé", JOptionPane.INFORMATION_MESSAGE);
+                }
                 catch(Exception e){
                     System.out.println(e+" TODO gerer les exceptions caseClick");
                 }
@@ -88,12 +91,11 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
             }
             else{
                 choix.dispatchEvent(new WindowEvent(choix, WindowEvent.WINDOW_CLOSING));
-                etat=EtatsBN.tour;
+                etat=EtatsBN.tourj;
             }
         }
         else{
-            JOptionPane.showMessageDialog(this, "Vous ne pouvez pas/pas encore faire ça", "Erreur", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Vous ne pouvez pas/pas encore faire ça\n"+etat, "Erreur", JOptionPane.INFORMATION_MESSAGE);
         }
-        //TODO: ajouter fenetre erreur sinon
     }
 }
