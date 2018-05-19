@@ -101,13 +101,10 @@ public class MainGUI extends javax.swing.JFrame {
         inscription.getInscriptionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
         String pseudo = inscription.getPseudoField();
         String mdp = inscription.getPasswordField();
-        if (pseudo == null || mdp == null){
-            JOptionPane.showMessageDialog(null, "Informations incorrectes");
-            
-        } else if (Membre.estPseudoValide(pseudo)){
+        if (!Membre.estPseudoValide(pseudo) || pseudo == null){
             JOptionPane.showMessageDialog(null, "Votre pseudo est invalide");
             
-        } else if (Membre.estMdpValide(mdp)){
+        } else if (!Membre.estMdpValide(mdp) || mdp == null){
             JOptionPane.showMessageDialog(null, "Votre mot de passe est invalide");
             
         } else {
@@ -122,7 +119,15 @@ public class MainGUI extends javax.swing.JFrame {
 
     
     private void inscriptionMembre(String pseudo, String mdp, boolean admin){
-        System.out.println("Salut");
+        if(id.addMembre(pseudo, mdp, admin)){
+            if(admin){
+                interfaceAdmin();
+            } else {
+                interfaceConnexion();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ce pseudo est déjà utilisé");
+        }
     }
     
     /*

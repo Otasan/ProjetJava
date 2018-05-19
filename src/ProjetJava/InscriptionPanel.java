@@ -142,25 +142,36 @@ public class InscriptionPanel extends javax.swing.JPanel {
         add(jPanel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    public javax.swing.JButton getInscriptionButton(){
+    public javax.swing.JButton getInscriptionButton() {
         return jButtonInscription;
     }
-    
-    public javax.swing.JButton getRetourButton(){
+
+    public javax.swing.JButton getRetourButton() {
         return jButtonRetour;
     }
-    
-    public String getPseudoField(){
+
+    public String getPseudoField() {
         String pseudo = jTextFieldPseudo.getText();
-        if (pseudo.equals("")){
-            pseudo=null;
-        } 
+        if (pseudo.equals("")) {
+            pseudo = null;
+        }
         return pseudo;
     }
 
-    public String getPasswordField(){
-        String mdp = Arrays.toString(jPasswordField.getPassword());
-        if (mdp.equals(Arrays.toString(jPasswordFieldConfirmation.getPassword()))){
+    public String getPasswordField() {
+        String mdp="";
+        for (char c:jPasswordField.getPassword()){
+            mdp+=c;
+        }
+        String mdpc="";
+        for (char c:jPasswordFieldConfirmation.getPassword()){
+            mdpc+=c;
+        }
+        
+        jPasswordField.setText("");
+        jPasswordFieldConfirmation.setText("");
+        
+        if (mdp.equals(mdpc)) {
             return mdp;
         } else {
             return null;
