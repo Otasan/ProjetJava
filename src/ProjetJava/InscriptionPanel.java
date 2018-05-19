@@ -5,6 +5,8 @@
  */
 package ProjetJava;
 
+import java.util.Arrays;
+
 /**
  *
  * @author deux
@@ -39,14 +41,9 @@ public class InscriptionPanel extends javax.swing.JPanel {
         jButtonInscription = new javax.swing.JButton();
         jButtonRetour = new javax.swing.JButton();
 
-        java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.rowHeights = new int[] {200, 100};
-        setLayout(layout);
+        setLayout(new java.awt.GridBagLayout());
 
-        java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
-        jPanel1Layout.columnWidths = new int[] {200, 200};
-        jPanel1Layout.rowHeights = new int[] {40, 40, 40};
-        jPanel1.setLayout(jPanel1Layout);
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -54,6 +51,8 @@ public class InscriptionPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 10, 15, 10);
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jTextFieldPseudo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -63,6 +62,8 @@ public class InscriptionPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 10, 15, 10);
         jPanel1.add(jTextFieldPseudo, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
@@ -71,16 +72,19 @@ public class InscriptionPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 10, 15, 10);
         jPanel1.add(jLabel2, gridBagConstraints);
 
         jPasswordField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jPasswordField.setText("MotDePasse");
         jPasswordField.setMaximumSize(new java.awt.Dimension(200, 25));
         jPasswordField.setMinimumSize(new java.awt.Dimension(100, 25));
         jPasswordField.setPreferredSize(new java.awt.Dimension(150, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 10, 15, 10);
         jPanel1.add(jPasswordField, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
@@ -89,28 +93,30 @@ public class InscriptionPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 10, 15, 10);
         jPanel1.add(jLabel3, gridBagConstraints);
 
         jPasswordFieldConfirmation.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jPasswordFieldConfirmation.setText("MotDePasse");
         jPasswordFieldConfirmation.setMaximumSize(new java.awt.Dimension(200, 25));
         jPasswordFieldConfirmation.setMinimumSize(new java.awt.Dimension(100, 25));
         jPasswordFieldConfirmation.setPreferredSize(new java.awt.Dimension(150, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 10, 15, 10);
         jPanel1.add(jPasswordFieldConfirmation, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(48, 25, 0, 0);
         add(jPanel1, gridBagConstraints);
 
-        java.awt.GridBagLayout jPanel2Layout1 = new java.awt.GridBagLayout();
-        jPanel2Layout1.columnWidths = new int[] {150, 150};
-        jPanel2.setLayout(jPanel2Layout1);
+        jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jButtonInscription.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jButtonInscription.setText("Inscription");
@@ -118,6 +124,7 @@ public class InscriptionPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(50, 50, 20, 50);
         jPanel2.add(jButtonInscription, gridBagConstraints);
 
         jButtonRetour.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -126,6 +133,7 @@ public class InscriptionPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(50, 50, 20, 50);
         jPanel2.add(jButtonRetour, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -134,14 +142,42 @@ public class InscriptionPanel extends javax.swing.JPanel {
         add(jPanel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    public javax.swing.JButton getInscriptionButton(){
+
+    public javax.swing.JButton getInscriptionButton() {
         return jButtonInscription;
     }
-    
-    public javax.swing.JButton getRetourButton(){
+
+    public javax.swing.JButton getRetourButton() {
         return jButtonRetour;
     }
-    
+
+    public String getPseudoField() {
+        String pseudo = jTextFieldPseudo.getText();
+        if (pseudo.equals("")) {
+            pseudo = null;
+        }
+        return pseudo;
+    }
+
+    public String getPasswordField() {
+        String mdp="";
+        for (char c:jPasswordField.getPassword()){
+            mdp+=c;
+        }
+        String mdpc="";
+        for (char c:jPasswordFieldConfirmation.getPassword()){
+            mdpc+=c;
+        }
+        
+        jPasswordField.setText("");
+        jPasswordFieldConfirmation.setText("");
+        
+        if (mdp.equals(mdpc)) {
+            return mdp;
+        } else {
+            return null;
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonInscription;
     private javax.swing.JButton jButtonRetour;

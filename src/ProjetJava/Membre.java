@@ -18,9 +18,10 @@ public class Membre extends Utilisateur implements Serializable{
     private int mdp;
     private boolean admin;
 
-    public Membre(String pseudo, String mdp) throws ConnexionException {
+    public Membre(String pseudo, String mdp, boolean admin) throws ConnexionException {
         super(pseudo);
-
+        this.admin =admin;
+        
         if (Membre.estMdpValide(mdp)) {
             scores = new HashMap<>();
             String[] jeu = {"BatailleNavale", "Pendu"};
@@ -41,6 +42,17 @@ public class Membre extends Utilisateur implements Serializable{
         return key.hashCode() * 73 + 37;
     }
 
+    public static boolean estPseudoValide(String pseudo) {
+        if (pseudo == null || pseudo.equals("")){
+            return false;
+        }
+        if (pseudo.length() < 6 || pseudo.length() > 30) {
+            return false;
+        } else {
+            return pseudo.matches("[[a-z][A-Z][0-9]]*");
+        }
+    }
+        
     public static boolean estMdpValide(String mdp) {
         if (mdp == null || mdp.equals("")){
             return false;

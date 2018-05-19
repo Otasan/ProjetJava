@@ -31,9 +31,9 @@ public class IdentificationTest {
 
         try {
             Identification i = new Identification();
-            Membre m = new Membre(pseudo, mdp);
+            Membre m = new Membre(pseudo, mdp, false);
 
-            i.addMembre(pseudo, mdp);
+            i.addMembre(pseudo, mdp, false);
             i.sauvegarde(path);
  
         } catch (ConnexionException ex) {
@@ -55,52 +55,6 @@ public class IdentificationTest {
     }
 
     /**
-     * Test of connexion method, of class Identification.
-     *
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testConnexion() {
-
-        String pseudo = "XXXXXXXXXXXXXXX";
-        String mdp = "xxxxxxxxxxxxxxxx";
-        Membre m;
-        Identification i = new Identification();
-
-        try {
-            m = new Membre(pseudo, mdp);
-            i.addMembre(m);
-        } catch (ConnexionException ex) {
-            System.out.println("Membre Exception");
-        }
-
-        try {
-            assertTrue(i.connexion(pseudo, mdp).equals(new Membre(pseudo,mdp)));
-            assertFalse(i.connexion(pseudo, mdp).equals(new Membre(pseudo+"x",mdp)));
-        } catch (ConnexionException ex) {
-            System.out.println("Connexion Exception");
-        }
-    }
-
-    /**
-     * Test of addMembre method, of class Identification.
-     */
-    @Test
-    public void testAddMembre_Membre() {
-        try {
-            String pseudo = "XXXXXXXXXXXXXXXX";
-            String mdp = "xxxxxxxxxxxxxx";
-            Membre m = new Membre(pseudo, mdp);
-
-            Identification i = new Identification();
-            assertTrue(i.addMembre(m));
-        } catch (ConnexionException ex) {
-            System.out.println("RemoveMembre_Membre Exception");
-        }
-
-    }
-
-    /**
      * Test of addMembre method, of class Identification.
      */
     @Test
@@ -109,43 +63,19 @@ public class IdentificationTest {
         String mdp = "xxxxxxxxxxxxxx";
 
         Identification i = new Identification();
-        assertTrue(i.addMembre(pseudo, mdp));
+        assertTrue(i.addMembre(pseudo, mdp, false));
     }
 
     /**
      * Test of removeMembre method, of class Identification.
      */
     @Test
-    public void testRemoveMembre_Membre() {
-        String pseudo = "XXXXXXXXXXXXXXXX";
-        String mdp = "xxxxxxxxxxxxxx";
-
-        try {
-            Membre m = new Membre(pseudo, mdp);
-            Membre m2 = new Membre(pseudo, mdp + "x");
-            Membre m3 = new Membre(pseudo, mdp + "x");
-            Identification i = new Identification();
-
-            i.addMembre(m);
-
-            assertFalse(i.removeMembre(m2));
-            assertFalse(i.removeMembre(m3));
-            assertTrue(i.removeMembre(m));
-        } catch (ConnexionException ex) {
-            System.out.println("RemoveMembre_Membre Exception");
-        }
-    }
-
-    /**
-     * Test of removeMembre method, of class Identification.
-     */
-    @Test
-    public void testRemoveMembre_String_String() {
+    public void testRemoveMembre_String() {
         String pseudo = "XXXXXXXXXX";
         String mdp = "xxxxxxxxxx";
 
         Identification i = new Identification();
-        i.addMembre(pseudo, mdp);
+        i.addMembre(pseudo, mdp, false);
 
         assertFalse(i.removeMembre(pseudo + "X"));
 
