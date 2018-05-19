@@ -28,6 +28,7 @@ public class Identification {
 
     public Identification() {
         this.comptes = new HashMap<>();
+        this.addMembre("admin", "admin", true);
     }
 
     public Identification(String path) throws FileNotFoundException {
@@ -40,6 +41,8 @@ public class Identification {
             this.comptes = m;
         } catch (IOException | ClassNotFoundException ex) {
             this.comptes = new HashMap<>();
+            this.addMembre("admin", "admin", true);
+
         }
     }
 
@@ -51,14 +54,9 @@ public class Identification {
         }
     }
 
-    public boolean addMembre(Membre m) {
-        comptes.put(m.getPseudo(), m);
-        return true;
-    }
-
-    public boolean addMembre(String pseudo, String mdp) {
+    public boolean addMembre(String pseudo, String mdp, boolean admin) {
         try {
-            Membre m = new Membre(pseudo, mdp);
+            Membre m = new Membre(pseudo, mdp, admin);
             comptes.put(pseudo, m);
             return true;
         } catch (ConnexionException ex) {
@@ -67,12 +65,8 @@ public class Identification {
 
     }
 
-    public boolean removeMembre(Membre m) {
-        return comptes.remove(m.getPseudo(), m);
-    }
-
     public boolean removeMembre(String pseudo) {
-        return comptes.remove(pseudo)!=null;
+        return comptes.remove(pseudo) != null;
     }
 
     public void sauvegarde(String path) {

@@ -28,7 +28,7 @@ public class MembreTest {
             /**
              * Le score est nul au départ pour le pendu et la bataille navalle.
              */
-            Membre m = new Membre("XXXXXXX", "XXXXXXX");
+            Membre m = new Membre("XXXXXXX", "XXXXXXX", false);
             String batailleNav = "BatailleNavale";
 
             int[] scoreTestNav = {0, 0};
@@ -80,7 +80,7 @@ public class MembreTest {
             String pseudo = "zzzzzzzzzzzzzz";
             String mdp1 = "XXXXXXXXXXXXX";
             String mdp2 = "xxxxxxxxxxxxx";
-            Membre u = new Membre(pseudo, mdp1);
+            Membre u = new Membre(pseudo, mdp1, false);
             assertTrue(u.connexion(mdp1));
             assertFalse(!u.connexion(mdp1));
             u.setMotDePasse(mdp2);
@@ -102,7 +102,7 @@ public class MembreTest {
              * Le score change bien en augmentant de 1 les victoires et les
              * parties jouees de bataille navale.
              */
-            Membre m = new Membre("XXXXXX", "XXXXXXX");
+            Membre m = new Membre("XXXXXX", "XXXXXXX", false);
             String batailleNav = "BatailleNavale";
 
             int[] scoreTest = {0, 0};
@@ -155,7 +155,7 @@ public class MembreTest {
          * bataille navale.
          */
         try {
-            Membre m = new Membre("XXXXXX", "XXXXXXX");
+            Membre m = new Membre("XXXXXX", "XXXXXXX", false);
             String batailleNav = "BatailleNavale";
 
             int[] scoreTest = {0, 0};
@@ -206,7 +206,7 @@ public class MembreTest {
             String pseudo = "XXXXXXX";
             String mdp = "XXXXXXX";
 
-            Membre m = new Membre(pseudo, mdp);
+            Membre m = new Membre(pseudo, mdp, false);
             assertFalse(m.connexion(null));
             String s = "";
             while (s.length() < 1000) {

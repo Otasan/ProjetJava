@@ -35,9 +35,9 @@ public class ConnexionPanel extends javax.swing.JPanel {
         jPasswordField = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jButtonConnexion = new javax.swing.JButton();
         jButtonInscription = new javax.swing.JButton();
         jButtonInvite = new javax.swing.JButton();
-        jButtonConnexion = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(600, 480));
@@ -100,29 +100,29 @@ public class ConnexionPanel extends javax.swing.JPanel {
         jPanel2Layout.columnWidths = new int[] {150, 150, 150};
         jPanel2.setLayout(jPanel2Layout);
 
-        jButtonInscription.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButtonInscription.setText("Connexion");
-        jButtonInscription.setMargin(new java.awt.Insets(3, 20, 3, 20));
+        jButtonConnexion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButtonConnexion.setText("Connexion");
+        jButtonConnexion.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        jPanel2.add(jButtonConnexion, gridBagConstraints);
+
+        jButtonInscription.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButtonInscription.setText("Inscription");
+        jButtonInscription.setMargin(new java.awt.Insets(3, 20, 3, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         jPanel2.add(jButtonInscription, gridBagConstraints);
 
         jButtonInvite.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButtonInvite.setText("Inscription");
+        jButtonInvite.setText("Invité");
         jButtonInvite.setMargin(new java.awt.Insets(3, 20, 3, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        jPanel2.add(jButtonInvite, gridBagConstraints);
-
-        jButtonConnexion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButtonConnexion.setText("Invité");
-        jButtonConnexion.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        jPanel2.add(jButtonConnexion, gridBagConstraints);
+        jPanel2.add(jButtonInvite, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -130,7 +130,17 @@ public class ConnexionPanel extends javax.swing.JPanel {
         add(jPanel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    public javax.swing.JButton getConnexionButton() {
+        return jButtonConnexion;
+    }
 
+    public javax.swing.JButton getInscriptionButton() {
+        return jButtonInscription;
+    }
+
+    public javax.swing.JButton getInviteButton() {
+        return jButtonInvite;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConnexion;
     private javax.swing.JButton jButtonInscription;

@@ -5,18 +5,40 @@
  */
 package ProjetJava;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.FileNotFoundException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author deux
  */
 public class MainGUI extends javax.swing.JFrame {
-
+    private Identification id;
     /**
      * Creates new form ConnexionGUI
      */
     public MainGUI() {
         initComponents();
-        this.setExtendedState(this.MAXIMIZED_BOTH);        
+        this.setExtendedState(this.MAXIMIZED_BOTH);
+        this.interfaceConnexion();
+        this.setVisible(true);
+        try {
+            id = new Identification("Sauvegarde.save");
+        } catch (FileNotFoundException ex) {
+            id = new Identification();
+        }
+        WindowListener exitListener = new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                id.sauvegarde("Sauvegarde.save");
+                System.exit(0);
+            }
+        };
+        this.addWindowListener(exitListener);
     }
 
     /**
@@ -50,25 +72,63 @@ public class MainGUI extends javax.swing.JFrame {
     /*
     Initialisation de la fenetre de Connexion.
      */
-    public void interfaceConnexion() {
+    private void interfaceConnexion() {
         this.getContentPane().removeAll();
-        this.getContentPane().add(new ConnexionPanel());
+        ConnexionPanel connexion = new ConnexionPanel();
+        connexion.getInscriptionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceInscription(false);
+        });
+        this.getContentPane().add(connexion);
         this.pack();
     }
 
     /*
     Initialisation de la fenetre d'inscription.
      */
-    public void interfaceInscription() {
+    private void interfaceInscription(boolean admin) {
         this.getContentPane().removeAll();
-        this.getContentPane().add(new InscriptionPanel());
+        InscriptionPanel inscription = new InscriptionPanel();
+        if (admin){
+            inscription.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceAdmin();
+            });
+        } else {
+            inscription.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceConnexion();
+        });
+        }
+        
+        inscription.getInscriptionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+        String pseudo = inscription.getPseudoField();
+        String mdp = inscription.getPasswordField();
+        if (pseudo == null || mdp == null){
+            JOptionPane.showMessageDialog(null, "Informations incorrectes");
+            
+        } else if (Membre.estPseudoValide(pseudo)){
+            JOptionPane.showMessageDialog(null, "Votre pseudo est invalide");
+            
+        } else if (Membre.estMdpValide(mdp)){
+            JOptionPane.showMessageDialog(null, "Votre mot de passe est invalide");
+            
+        } else {
+            inscriptionMembre(pseudo, mdp, admin);
+            
+        }
+        });
+        
+        this.getContentPane().add(inscription);
         this.pack();
     }
 
+    
+    private void inscriptionMembre(String pseudo, String mdp, boolean admin){
+        System.out.println("Salut");
+    }
+    
     /*
     Initialisation de la fenetre de jeu.
      */
-    public void interfaceJeu(String jeu) {
+    private void interfaceJeu(String jeu) {
         this.getContentPane().removeAll();
         this.getContentPane().add(new JeuPanel(jeu));
         this.pack();
@@ -77,9 +137,10 @@ public class MainGUI extends javax.swing.JFrame {
     /*
     Initialisation de la fenetre d'administration.
      */
-    public void interfaceAdmin() {
+    private void interfaceAdmin() {
         this.getContentPane().removeAll();
         this.getContentPane().add(new AdminPanel());
         this.pack();
     }
+    
 }
