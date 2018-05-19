@@ -19,7 +19,6 @@ public class JeuPanel extends javax.swing.JPanel {
     public JeuPanel(String jeu) {
         initComponents();
         this.titleLabel.setText(jeu);
-        image(jeu);
     }
 
     /**
@@ -32,9 +31,6 @@ public class JeuPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         quitButton = new javax.swing.JButton();
 
@@ -46,43 +42,14 @@ public class JeuPanel extends javax.swing.JPanel {
         layout.rowWeights = new double[] {0.15, 0.7, 0.15};
         setLayout(layout);
 
-        jPanel1.setAlignmentX(0.0F);
-        jPanel1.setAlignmentY(0.0F);
-        jPanel1.setMinimumSize(new java.awt.Dimension(640, 298));
-        jPanel1.setPreferredSize(new java.awt.Dimension(32767, 32767));
-        java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
-        jPanel1Layout.columnWeights = new double[] {0.4, 0.6};
-        jPanel1Layout.rowWeights = new double[] {1.0};
-        jPanel1.setLayout(jPanel1Layout);
-
-        jPanel3.setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel1.add(jPanel3, gridBagConstraints);
-
-        jPanel4.setBackground(new java.awt.Color(255, 0, 0));
-        jPanel4.setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel1.add(jPanel4, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        add(jPanel1, gridBagConstraints);
-
         titleLabel.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("Test");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(titleLabel, gridBagConstraints);
 
         quitButton.setText("Quitter");
@@ -93,18 +60,8 @@ public class JeuPanel extends javax.swing.JPanel {
         add(quitButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void image(String nomJeu){
-        ImageJeuPanel img = new ImageJeuPanel(nomJeu);
-        java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        jPanel3.add(img,gridBagConstraints);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JButton quitButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables

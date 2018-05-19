@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< 3db035f12682165867897d35c6c05ded24ccd732
             <file>file:/D:/Users/Utilisateur/Desktop/trucs%20importznt/cours/ISIS%20-2A/ProjetJava/src/BatailleNavale/MediumBNIA.java</file>
             <file>file:/D:/Users/Utilisateur/Desktop/trucs%20importznt/cours/ISIS%20-2A/ProjetJava/src/BatailleNavale/PanelCaseBNJ.java</file>
             <file>file:/D:/Users/Utilisateur/Desktop/trucs%20importznt/cours/ISIS%20-2A/ProjetJava/src/BatailleNavale/PanelGrilleBN.java</file>
@@ -14,6 +15,12 @@
             <file>file:/D:/Users/Utilisateur/Desktop/trucs%20importznt/cours/ISIS%20-2A/ProjetJava/src/BatailleNavale/PanelCaseBNIA.java</file>
             <file>file:/D:/Users/Utilisateur/Desktop/trucs%20importznt/cours/ISIS%20-2A/ProjetJava/src/BatailleNavale/BatailleNavale.java</file>
             <file>file:/D:/Users/Utilisateur/Desktop/trucs%20importznt/cours/ISIS%20-2A/ProjetJava/src/BatailleNavale/EtatsBN.java</file>
+=======
+            <file>file:/home/edeux/Documents/Projets/ProjetJava/src/pendu/Dictionnaire.java</file>
+            <file>file:/home/edeux/Documents/Projets/ProjetJava/src/pendu/PenduPanel.java</file>
+            <file>file:/home/edeux/Documents/Projets/ProjetJava/src/pendu/JeuPendu.java</file>
+            <file>file:/home/edeux/Documents/Projets/ProjetJava/src/pendu/Pendu.java</file>
+>>>>>>> Modification interface Pendu
         </group>
     </open-files>
 </project-private>

@@ -22,6 +22,10 @@ public class JeuPendu {
     public JeuPendu(String motADeviner) {
         this.mot = new ArrayList<>();
         this.value = new ArrayList<>();
+        this.lettresMauvaises = new ArrayList<>();
+        this.lettresUtilisees = new ArrayList<>();
+        
+        
         char[] tableau = motADeviner.toCharArray();
         //System.out.println(tableau);
         for (int i = 0; i < motADeviner.length(); i++) {
@@ -41,11 +45,7 @@ public class JeuPendu {
     }
 
     public boolean estLettreValide(char[] lettre) {
-        int i = 0;
-        for (char s : lettre) {
-            i += 1;
-        }
-        if (i >= 2) {
+        if (lettre.length >= 2) {
             System.out.println("Veuillez ne saisir qu'une lettre à la fois.");
             return false;
         }
@@ -75,8 +75,6 @@ public class JeuPendu {
 
     public void DemarerLeJeu() {
         boolean motTrouve = false;
-        lettresMauvaises = new ArrayList<>();
-        lettresUtilisees = new ArrayList<>();
 
         while (motTrouve == false) {
             boolean lettreFausse = true;
@@ -114,10 +112,38 @@ public class JeuPendu {
                     lettresMauvaises.add(lettreAComparer[0]);
                 }
                 System.out.println("les lettres qui ne sont pas dans le mot à deviner : " + lettresMauvaises.toString());
-                if (perdu()== true) {
+                if (perdu() == true) {
                     break;
                 }
             }
         }
+    }
+
+    public int nbErreurs() {
+        if (this.lettresMauvaises.isEmpty()){
+            return 0;
+        } else {
+            return lettresMauvaises.size();
+        }
+    }
+
+    public String derniereLettreUtil() {
+        if (lettresUtilisees.isEmpty()){
+            return null;
+        } else {
+            String lettre = "";
+            if (!(this.lettresUtilisees.size() == 0)) {
+                lettre += lettresUtilisees.get(lettresUtilisees.size() - 1);
+            }
+            return lettre;
+        }
+    }
+
+    public String getMot() {
+        String mot = "";
+        for (char c : this.mot) {
+            mot += c;
+        }
+        return mot;
     }
 }

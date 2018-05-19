@@ -37,8 +37,8 @@ public class Identification {
         try {
             File f = new File(path);
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(f));
-            HashMap<String, Membre> m = (HashMap<String, Membre>) in.readObject();
-            this.comptes = m;
+            this.comptes = (HashMap<String, Membre>) in.readObject();
+            
         } catch (IOException | ClassNotFoundException ex) {
             this.comptes = new HashMap<>();
             this.addMembre("admin", "admin", true);
@@ -70,13 +70,11 @@ public class Identification {
     }
 
     public void sauvegarde(String path) {
-        try (
-                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));) {
 
             oos.writeObject(this.comptes);
 
         } catch (IOException ex) {
-            ex.printStackTrace();
         }
     }
 
