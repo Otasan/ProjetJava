@@ -15,16 +15,16 @@ import javax.swing.JLabel;
  * @author deux
  */
 public class ImageJeuPanel extends javax.swing.JPanel {
-
+    private String nomJeu;
     /**
      * Creates new form ImageJeuPanel
      */
     public ImageJeuPanel(String nomJeu) {
+        this.nomJeu = nomJeu;
         initComponents();
-        String path = "images/"+nomJeu.toLowerCase(Locale.ROOT).replaceAll(" ", "")+".jpg";
-        imageLabel = new JLabel(new ImageIcon(path));
         titleLabel.setText(nomJeu);
-        System.out.println(path);
+        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/"+nomJeu+".jpg")));
+
     }
 
     /**
@@ -40,36 +40,45 @@ public class ImageJeuPanel extends javax.swing.JPanel {
         imageLabel = new javax.swing.JLabel();
         titleLabel = new javax.swing.JLabel();
 
-        setMaximumSize(new java.awt.Dimension(500, 500));
-        setMinimumSize(new java.awt.Dimension(200, 200));
-        setPreferredSize(new java.awt.Dimension(400, 400));
-        java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.columnWeights = new double[] {1.0};
-        layout.rowWeights = new double[] {0.9, 0.1};
-        setLayout(layout);
+        setMaximumSize(new java.awt.Dimension(300, 315));
+        setMinimumSize(new java.awt.Dimension(220, 240));
+        setPreferredSize(new java.awt.Dimension(220, 240));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+        java.awt.GridBagLayout layout1 = new java.awt.GridBagLayout();
+        layout1.columnWidths = new int[] {200};
+        layout1.rowHeights = new int[] {180, 30};
+        setLayout(layout1);
 
         imageLabel.setBackground(new java.awt.Color(0, 0, 0));
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/bataillenavale.jpg"))); // NOI18N
         imageLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        imageLabel.setMaximumSize(new java.awt.Dimension(200, 200));
-        imageLabel.setMinimumSize(new java.awt.Dimension(200, 200));
-        imageLabel.setPreferredSize(new java.awt.Dimension(200, 200));
+        imageLabel.setMaximumSize(new java.awt.Dimension(200, 180));
+        imageLabel.setMinimumSize(new java.awt.Dimension(200, 180));
+        imageLabel.setPreferredSize(new java.awt.Dimension(200, 180));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(imageLabel, gridBagConstraints);
 
+        titleLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setLabelFor(imageLabel);
-        titleLabel.setText("jLabel2");
+        titleLabel.setText("Titre");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(titleLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        System.out.println(nomJeu);
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

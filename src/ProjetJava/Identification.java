@@ -22,13 +22,9 @@ public class Identification {
 
     private HashMap<String, Membre> comptes;
 
-    public Identification(HashMap<String, Membre> membres) {
-        this.comptes = membres;
-    }
-
     public Identification() {
         this.comptes = new HashMap<>();
-        this.addMembre("admin", "admin", true);
+        this.addMembre("administrateur", "administrateur", true);
     }
 
     public Identification(String path) throws FileNotFoundException {
@@ -41,7 +37,7 @@ public class Identification {
             this.comptes = m;
         } catch (IOException | ClassNotFoundException ex) {
             this.comptes = new HashMap<>();
-            this.addMembre("admin", "admin", true);
+            this.addMembre("administrateur", "administrateur", true);
 
         }
     }
@@ -57,8 +53,12 @@ public class Identification {
     public boolean addMembre(String pseudo, String mdp, boolean admin) {
         try {
             Membre m = new Membre(pseudo, mdp, admin);
-            comptes.put(pseudo, m);
-            return true;
+            if (comptes.containsKey(pseudo)) {
+                return false;
+            } else {
+                comptes.put(pseudo, m);
+                return true;
+            }
         } catch (ConnexionException ex) {
             return false;
         }

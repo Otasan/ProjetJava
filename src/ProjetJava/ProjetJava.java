@@ -19,7 +19,7 @@ public class ProjetJava {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                MainGUI gui = new MainGUI();
+                new MainGUI();
             }
         });
     }

@@ -5,7 +5,6 @@
  */
 package ProjetJava;
 
-
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -17,14 +16,17 @@ import javax.swing.JOptionPane;
  * @author deux
  */
 public class MainGUI extends javax.swing.JFrame {
+
     private Identification id;
+
     /**
      * Creates new form ConnexionGUI
      */
     public MainGUI() {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
-        this.interfaceConnexion();
+        //this.interfaceConnexion();
+        this.interfaceChoixJeu();
         this.setVisible(true);
         try {
 
@@ -78,9 +80,9 @@ public class MainGUI extends javax.swing.JFrame {
         this.getContentPane().removeAll();
         ConnexionPanel connexion = new ConnexionPanel();
         connexion.getInscriptionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-
             interfaceInscription(false);
         });
+
         this.getContentPane().add(connexion);
         this.pack();
     }
@@ -91,39 +93,39 @@ public class MainGUI extends javax.swing.JFrame {
     private void interfaceInscription(boolean admin) {
         this.getContentPane().removeAll();
         InscriptionPanel inscription = new InscriptionPanel();
-        if (admin){
+        if (admin) {
             inscription.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            interfaceAdmin();
+                interfaceAdmin();
             });
         } else {
             inscription.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            interfaceConnexion();
-        });
+                interfaceConnexion();
+            });
         }
-        
+
         inscription.getInscriptionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-        String pseudo = inscription.getPseudoField();
-        String mdp = inscription.getPasswordField();
-        if (!Membre.estPseudoValide(pseudo) || pseudo == null){
-            JOptionPane.showMessageDialog(null, "Votre pseudo est invalide");
-            
-        } else if (!Membre.estMdpValide(mdp) || mdp == null){
-            JOptionPane.showMessageDialog(null, "Votre mot de passe est invalide");
-            
-        } else {
-            inscriptionMembre(pseudo, mdp, admin);
-            
-        }
+            String pseudo = inscription.getPseudoField();
+            String mdp = inscription.getPasswordField();
+            if (!Membre.estPseudoValide(pseudo) || pseudo == null) {
+                JOptionPane.showMessageDialog(null, "Votre pseudo est invalide");
+
+            } else if (!Membre.estMdpValide(mdp) || mdp == null) {
+                JOptionPane.showMessageDialog(null, "Votre mot de passe est invalide");
+
+            } else {
+                inscriptionMembre(pseudo, mdp, admin);
+
+            }
         });
-        
+
         this.getContentPane().add(inscription);
         this.pack();
     }
 
-    
-    private void inscriptionMembre(String pseudo, String mdp, boolean admin){
-        if(id.addMembre(pseudo, mdp, admin)){
-            if(admin){
+    private void inscriptionMembre(String pseudo, String mdp, boolean admin) {
+        boolean t = id.addMembre(pseudo, mdp, admin);
+        if (t) {
+            if (admin) {
                 interfaceAdmin();
             } else {
                 interfaceConnexion();
@@ -132,7 +134,13 @@ public class MainGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ce pseudo est déjà utilisé");
         }
     }
-    
+
+    private void interfaceChoixJeu() {
+        this.getContentPane().removeAll();
+        this.getContentPane().add(new ChoixJeuPanel());
+        this.pack();
+    }
+
     /*
     Initialisation de la fenetre de jeu.
      */
@@ -150,5 +158,5 @@ public class MainGUI extends javax.swing.JFrame {
         this.getContentPane().add(new AdminPanel());
         this.pack();
     }
-    
+
 }

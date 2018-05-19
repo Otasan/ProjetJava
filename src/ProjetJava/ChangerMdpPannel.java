@@ -9,13 +9,13 @@ package ProjetJava;
  *
  * @author edeux
  */
-public class ChangerMDPPannel extends javax.swing.JPanel {
+public class ChangerMdpPannel extends javax.swing.JPanel {
     private boolean admin;
     
     /**
      * Creates new form ChangerMDPPannel
      */
-    public ChangerMDPPannel(boolean admin) {
+    public ChangerMdpPannel(boolean admin) {
         initComponents();
         this.admin=admin;
     }
