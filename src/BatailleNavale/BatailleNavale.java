@@ -8,7 +8,6 @@ package BatailleNavale;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,7 +16,7 @@ import javax.swing.JPanel;
  *
  * @author Utilisateur
  */
-public class BatailleNavale extends javax.swing.JPanel{
+public class BatailleNavale extends JPanel{
     private GrilleBN gJoueur;
     private GrilleBN gIa;
     private PanelGrilleBNJ pJoueur;
@@ -97,6 +96,7 @@ public class BatailleNavale extends javax.swing.JPanel{
     /**
      * Lance le Jeu
      * @return 
+     * @throws java.io.IOException 
      */
     public int jeu() throws IOException{
         //pJoueur.updateGrille();
