@@ -43,7 +43,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="jList1">
+        <Component class="javax.swing.JList" name="membresList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
@@ -55,7 +55,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="ButtonSuprimer">
+    <Component class="javax.swing.JButton" name="suprimerButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Supprimer"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
@@ -75,16 +75,13 @@
           <Insets value="[3, 20, 3, 20]"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="retourButtonActionPerformed"/>
-      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
           <GridBagConstraints gridX="0" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="chMdpButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Changer de mot de passe"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
@@ -97,7 +94,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="addAdminButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cr&#xe9;er un compte administrateur"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
@@ -405,11 +402,11 @@
         <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
       </StatementProvider>
       <Parameters>
-        <CodeExpression id="22_ButtonSuprimer">
-          <CodeVariable name="ButtonSuprimer" type="8194" declaredType="javax.swing.JButton"/>
+        <CodeExpression id="22_suprimerButton">
+          <CodeVariable name="suprimerButton" type="8194" declaredType="javax.swing.JButton"/>
           <ExpressionOrigin>
             <ExpressionProvider type="ComponentRef">
-              <ComponentRef name="ButtonSuprimer"/>
+              <ComponentRef name="suprimerButton"/>
             </ExpressionProvider>
           </ExpressionOrigin>
         </CodeExpression>
@@ -517,11 +514,11 @@
         <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
       </StatementProvider>
       <Parameters>
-        <CodeExpression id="30_jButton1">
-          <CodeVariable name="jButton1" type="8194" declaredType="javax.swing.JButton"/>
+        <CodeExpression id="30_chMdpButton">
+          <CodeVariable name="chMdpButton" type="8194" declaredType="javax.swing.JButton"/>
           <ExpressionOrigin>
             <ExpressionProvider type="ComponentRef">
-              <ComponentRef name="jButton1"/>
+              <ComponentRef name="chMdpButton"/>
             </ExpressionProvider>
           </ExpressionOrigin>
         </CodeExpression>
@@ -573,11 +570,11 @@
         <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
       </StatementProvider>
       <Parameters>
-        <CodeExpression id="34_jButton2">
-          <CodeVariable name="jButton2" type="8194" declaredType="javax.swing.JButton"/>
+        <CodeExpression id="34_addAdminButton">
+          <CodeVariable name="addAdminButton" type="8194" declaredType="javax.swing.JButton"/>
           <ExpressionOrigin>
             <ExpressionProvider type="ComponentRef">
-              <ComponentRef name="jButton2"/>
+              <ComponentRef name="addAdminButton"/>
             </ExpressionProvider>
           </ExpressionOrigin>
         </CodeExpression>

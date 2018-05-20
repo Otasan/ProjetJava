@@ -31,11 +31,11 @@ public class AdminPanel extends javax.swing.JPanel {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        ButtonSuprimer = new javax.swing.JButton();
+        membresList = new javax.swing.JList<>();
+        suprimerButton = new javax.swing.JButton();
         retourButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        chMdpButton = new javax.swing.JButton();
+        addAdminButton = new javax.swing.JButton();
 
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
         layout.columnWeights = new double[] {0.5, 0.5};
@@ -49,7 +49,7 @@ public class AdminPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         add(jLabel2, gridBagConstraints);
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(membresList);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -62,53 +62,59 @@ public class AdminPanel extends javax.swing.JPanel {
         gridBagConstraints.weighty = 0.4;
         add(jScrollPane1, gridBagConstraints);
 
-        ButtonSuprimer.setText("Supprimer");
-        ButtonSuprimer.setMargin(new java.awt.Insets(3, 20, 3, 20));
+        suprimerButton.setText("Supprimer");
+        suprimerButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        add(ButtonSuprimer, gridBagConstraints);
+        add(suprimerButton, gridBagConstraints);
 
         retourButton.setText("Retour");
         retourButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
-        retourButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                retourButtonActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         add(retourButton, gridBagConstraints);
 
-        jButton1.setText("Changer de mot de passe");
-        jButton1.setMargin(new java.awt.Insets(3, 20, 3, 20));
+        chMdpButton.setText("Changer de mot de passe");
+        chMdpButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        add(jButton1, gridBagConstraints);
+        add(chMdpButton, gridBagConstraints);
 
-        jButton2.setText("Créer un compte administrateur");
-        jButton2.setMargin(new java.awt.Insets(3, 20, 3, 20));
+        addAdminButton.setText("Créer un compte administrateur");
+        addAdminButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        add(jButton2, gridBagConstraints);
+        add(addAdminButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void retourButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retourButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_retourButtonActionPerformed
-
-
+    public javax.swing.JButton getRetourButton(){
+        return retourButton;
+    }
+    
+    public javax.swing.JButton getSupprimerButton(){
+        return suprimerButton;
+    }
+    
+    public javax.swing.JButton getAddAdminButton(){
+        return addAdminButton;
+    }
+    
+    public javax.swing.JButton getChMdpButton(){
+        return chMdpButton;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonSuprimer;
+    private javax.swing.JButton addAdminButton;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton chMdpButton;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> membresList;
     private javax.swing.JButton retourButton;
+    private javax.swing.JButton suprimerButton;
     // End of variables declaration//GEN-END:variables
 }

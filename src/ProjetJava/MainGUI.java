@@ -5,7 +5,6 @@
  */
 package ProjetJava;
 
-
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -17,7 +16,10 @@ import javax.swing.JOptionPane;
  * @author deux
  */
 public class MainGUI extends javax.swing.JFrame {
+
     private Identification id;
+    private Membre m;
+
     /**
      * Creates new form ConnexionGUI
      */
@@ -91,39 +93,38 @@ public class MainGUI extends javax.swing.JFrame {
     private void interfaceInscription(boolean admin) {
         this.getContentPane().removeAll();
         InscriptionPanel inscription = new InscriptionPanel();
-        if (admin){
+        if (admin) {
             inscription.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            interfaceAdmin();
+                interfaceAdmin();
             });
         } else {
             inscription.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            interfaceConnexion();
-        });
+                interfaceConnexion();
+            });
         }
-        
+
         inscription.getInscriptionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-        String pseudo = inscription.getPseudoField();
-        String mdp = inscription.getPasswordField();
-        if (!Membre.estPseudoValide(pseudo) || pseudo == null){
-            JOptionPane.showMessageDialog(null, "Votre pseudo est invalide");
-            
-        } else if (!Membre.estMdpValide(mdp) || mdp == null){
-            JOptionPane.showMessageDialog(null, "Votre mot de passe est invalide");
-            
-        } else {
-            inscriptionMembre(pseudo, mdp, admin);
-            
-        }
+            String pseudo = inscription.getPseudoField();
+            String mdp = inscription.getPasswordField();
+            if (!Membre.estPseudoValide(pseudo) || pseudo == null) {
+                JOptionPane.showMessageDialog(null, "Votre pseudo est invalide");
+
+            } else if (!Membre.estMdpValide(mdp) || mdp == null) {
+                JOptionPane.showMessageDialog(null, "Votre mot de passe est invalide");
+
+            } else {
+                inscriptionMembre(pseudo, mdp, admin);
+
+            }
         });
-        
+
         this.getContentPane().add(inscription);
         this.pack();
     }
 
-    
-    private void inscriptionMembre(String pseudo, String mdp, boolean admin){
-        if(id.addMembre(pseudo, mdp, admin)){
-            if(admin){
+    private void inscriptionMembre(String pseudo, String mdp, boolean admin) {
+        if (id.addMembre(pseudo, mdp, admin)) {
+            if (admin) {
                 interfaceAdmin();
             } else {
                 interfaceConnexion();
@@ -132,7 +133,7 @@ public class MainGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ce pseudo est déjà utilisé");
         }
     }
-    
+
     /*
     Initialisation de la fenetre de jeu.
      */
@@ -147,8 +148,38 @@ public class MainGUI extends javax.swing.JFrame {
      */
     private void interfaceAdmin() {
         this.getContentPane().removeAll();
-        this.getContentPane().add(new AdminPanel());
+        AdminPanel admin = new AdminPanel();
+        admin.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceConnexion();
+        });
+        admin.getAddAdminButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceInscription(true);
+        });
+        admin.getChMdpButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceChMdp(true);
+        });
+
+        this.getContentPane().add(admin);
+
         this.pack();
     }
-    
+
+    private void interfaceChMdp(boolean admin) {
+        this.getContentPane().removeAll();
+        ChangerMdpPannel chMdp = new ChangerMdpPannel();
+        if (admin){
+            chMdp.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceAdmin();
+            });
+        } else {
+            chMdp.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceAdmin();
+            });
+        }
+        
+        
+        
+        this.getContentPane().add(chMdp);
+        this.pack();
+    }
 }

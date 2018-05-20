@@ -29,7 +29,7 @@ public class Utilisateur implements Serializable {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + ' ' + pseudo;
+        return pseudo;
     }
 
     public static boolean estPseudoValide(String pseudo) {

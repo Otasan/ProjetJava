@@ -9,15 +9,13 @@ package ProjetJava;
  *
  * @author edeux
  */
-public class ChangerMDPPannel extends javax.swing.JPanel {
-    private boolean admin;
+public class ChangerMdpPannel extends javax.swing.JPanel {
     
     /**
      * Creates new form ChangerMDPPannel
      */
-    public ChangerMDPPannel(boolean admin) {
+    public ChangerMdpPannel() {
         initComponents();
-        this.admin=admin;
     }
 
     /**
@@ -36,8 +34,8 @@ public class ChangerMDPPannel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         newPasswordValidation = new javax.swing.JPasswordField();
-        ValiderButton = new javax.swing.JButton();
-        RetourButton = new javax.swing.JButton();
+        validerButton = new javax.swing.JButton();
+        retourButton = new javax.swing.JButton();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -92,34 +90,39 @@ public class ChangerMDPPannel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(41, 21, 0, 24);
         add(newPasswordValidation, gridBagConstraints);
 
-        ValiderButton.setText("Changer de mot de passe");
-        ValiderButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
+        validerButton.setText("Changer de mot de passe");
+        validerButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(41, 86, 47, 0);
-        add(ValiderButton, gridBagConstraints);
+        add(validerButton, gridBagConstraints);
 
-        RetourButton.setText("Retour");
-        RetourButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
+        retourButton.setText("Retour");
+        retourButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        add(RetourButton, gridBagConstraints);
+        add(retourButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    public boolean isAdmin(){
-        return admin;
+    public javax.swing.JButton getRetourButton(){
+        return retourButton;
     }
+    
+    public javax.swing.JButton getValiderButton(){
+        return validerButton;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton RetourButton;
-    private javax.swing.JButton ValiderButton;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField newPassword;
     private javax.swing.JPasswordField newPasswordValidation;
     private javax.swing.JPasswordField oldPassword;
+    private javax.swing.JButton retourButton;
+    private javax.swing.JButton validerButton;
     // End of variables declaration//GEN-END:variables
 }

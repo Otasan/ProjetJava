@@ -76,7 +76,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="ValiderButton">
+    <Component class="javax.swing.JButton" name="validerButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Changer de mot de passe"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
@@ -89,7 +89,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="RetourButton">
+    <Component class="javax.swing.JButton" name="retourButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Retour"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
