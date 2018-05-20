@@ -118,76 +118,81 @@ public class MediumBNIA extends BNIA {
     }
 
     @Override
-    public void tirer() {
+    public CaseBN tirer() {
+        CaseBN res = null;
         nbBateauRestant=joueur.nbBateauRestant();
         if(bateauTrouve){
             switch(direct){
                 case nord:
                     try{
                         joueur.tire(caseTrouvee.getX(), caseTrouvee.getY()-1);
+                        res=joueur.getCase(caseTrouvee.getX()+deplacement, caseTrouvee.getY());
+                        if(joueur.getCase(caseTrouvee.getX(), caseTrouvee.getY()-1).getCase()==TypeCase.touche){
+                            direct=Direction.vertical;
+                            deplacement=-1;
+                        }
+                        else{
+                            direct=Direction.ouest;
+                        }
                     }
                     catch(BNException e){
                         direct=Direction.ouest;
-                        tirer();
-                    }
-                    if(joueur.getCase(caseTrouvee.getX(), caseTrouvee.getY()-1).getCase()==TypeCase.touche){
-                        direct=Direction.vertical;
-                        deplacement=-1;
-                    }
-                    else{
-                        direct=Direction.ouest;
+                        res=tirer();
                     }
                     break;
                 case ouest:
                     try{
                         joueur.tire(caseTrouvee.getX()-1, caseTrouvee.getY());
+                        res=joueur.getCase(caseTrouvee.getX()-1, caseTrouvee.getY());
+                        if(joueur.getCase(caseTrouvee.getX()-1, caseTrouvee.getY()).getCase()==TypeCase.touche){
+                            direct=Direction.horizontal;
+                            deplacement=-1;
+                        }
+                        else{
+                            direct=Direction.sud;
+                        }
                     }
                     catch(BNException e){
                         direct=Direction.sud;
-                        tirer();
-                    }
-                    if(joueur.getCase(caseTrouvee.getX()-1, caseTrouvee.getY()).getCase()==TypeCase.touche){
-                        direct=Direction.horizontal;
-                        deplacement=-1;
-                    }
-                    else{
-                        direct=Direction.sud;
+                        res=tirer();
                     }
                     break;
                 case sud:
                     try{
                         joueur.tire(caseTrouvee.getX(), caseTrouvee.getY()+1);
+                        res=joueur.getCase(caseTrouvee.getX(), caseTrouvee.getY()+1);
+                        if(joueur.getCase(caseTrouvee.getX(), caseTrouvee.getY()+1).getCase()==TypeCase.touche){
+                            direct=Direction.vertical;
+                            deplacement=1;
+                        }
+                        else{
+                            direct=Direction.est;
+                        }
                     }
                     catch(BNException e){
                         direct=Direction.est;
-                        tirer();
-                    }
-                    if(joueur.getCase(caseTrouvee.getX(), caseTrouvee.getY()+1).getCase()==TypeCase.touche){
-                        direct=Direction.vertical;
-                        deplacement=1;
-                    }
-                    else{
-                        direct=Direction.est;
+                        res=tirer();
                     }
                     break;
                 case est:
                     try{
                         joueur.tire(caseTrouvee.getX()+1, caseTrouvee.getY());
+                        res=joueur.getCase(caseTrouvee.getX()+1, caseTrouvee.getY());
+                        if(joueur.getCase(caseTrouvee.getX()+1, caseTrouvee.getY()).getCase()==TypeCase.touche){
+                            direct=Direction.horizontal;
+                            deplacement=1;
+                        }
+                        else{
+                            bateauTrouve=false;
+                        }
                     }
                     catch(BNException e){
                         bateauTrouve=false;
-                        tirer();
-                    }
-                    if(joueur.getCase(caseTrouvee.getX()+1, caseTrouvee.getY()).getCase()==TypeCase.touche){
-                        direct=Direction.horizontal;
-                        deplacement=1;
-                    }
-                    else{
-                        bateauTrouve=false;
+                        res=tirer();
                     }
                     break;
                 default:
-                    tireTrouve();
+                    res=tireTrouve();
                     break;
             }
         }
@@ -206,7 +211,7 @@ public class MediumBNIA extends BNIA {
                     aTire=false;
                 }
             }
-            System.out.println(joueur.getCase(x, y).toString());
+            res = joueur.getCase(x, y);
             if(joueur.getCase(x, y).getCase()==TypeCase.touche){
                 caseTrouvee=joueur.getCase(x,y);
                 deplacement=0;
@@ -214,9 +219,11 @@ public class MediumBNIA extends BNIA {
                 bateauTrouve=true;
             }
         }
+        return res;
     }
     
-    private void tireTrouve(){
+    private CaseBN tireTrouve(){
+        CaseBN res=null;
         switch(direct){
             case vertical:
                 if(deplacement<0){
@@ -227,15 +234,16 @@ public class MediumBNIA extends BNIA {
                 }
                 try{
                     joueur.tire(caseTrouvee.getX(), caseTrouvee.getY()+deplacement);
+                    res=joueur.getCase(caseTrouvee.getX(),caseTrouvee.getY()+deplacement);
                 }
                 catch(BNException e){
                     if(deplacement<0){
                         deplacement=0;
-                        tireTrouve();
+                        res=tireTrouve();
                     }
                     else{
                         direct=Direction.est;
-                        tirer();
+                        res=tirer();
                     }
                 }
                 if(joueur.getCase(caseTrouvee.getX(), caseTrouvee.getY()+deplacement).getCase()==TypeCase.touche){
@@ -261,15 +269,16 @@ public class MediumBNIA extends BNIA {
                 }
                 try{
                     joueur.tire(caseTrouvee.getX()+deplacement, caseTrouvee.getY());
+                    res=joueur.getCase(caseTrouvee.getX()+deplacement, caseTrouvee.getY());
                 }
                 catch(BNException e){
                     if(deplacement<0){
                         deplacement=0;
-                        tireTrouve();
+                        res=tireTrouve();
                     }
                     else{
                         direct=Direction.sud;
-                        tirer();
+                        res=tirer();
                     }
                 }
                 if(joueur.getCase(caseTrouvee.getX()+deplacement, caseTrouvee.getY()).getCase()==TypeCase.touche){
@@ -288,9 +297,10 @@ public class MediumBNIA extends BNIA {
                 break;
             default:
                 bateauTrouve=false;
-                tirer();
+                res=tirer();
                 break;
         }
+        return res;
     }
     
 }

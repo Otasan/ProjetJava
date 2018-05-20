@@ -36,5 +36,5 @@ public abstract class BNIA {
     /**
      * demande à l'IA de tirer sur une case
      */
-    abstract public void tirer();
+    abstract public CaseBN tirer();
 }

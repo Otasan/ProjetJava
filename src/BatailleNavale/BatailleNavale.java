@@ -9,7 +9,10 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -104,19 +107,48 @@ public class BatailleNavale extends JPanel{
         pIa.updateGrille();
         setTour(EtatsBN.placerBateau);
         ia.placerBateaux();
-        while(etat==EtatsBN.placerBateau){
-            setTour(pJoueur.getTour());
-            System.out.println(5-gJoueur.nbBateauRestant()+" Bateaux à placer");
+        synchronized(pJoueur){
+            while(etat==EtatsBN.placerBateau){
+                try{
+                    pJoueur.wait();
+                }
+                catch(Exception e){
+                    System.out.println(e);
+                }
+                setTour(pJoueur.getTour());
+                System.out.println(gJoueur.nbBateauRestant());
+            }
         }
         setTour(EtatsBN.tourj);
-        while(gJoueur.nbBateauRestant()>0 && gIa.nbBateauRestant()>0){
-            while(etat==EtatsBN.tourj){
+        synchronized(pIa){
+            while(gJoueur.nbBateauRestant()>0 && gIa.nbBateauRestant()>0){
+                try{
+                    pIa.wait();
+                }
+                catch(Exception e){
+                    System.out.println(e);
+                }
                 setTour(pIa.getTour());
-                System.out.println("Tire");
+                if(etat==EtatsBN.touria){
+                    int nb = gJoueur.nbBateauRestant();
+                    CaseBN c =ia.tirer();
+                    pJoueur.updateGrille();
+                    switch(c.getCase()){
+                        case toucheVierge:
+                            JOptionPane.showMessageDialog(pJoueur, "Raté", "Tour de l'adversaire", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        case touche:
+                            if(nb==gJoueur.nbBateauRestant()){
+                                JOptionPane.showMessageDialog(pJoueur, "Touché", "Tour de l'adversaire", JOptionPane.INFORMATION_MESSAGE);
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(pJoueur, "Coulé", "Tour de l'adversaire", JOptionPane.INFORMATION_MESSAGE);
+                            }
+                            break;
+                    }
+                    setTour(EtatsBN.tourj);
+                }
             }
-            ia.tirer();
-            pJoueur.updateGrille();
-            setTour(EtatsBN.tourj);
         }
         System.out.println("fin");
         return 1;

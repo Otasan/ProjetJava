@@ -108,9 +108,10 @@ public class EasyBNIA extends BNIA{
 
     /**
      * tire sur une case au hasard. si cette case était déja touchée, recommence avec une nouvelle case au hasard
+     * @return
      */
     @Override
-    public void tirer() {
+    public CaseBN tirer() {
         Random rand=new Random();
         int x=0,y=0;
         boolean aTire = false;
@@ -125,7 +126,7 @@ public class EasyBNIA extends BNIA{
                 aTire=false;
             }
         }
-        System.out.println(joueur.getCase(x, y).toString());
+        return joueur.getCase(x,y);
     }
     
 }

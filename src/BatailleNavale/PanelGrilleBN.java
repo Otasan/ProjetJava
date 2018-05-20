@@ -6,6 +6,7 @@
 package BatailleNavale;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -69,13 +70,6 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
     }
     
     /**
-     * méthode appelée lorsque l'utilisateaur clique sur un bateau.
-     * TODO: ajouter un moyen de placer les bateau.
-     * @param caseP 
-     */
-    abstract public void caseClick(PanelCaseBN caseP);
-    
-    /**
      * change la longueur du coté de la grille par l et modifie la taille de chaque image automatiquement.
      * @param l 
      */
@@ -119,7 +113,6 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
