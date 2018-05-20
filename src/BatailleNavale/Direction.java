@@ -10,5 +10,5 @@ package BatailleNavale;
  * @author Utilisateur
  */
 public enum Direction {
-    horizontal, vertical
+    horizontal, vertical, nord, sud, est, ouest
 }

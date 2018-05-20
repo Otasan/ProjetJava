@@ -40,6 +40,7 @@ public class BatailleNavale extends JPanel{
                 ia = new EasyBNIA(gIa, gJoueur);
                 break;
             case 1:
+                ia = new MediumBNIA(gIa, gJoueur);
                 break;
             case 2:
                 break;

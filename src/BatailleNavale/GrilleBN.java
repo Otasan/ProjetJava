@@ -122,8 +122,13 @@ public class GrilleBN {
      * @throws BNException 
      */
     public void tire(int x, int y) throws BNException{
-        if(lesCases.ceiling(new CaseBN(x, y)).touche()==TypeCase.touche){
-            chkBateauCoule();
+        if(x>=10 || x<0 || y>=10 || y<0){
+            throw(new BNException("Case hors de la carte : "+new CaseBN(x,y)));
+        }
+        else{
+            if(lesCases.ceiling(new CaseBN(x, y)).touche()==TypeCase.touche){
+                chkBateauCoule();
+            }
         }
     }
     
@@ -134,8 +139,13 @@ public class GrilleBN {
      * @throws BNException 
      */
     public void tire(CaseBN c) throws BNException{
-        if(lesCases.ceiling(c).touche()==TypeCase.touche){
-            chkBateauCoule();
+        if(c.getX()>=10||c.getX()<0||c.getY()>=10||c.getX()<0){
+            throw(new BNException("Case hors de la grille : "+c.toString()));
+        }
+        else{
+            if(lesCases.ceiling(c).touche()==TypeCase.touche){
+                chkBateauCoule();
+            }
         }
     }
     
