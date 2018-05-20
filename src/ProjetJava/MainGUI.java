@@ -28,7 +28,8 @@ public class MainGUI extends javax.swing.JFrame {
     public MainGUI() {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
-        this.interfaceConnexion();
+        //this.interfaceConnexion();
+        this.interfaceChoixJeu();
         this.setVisible(true);
         try {
 
@@ -76,7 +77,6 @@ public class MainGUI extends javax.swing.JFrame {
         this.getContentPane().removeAll();
         ConnexionPanel connexion = new ConnexionPanel();
         connexion.getInscriptionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-
             interfaceInscription(false);
         });
         connexion.getConnexionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
@@ -118,9 +118,16 @@ public class MainGUI extends javax.swing.JFrame {
     private void inscriptionMembre(String pseudo, String mdp, boolean admin) {
         if (id.addMembre(pseudo, mdp, admin)) {
             interfaceConnexion();
+
         } else {
             JOptionPane.showMessageDialog(null, "Ce pseudo est déjà utilisé");
         }
+    }
+
+    private void interfaceChoixJeu() {
+        this.getContentPane().removeAll();
+        this.getContentPane().add(new ChoixJeuPanel());
+        this.pack();
     }
 
     /*

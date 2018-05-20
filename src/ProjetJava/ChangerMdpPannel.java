@@ -10,11 +10,14 @@ package ProjetJava;
  * @author edeux
  */
 public class ChangerMdpPannel extends javax.swing.JPanel {
+
     
     /**
      * Creates new form ChangerMDPPannel
      */
+
     public ChangerMdpPannel() {
+
         initComponents();
     }
 
