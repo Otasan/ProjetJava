@@ -12,7 +12,7 @@ import java.util.HashMap;
  *
  * @author Dobby
  */
-public class Membre extends Utilisateur implements Serializable{
+public class Membre extends Utilisateur implements Serializable {
 
     private HashMap<String, Integer[]> scores;
     private int mdp;
@@ -20,8 +20,8 @@ public class Membre extends Utilisateur implements Serializable{
 
     public Membre(String pseudo, String mdp, boolean admin) throws ConnexionException {
         super(pseudo);
-        this.admin =admin;
-        
+        this.admin = admin;
+
         if (Membre.estMdpValide(mdp)) {
             scores = new HashMap<>();
             String[] jeu = {"BatailleNavale", "Pendu"};
@@ -43,7 +43,7 @@ public class Membre extends Utilisateur implements Serializable{
     }
 
     public static boolean estPseudoValide(String pseudo) {
-        if (pseudo == null || pseudo.equals("")){
+        if (pseudo == null || pseudo.equals("")) {
             return false;
         }
         if (pseudo.length() < 6 || pseudo.length() > 30) {
@@ -52,9 +52,9 @@ public class Membre extends Utilisateur implements Serializable{
             return pseudo.matches("[[a-z][A-Z][0-9]]*");
         }
     }
-        
+
     public static boolean estMdpValide(String mdp) {
-        if (mdp == null || mdp.equals("")){
+        if (mdp == null || mdp.equals("")) {
             return false;
         }
         if (mdp.length() < 6 || mdp.length() > 30) {
@@ -64,10 +64,10 @@ public class Membre extends Utilisateur implements Serializable{
         }
     }
 
-    public boolean estAdmin(){
+    public boolean estAdmin() {
         return admin;
     }
-    
+
     public static boolean estScoreValide(Integer[] score) {
         if (score == null) {
             return false;
@@ -103,18 +103,14 @@ public class Membre extends Utilisateur implements Serializable{
         }
     }
 
-    public void setMotDePasse(String mdp) throws ConnexionException {
-        if (Membre.estMdpValide(mdp)) {
-            this.mdp = this.keyGen(this.getPseudo(), mdp);
-        } else {
-            throw new ConnexionException();
-        }
+    public void setMotDePasse(String mdp) {
+        this.mdp = this.keyGen(this.getPseudo(), mdp);
     }
 
     @Override
     public String toString() {
         String retour = super.toString();
-        if (admin){
+        if (admin) {
             retour += " admin";
         }
         for (String jeu : scores.keySet()) {

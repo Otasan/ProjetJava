@@ -115,6 +115,29 @@ public class ChangerMdpPannel extends javax.swing.JPanel {
         return validerButton;
     }
     
+    public String getOldPassword(){
+        String old = "";
+        for (char c : oldPassword.getPassword()){
+            old+=c;
+        }
+        return old;
+    }
+    
+    public String getNewPassword(){
+        String pwd = "";
+        for (char c : newPassword.getPassword()){
+            pwd+=c;
+        }
+        return pwd;
+    }
+    
+    public boolean isConfirmation(){
+        if (newPassword.equals(newPasswordValidation)){
+            return true;
+        } else {
+            return false;
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

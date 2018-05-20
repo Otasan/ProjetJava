@@ -9,6 +9,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -54,8 +56,6 @@ public class MainGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel = new javax.swing.JPanel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Boite De Jeux");
         setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -63,14 +63,10 @@ public class MainGUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(854, 480));
         getContentPane().setLayout(new java.awt.BorderLayout(5, 5));
 
-        mainPanel.setLayout(new java.awt.CardLayout());
-        getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 
     /*
@@ -83,6 +79,9 @@ public class MainGUI extends javax.swing.JFrame {
 
             interfaceInscription(false);
         });
+        connexion.getConnexionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            
+        });
         this.getContentPane().add(connexion);
         this.pack();
     }
@@ -93,15 +92,9 @@ public class MainGUI extends javax.swing.JFrame {
     private void interfaceInscription(boolean admin) {
         this.getContentPane().removeAll();
         InscriptionPanel inscription = new InscriptionPanel();
-        if (admin) {
-            inscription.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-                interfaceAdmin();
-            });
-        } else {
-            inscription.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-                interfaceConnexion();
-            });
-        }
+        inscription.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceConnexion();
+        });
 
         inscription.getInscriptionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
             String pseudo = inscription.getPseudoField();
@@ -124,11 +117,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void inscriptionMembre(String pseudo, String mdp, boolean admin) {
         if (id.addMembre(pseudo, mdp, admin)) {
-            if (admin) {
-                interfaceAdmin();
-            } else {
-                interfaceConnexion();
-            }
+            interfaceConnexion();
         } else {
             JOptionPane.showMessageDialog(null, "Ce pseudo est déjà utilisé");
         }
@@ -146,7 +135,7 @@ public class MainGUI extends javax.swing.JFrame {
     /*
     Initialisation de la fenetre d'administration.
      */
-    private void interfaceAdmin() {
+    private void interfaceAdmin(Membre m) {
         this.getContentPane().removeAll();
         AdminPanel admin = new AdminPanel();
         admin.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
@@ -156,7 +145,7 @@ public class MainGUI extends javax.swing.JFrame {
             interfaceInscription(true);
         });
         admin.getChMdpButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            interfaceChMdp(true);
+            interfaceChMdp(true, m);
         });
 
         this.getContentPane().add(admin);
@@ -164,22 +153,32 @@ public class MainGUI extends javax.swing.JFrame {
         this.pack();
     }
 
-    private void interfaceChMdp(boolean admin) {
+    private void interfaceChMdp(boolean admin, Membre m) {
         this.getContentPane().removeAll();
         ChangerMdpPannel chMdp = new ChangerMdpPannel();
-        if (admin){
+        if (admin) {
             chMdp.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            interfaceAdmin();
+                interfaceAdmin(m);
             });
         } else {
             chMdp.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            interfaceAdmin();
+                interfaceAdmin(m);
             });
         }
-        
-        
-        
+
+        chMdp.getValiderButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            String newPwd = chMdp.getNewPassword();
+            if (chMdp.isConfirmation() && m.connexion(chMdp.getOldPassword()) && Membre.estMdpValide(newPwd)) {
+                m.setMotDePasse(newPwd);
+                interfaceAdmin(m);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Les nouveaux mots de passe ne sont pas valides");
+            }
+        });
+
         this.getContentPane().add(chMdp);
         this.pack();
     }
+
 }
