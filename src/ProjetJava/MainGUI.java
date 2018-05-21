@@ -137,9 +137,6 @@ public class MainGUI extends javax.swing.JFrame {
         this.pack();
     }
 
-    /*
-    Initialisation de la fenetre d'administration.
-     */
     /**
      * Cree et affiche l'interface Amin.
      * @param m Membre administrateur qui c'est connecte.
