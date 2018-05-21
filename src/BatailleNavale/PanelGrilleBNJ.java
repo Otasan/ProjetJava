@@ -70,8 +70,7 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
      * Si l'utilisateur doit placer des bateaux, alors il pourra.
      * @param caseP 
      */
-    @Override
-    public void caseClick(PanelCaseBN caseP){
+    synchronized void caseClick(PanelCaseBN caseP){
         System.out.println(etat);
         if(etat==EtatsBN.placerBateau){
             if(choix.getValide()){
@@ -88,10 +87,12 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
             }
             if(grille.getBateaux().size()<5){
                 choix.nouveauBateau(grille.getBateaux());
+                notify();
             }
             else{
                 choix.dispatchEvent(new WindowEvent(choix, WindowEvent.WINDOW_CLOSING));
                 etat=EtatsBN.tourj;
+                notify();
             }
         }
         else{

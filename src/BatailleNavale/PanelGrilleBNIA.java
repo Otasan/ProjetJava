@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.TreeSet;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -55,16 +56,32 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
      * Si l'utilisateur doit tirer sur les bateaux ennemis, alors il pourra.
      * @param caseP 
      */
-    @Override
-    public void caseClick(PanelCaseBN caseP) {
+    synchronized void caseClick(PanelCaseBN caseP) {
         //System.out.println(caseP);
         if (etat == EtatsBN.tourj) {
             try {
+                int nb = grille.nbBateauRestant();
                 grille.tire(caseP.getCase());
                 caseP.updateImage();
+                switch(grille.getCase(caseP.getCase()).getCase()){
+                    case toucheVierge:
+                        JOptionPane.showMessageDialog(this, "Raté", "Tour du joueur", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case touche:
+                        if(nb==grille.nbBateauRestant()){
+                            JOptionPane.showMessageDialog(this, "Touché", "Tour du joueur", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(this, "Coulé", "Tour du joueur", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        break;
+                }
                 //updateGrille();
+                etat=EtatsBN.touria;
+                notify();
             }
             catch (BNException e) {
+                etat=EtatsBN.tourj;
                 System.out.println(e);
             }
             catch (IOException e) {
@@ -73,7 +90,6 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
             catch (Exception e) {
                 System.out.println(e + " " + grille.getBateaux().toString());
             }
-            etat=EtatsBN.touria;
         }
     }
 }
