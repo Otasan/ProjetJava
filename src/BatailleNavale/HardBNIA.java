@@ -38,8 +38,23 @@ public class HardBNIA extends BNIA{
         }
     }
     
+    private void updateProba(CaseBN c){
+        
+    }
+    
+    /**
+     * définie la probabilité de la case [X;Y], mets 0 par defaut si négatif
+     * @param x
+     * @param y
+     * @param val 
+     */
     private void setProba(int x, int y, Double val){
-        proba.put(new CaseBN(x,y), val);
+        if(val<0){
+            proba.put(new CaseBN(x,y), 0.0);
+        }
+        else{
+            proba.put(new CaseBN(x,y), val);
+        }
     }
     
     @Override
@@ -53,7 +68,28 @@ public class HardBNIA extends BNIA{
      */
     @Override
     public CaseBN tirer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        double max=0;
+        int nb=joueur.nbBateauRestant();
+        CaseBN caseProbable=null;
+        for(CaseBN c:proba.keySet()){
+            if(proba.get(c)>max){
+                max=proba.get(c);
+                caseProbable=c;
+            }
+        }
+        try{
+            joueur.tire(caseProbable);
+            updateProba(caseProbable);
+            if(nb!=joueur.nbBateauRestant()){
+                //TODO recalculer la totalité des probabilités sans le bateau tombé
+            }
+        }
+        catch(BNException e){
+            System.out.println(e);
+            proba.put(caseProbable,0.0);
+            caseProbable = tirer();
+        }
+        return caseProbable;
     }
     
 }
