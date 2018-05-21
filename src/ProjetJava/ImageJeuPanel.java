@@ -5,25 +5,24 @@
  */
 package ProjetJava;
 
-import java.awt.BorderLayout;
-import java.util.Locale;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 /**
+ * Panel de l'image d'un jeu.
  *
  * @author deux
  */
 public class ImageJeuPanel extends javax.swing.JPanel {
+
     private String nomJeu;
+
     /**
-     * Creates new form ImageJeuPanel
+     * Creation du Panel et changement du titre et de l'image en fonction du
+     * jeu.
      */
     public ImageJeuPanel(String nomJeu) {
         this.nomJeu = nomJeu;
         initComponents();
         titleLabel.setText(nomJeu);
-        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/"+nomJeu+".jpg")));
+        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/" + nomJeu + ".jpg")));
 
     }
 

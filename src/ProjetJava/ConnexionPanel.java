@@ -6,7 +6,7 @@
 package ProjetJava;
 
 /**
- *
+ *Panel d'authentification de l'utilisateur.
  * @author deux
  */
 public class ConnexionPanel extends javax.swing.JPanel {

@@ -6,7 +6,7 @@
 package ProjetJava;
 
 /**
- *
+ *Panel contenant les informations sur un jeu.
  * @author deux
  */
 public class InfoJeuPanel extends javax.swing.JPanel {
@@ -73,20 +73,11 @@ public class InfoJeuPanel extends javax.swing.JPanel {
         jButtonRetour.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jButtonRetour.setText("Retour");
         jButtonRetour.setMargin(new java.awt.Insets(3, 20, 3, 20));
-        jButtonRetour.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRetourActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         add(jButtonRetour, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonRetourActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

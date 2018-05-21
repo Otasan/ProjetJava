@@ -8,7 +8,7 @@ package ProjetJava;
 import java.io.Serializable;
 
 /**
- *
+ *Utilisateur ne possedant pas de compte ("Invite")
  * @author Dobby
  */
 public class Utilisateur implements Serializable {
@@ -32,20 +32,26 @@ public class Utilisateur implements Serializable {
         return pseudo;
     }
 
+    /**
+     * Teste si le pseudo est null et s'il contient entre 6 et 30 characteres
+     * classiques ([a-z][A-Z][0-9]).
+     *
+     * @param pseudo Pseudo a tester pour savoir s'il est conforme.
+     * @return true si le pseudo est conforme aux tests.
+     */
     public static boolean estPseudoValide(String pseudo) {
-        if (pseudo==null){
+        if (pseudo == null || pseudo.equals("")) {
             return false;
         }
-        int length = pseudo.length();
-        if (pseudo.equals("") || length < 6 || length > 30) {
+        if (pseudo.length() < 6 || pseudo.length() > 30) {
             return false;
         } else {
             return pseudo.matches("[[a-z][A-Z][0-9]]*");
         }
     }
 
-    public boolean equals(Utilisateur u){
-        if(this.pseudo.equals(u.pseudo)){
+    public boolean equals(Utilisateur u) {
+        if (this.pseudo.equals(u.pseudo)) {
             return true;
         } else {
             return false;

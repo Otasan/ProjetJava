@@ -6,18 +6,26 @@
 package ProjetJava;
 
 /**
- *
+ * Panel pour choisir le jeu.
  * @author deux
  */
 public class ChoixJeuPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ChoixJeuPanel
+     * Cree le panel choix de jeu et ajoute une image pour chaque jeu.
      */
     public ChoixJeuPanel() {
         initComponents();
-        groupeJeuPanel.add(new ImageJeuPanel("bataillenavale"));
-        groupeJeuPanel.add(new ImageJeuPanel("pendu"));
+        
+        
+        //Tableau contenant tous les jeux.
+        String jeux[] = {"pendu", "bataillenavale"};
+        
+        
+        //Ajout d'une image pour chaque jeu.
+        for (String jeu : jeux) {
+            groupeJeuPanel.add(new ImageJeuPanel(jeu));
+        }
     }
 
     /**

@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 /**
+ * Identification du joueur avec memorisation de ses scores et de ses
+ * identifiants.
  *
  * @author Dobby
  */
@@ -18,41 +20,47 @@ public class Membre extends Utilisateur implements Serializable {
     private int mdp;
     private boolean admin;
 
+    /**
+     * Creation d'un Membre avec un score nul.
+     *
+     * @param pseudo Pseudo permettant au Membre de se connecter.
+     * @param mdp Mot de passe permettant au Membre de se connecter.
+     * @param admin true si me Membre est un Administrateur.
+     * @throws ConnexionException Si le mdp ou le pseudo ne sont pas valide.
+     */
     public Membre(String pseudo, String mdp, boolean admin) throws ConnexionException {
         super(pseudo);
         this.admin = admin;
 
         if (Membre.estMdpValide(mdp)) {
             scores = new HashMap<>();
-            String[] jeu = {"BatailleNavale", "Pendu"};
-            Integer[] tableauVide = new Integer[2];
-            for (String j : jeu) {
-                scores.put(j, tableauVide.clone());
-                scores.get(j)[0] = 0;
-                scores.get(j)[1] = 0;
-            }
+            String[] jeux = {"BatailleNavale", "Pendu"};
+            resetScore(jeux);
             this.mdp = this.keyGen(pseudo, mdp);
         } else {
             throw new ConnexionException();
         }
     }
 
+    /**
+     * Generateur du mdp hashé du Membre.
+     *
+     * @param pseudo Pseudo du Membre.
+     * @param mdp Mot de passe du Membre.
+     * @return Entier résultat du hashage du mot de passe.
+     */
     private int keyGen(String pseudo, String mdp) {
         String key = pseudo + mdp;
         return key.hashCode() * 73 + 37;
     }
 
-    public static boolean estPseudoValide(String pseudo) {
-        if (pseudo == null || pseudo.equals("")) {
-            return false;
-        }
-        if (pseudo.length() < 6 || pseudo.length() > 30) {
-            return false;
-        } else {
-            return pseudo.matches("[[a-z][A-Z][0-9]]*");
-        }
-    }
-
+    /**
+     * Teste si le pseudo est null et s'il contient entre 6 et 30 characteres
+     * classiques ([a-z][A-Z][0-9]).
+     *
+     * @param mdp Mot de passe a tester pour savoir s'il est conforme.
+     * @return true si le mot de passe est conforme aux tests.
+     */
     public static boolean estMdpValide(String mdp) {
         if (mdp == null || mdp.equals("")) {
             return false;
@@ -64,10 +72,18 @@ public class Membre extends Utilisateur implements Serializable {
         }
     }
 
-    public boolean estAdmin() {
+    public boolean getAdmin() {
         return admin;
     }
 
+    /**
+     * Teste le score pour savoir s'il n'y a pas plus de 2 valeurs dans le
+     * tablea, s'il n'est pas null, si le nombre de parties gagnees n'est pas
+     * supperieur au nombre de parties jouees.
+     *
+     * @param score Tableau des scores du joueur a tester.
+     * @return true si le score est conforme.
+     */
     public static boolean estScoreValide(Integer[] score) {
         if (score == null) {
             return false;
@@ -78,6 +94,13 @@ public class Membre extends Utilisateur implements Serializable {
         }
     }
 
+    /**
+     * Renvoie le score du Membre sous forme de tableau pour un jeu donne.
+     *
+     * @param jeu Nom du jeu pour lequel on veut recuperer le score.
+     * @return un tableau [ nbPartiesJouees, nbPartiesGagnees].
+     * @throws ScoreException Le score n'est pas valide.
+     */
     public Integer[] getScore(String jeu) throws ScoreException {
         Integer[] score = scores.get(jeu);
         if (Membre.estScoreValide(score)) {
@@ -87,6 +110,12 @@ public class Membre extends Utilisateur implements Serializable {
         }
     }
 
+    /**
+     * Renvoie le ratio (partiesJouees/partiesGagnees)
+     * @param jeu Nom du jeu pour lequel on veut recuperer le ratio.
+     * @return Le ratio de victoires <1.
+     * @throws ScoreException Le score n'est pas conforme.
+     */
     public double getRatio(String jeu) throws ScoreException {
         int partiesJouees = scores.get(jeu)[0];
         if (partiesJouees > 0) {
@@ -103,6 +132,10 @@ public class Membre extends Utilisateur implements Serializable {
         }
     }
 
+    /**
+     * Change le mot de passe du Membre.
+     * @param mdp Nouveau mot de passe du Membre.
+     */
     public void setMotDePasse(String mdp) {
         this.mdp = this.keyGen(this.getPseudo(), mdp);
     }
@@ -122,15 +155,28 @@ public class Membre extends Utilisateur implements Serializable {
         return retour;
     }
 
+    /**
+     * Change le score du Membre lorsqu'il a gagne.
+     * @param jeu Nom du jeu que le Membre viens de gagner.
+     */
     public void incrementGagne(String jeu) {
         scores.get(jeu)[0] += 1;
         scores.get(jeu)[1] += 1;
     }
-
+    
+    /**
+     * Change le score du Membre lorsqu'il a perdu.
+     * @param jeu Nom du jeu que le Membre viens de perdre.
+     */
     public void incrementPerdu(String jeu) {
         scores.get(jeu)[0] += 1;
     }
 
+    /**
+     * Teste si le mot de passe entre pour se connecter est le bon.
+     * @param mdp Mot de passe entre par le Membre.
+     * @return true si le mot de passe est celui du Membre.
+     */
     public boolean connexion(String mdp) {
 
         if (Membre.estMdpValide(mdp)) {
@@ -144,4 +190,14 @@ public class Membre extends Utilisateur implements Serializable {
         }
     }
 
+    /**
+     * Remet le score du Membre a zero pour les jeux entres en parametre.
+     * @param jeux Tableau contenant tous les jeux a remetre a zero.
+     */
+    public void resetScore(String[] jeux) {
+        Integer[] tableauVide = {0,0};
+        for (String j : jeux) {
+            scores.put(j, tableauVide.clone());
+        }
+    }
 }

@@ -5,8 +5,6 @@
  */
 package ProjetJava;
 
-import java.util.Arrays;
-
 /**
  *
  * @author deux
@@ -142,7 +140,6 @@ public class InscriptionPanel extends javax.swing.JPanel {
         add(jPanel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-
     public javax.swing.JButton getInscriptionButton() {
         return jButtonInscription;
     }
@@ -159,20 +156,26 @@ public class InscriptionPanel extends javax.swing.JPanel {
         return pseudo;
     }
 
+    /**
+     * Renvoie le mot de passe entre dans les deux champs mdp.
+     *
+     * @return le mot de passe ou null si les deux mots de passe ne sont pas
+     * identiques.
+     */
     public String getPasswordField() {
-        String mdp="";
-        for (char c:jPasswordField.getPassword()){
-            mdp+=c;
+        String mdp = "";
+        for (char c : jPasswordField.getPassword()) {
+            mdp += c;
         }
-        String mdpc="";
-        for (char c:jPasswordFieldConfirmation.getPassword()){
-            mdpc+=c;
+        String mdpc = "";
+        for (char c : jPasswordFieldConfirmation.getPassword()) {
+            mdpc += c;
         }
-        
+
         jPasswordField.setText("");
         jPasswordFieldConfirmation.setText("");
-        
-        if (mdp.equals(mdpc)) {
+
+        if (mdp.equals(mdpc) && Membre.estMdpValide(mdp)) {
             return mdp;
         } else {
             return null;

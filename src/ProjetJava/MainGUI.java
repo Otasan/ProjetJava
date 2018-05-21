@@ -9,11 +9,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
+ * Frame contenant tous les Panels.
  *
  * @author deux
  */
@@ -28,15 +27,17 @@ public class MainGUI extends javax.swing.JFrame {
     public MainGUI() {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
-        //this.interfaceConnexion();
-        this.interfaceChoixJeu();
-        this.setVisible(true);
+        this.interfaceConnexion();
+        /*
+        Tentative de lire dans le ficher de sauvegarde, sinon cree une liste 
+        d'utilisateurs vierge.
+         */
         try {
-
             id = new Identification("Sauvegarde.save");
         } catch (FileNotFoundException ex) {
             id = new Identification();
         }
+        //Nouvelle methode pour quitter permettant de sauvegarder avant de quitter.
         WindowListener exitListener = new WindowAdapter() {
 
             @Override
@@ -45,7 +46,9 @@ public class MainGUI extends javax.swing.JFrame {
                 System.exit(0);
             }
         };
+
         this.addWindowListener(exitListener);
+        this.setVisible(true);
     }
 
     /**
@@ -69,25 +72,27 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
-    /*
-    Initialisation de la fenetre de Connexion.
+    /**
+     * Creation et affichage de la fenetre de connexion.
      */
     private void interfaceConnexion() {
         this.getContentPane().removeAll();
         ConnexionPanel connexion = new ConnexionPanel();
+        //le bouton inscription renvoid vers l'interface inscription.
         connexion.getInscriptionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
             interfaceInscription(false);
         });
         connexion.getConnexionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            
+
         });
         this.getContentPane().add(connexion);
         this.pack();
     }
 
-    /*
-    Initialisation de la fenetre d'inscription.
+    /**
+     * Initialisation de la fenetre d'inscription.
+     *
+     * @param admin true si on vient de l'interfaceAdmin.
      */
     private void interfaceInscription(boolean admin) {
         this.getContentPane().removeAll();
@@ -105,23 +110,16 @@ public class MainGUI extends javax.swing.JFrame {
             } else if (!Membre.estMdpValide(mdp) || mdp == null) {
                 JOptionPane.showMessageDialog(null, "Votre mot de passe est invalide");
 
-            } else {
-                inscriptionMembre(pseudo, mdp, admin);
+            } else if (id.addMembre(pseudo, mdp, admin)) {
+                interfaceConnexion();
 
+            } else {
+                JOptionPane.showMessageDialog(null, "Ce pseudo est déjà utilisé");
             }
         });
 
         this.getContentPane().add(inscription);
         this.pack();
-    }
-
-    private void inscriptionMembre(String pseudo, String mdp, boolean admin) {
-        if (id.addMembre(pseudo, mdp, admin)) {
-            interfaceConnexion();
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Ce pseudo est déjà utilisé");
-        }
     }
 
     private void interfaceChoixJeu() {
@@ -142,6 +140,10 @@ public class MainGUI extends javax.swing.JFrame {
     /*
     Initialisation de la fenetre d'administration.
      */
+    /**
+     * Cree et affiche l'interface Amin.
+     * @param m Membre administrateur qui c'est connecte.
+     */
     private void interfaceAdmin(Membre m) {
         this.getContentPane().removeAll();
         AdminPanel admin = new AdminPanel();
@@ -160,6 +162,11 @@ public class MainGUI extends javax.swing.JFrame {
         this.pack();
     }
 
+    /**
+     * Interface permettant a un Membre de changer de mot de passe.
+     * @param admin true si le Membre viens de l'interfaceAdmin.
+     * @param m Membre duquel on veut changer le mot de passe.
+     */
     private void interfaceChMdp(boolean admin, Membre m) {
         this.getContentPane().removeAll();
         ChangerMdpPannel chMdp = new ChangerMdpPannel();

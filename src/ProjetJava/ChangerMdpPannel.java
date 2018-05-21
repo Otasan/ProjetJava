@@ -6,7 +6,7 @@
 package ProjetJava;
 
 /**
- *
+ *Panel pour changer le mot de passe du membre connecté.
  * @author edeux
  */
 public class ChangerMdpPannel extends javax.swing.JPanel {
@@ -17,7 +17,6 @@ public class ChangerMdpPannel extends javax.swing.JPanel {
      */
 
     public ChangerMdpPannel() {
-
         initComponents();
     }
 
@@ -133,7 +132,11 @@ public class ChangerMdpPannel extends javax.swing.JPanel {
         }
         return pwd;
     }
-    
+
+    /**
+     * Verrifie que les deux nouveaux mots de passes sont égaux.
+     * @return Vrai si les deux mots de passe sont égaux.
+     */
     public boolean isConfirmation(){
         if (newPassword.equals(newPasswordValidation)){
             return true;

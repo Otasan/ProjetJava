@@ -8,13 +8,13 @@ package ProjetJava;
 import java.awt.BorderLayout;
 
 /**
- *
+ *Panel contenant le jeu qui est entre en parametre.
  * @author deux
  */
 public class JeuPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form JeuJPanel
+     * Creation du Panel et lancement du jeu.
      */
     public JeuPanel(String jeu) {
         initComponents();

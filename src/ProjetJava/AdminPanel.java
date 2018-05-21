@@ -6,7 +6,7 @@
 package ProjetJava;
 
 /**
- *
+ *Panel d'administration.
  * @author deux
  */
 public class AdminPanel extends javax.swing.JPanel {
