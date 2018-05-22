@@ -1,1 +1,4 @@
 Interface\ java-1.docx
+nbproject/
+*.save
+build/

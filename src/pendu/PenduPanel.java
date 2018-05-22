@@ -5,6 +5,7 @@
  */
 package pendu;
 
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import javax.swing.JLabel;
 
@@ -12,7 +13,7 @@ import javax.swing.JLabel;
  *
  * @author KREATURE
  */
-public class PenduPanel extends javax.swing.JPanel {
+public class PenduPanel extends javax.swing.JPanel implements java.awt.event.KeyListener {
 
     private JeuPendu jeu;
 
@@ -24,6 +25,8 @@ public class PenduPanel extends javax.swing.JPanel {
         Dictionnaire d = new Dictionnaire();
         jeu = new JeuPendu(d.motAleatoire());
         this.update();
+        this.addKeyListener(this);
+        
     }
 
     /**
@@ -42,11 +45,6 @@ public class PenduPanel extends javax.swing.JPanel {
 
         setMinimumSize(new java.awt.Dimension(640, 480));
         setPreferredSize(new java.awt.Dimension(640, 480));
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                formKeyTyped(evt);
-            }
-        });
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
         layout.columnWeights = new double[] {0.5, 0.5};
         layout.rowWeights = new double[] {0.5, 0.5};
@@ -88,12 +86,24 @@ public class PenduPanel extends javax.swing.JPanel {
             lettrePanel.add(new JLabel(jeu.derniereLettreUtil()));
         }
     }
-    private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
-    }//GEN-LAST:event_formKeyTyped
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imageLabel;
     private javax.swing.JPanel lettrePanel;
     private javax.swing.JLabel motLabel;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        System.out.println(e.getKeyChar());
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

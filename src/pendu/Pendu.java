@@ -6,6 +6,9 @@
 package pendu;
 
 import ProjetJava.AdminPanel;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -32,6 +35,14 @@ public class Pendu {
         }
         frame.pack();
         frame.setVisible(true);
+        WindowListener exitListener = new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        };
+        frame.addWindowListener(exitListener);
         //Dictionnaire d = new Dictionnaire();
         //System.out.println(d.motAleatoire());
         //System.out.print(d.toString());
