@@ -103,7 +103,7 @@ public class BatailleNavale extends JPanel{
      * @throws java.io.IOException 
      */
     public int jeu() throws IOException{
-        //pJoueur.updateGrille();
+        pJoueur.updateGrille();
         pIa.updateGrille();
         setTour(EtatsBN.placerBateau);
         ia.placerBateaux();
