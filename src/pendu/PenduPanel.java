@@ -6,14 +6,16 @@
 package pendu;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author KREATURE
  */
-public class PenduPanel extends javax.swing.JPanel implements java.awt.event.KeyListener {
+public class PenduPanel extends javax.swing.JPanel{
 
     private JeuPendu jeu;
 
@@ -25,8 +27,21 @@ public class PenduPanel extends javax.swing.JPanel implements java.awt.event.Key
         Dictionnaire d = new Dictionnaire();
         jeu = new JeuPendu(d.motAleatoire());
         this.update();
-        this.addKeyListener(this);
-        
+
+        addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent evt) {
+                motLabel.setText(evt.getKeyChar() + "");
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
     }
 
     /**
@@ -43,6 +58,7 @@ public class PenduPanel extends javax.swing.JPanel implements java.awt.event.Key
         lettrePanel = new javax.swing.JPanel();
         imageLabel = new javax.swing.JLabel();
 
+        setFocusable(true);
         setMinimumSize(new java.awt.Dimension(640, 480));
         setPreferredSize(new java.awt.Dimension(640, 480));
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
@@ -79,7 +95,6 @@ public class PenduPanel extends javax.swing.JPanel implements java.awt.event.Key
     }// </editor-fold>//GEN-END:initComponents
 
     public void update() {
-        System.out.println("plop");
         //imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/pendu" + jeu.nbErreurs() + ".jpg")));
         motLabel.setText(jeu.getMot());
         if (!(jeu.derniereLettreUtil() == null)) {
@@ -92,18 +107,4 @@ public class PenduPanel extends javax.swing.JPanel implements java.awt.event.Key
     private javax.swing.JLabel motLabel;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        System.out.println(e.getKeyChar());
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

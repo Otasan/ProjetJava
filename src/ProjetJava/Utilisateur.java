@@ -8,19 +8,16 @@ package ProjetJava;
 import java.io.Serializable;
 
 /**
- *Utilisateur ne possedant pas de compte ("Invite")
+ * Utilisateur ne possedant pas de compte ("Invite")
+ *
  * @author Dobby
  */
 public class Utilisateur implements Serializable {
 
     private String pseudo;
 
-    public Utilisateur(String pseudo) throws ConnexionException {
-        if (Utilisateur.estPseudoValide(pseudo)) {
-            this.pseudo = pseudo;
-        } else {
-            throw new ConnexionException();
-        }
+    public Utilisateur(String pseudo) {
+        this.pseudo = pseudo;
     }
 
     public String getPseudo() {

@@ -7,8 +7,6 @@ package utilisateurs;
 
 import ProjetJava.ConnexionException;
 import ProjetJava.Utilisateur;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -23,14 +21,10 @@ public class UtilisateurTest {
      */
     @Test
     public void testGetPseudo() {
-        try {
-            String pseudo = "XXXXXXXXXX";
-            Utilisateur u = new Utilisateur(pseudo);
-            assertTrue(u.getPseudo().equals(pseudo));
-            assertFalse(!u.getPseudo().equals(pseudo));
-        } catch (ConnexionException ex) {
-            ex.printStackTrace();
-        }
+        String pseudo = "XXXXXXXXXX";
+        Utilisateur u = new Utilisateur(pseudo);
+        assertTrue(u.getPseudo().equals(pseudo));
+        assertFalse(!u.getPseudo().equals(pseudo));
     }
 
     /**

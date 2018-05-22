@@ -10,6 +10,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -86,7 +88,18 @@ public class MainGUI extends javax.swing.JFrame {
         connexion.getConnexionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
 
         });
+        connexion.getInviteButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            String pseudo = connexion.getPseudoField();
+            if (Utilisateur.estPseudoValide(pseudo)) {
+                this.interfaceChoixJeu(new Utilisateur(pseudo));
+            } else {
+                interfaceChoixJeu(new Utilisateur("Invite"));
+            }
+        }
+        );
+
         this.getContentPane().add(connexion);
+
         this.pack();
     }
 
@@ -123,7 +136,7 @@ public class MainGUI extends javax.swing.JFrame {
         this.pack();
     }
 
-    private void interfaceChoixJeu() {
+    private void interfaceChoixJeu(Utilisateur u) {
         this.getContentPane().removeAll();
         this.getContentPane().add(new ChoixJeuPanel());
         this.pack();
@@ -140,6 +153,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Cree et affiche l'interface Amin.
+     *
      * @param m Membre administrateur qui c'est connecte.
      */
     private void interfaceAdmin(Membre m) {
@@ -162,6 +176,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Interface permettant a un Membre de changer de mot de passe.
+     *
      * @param admin true si le Membre viens de l'interfaceAdmin.
      * @param m Membre duquel on veut changer le mot de passe.
      */
