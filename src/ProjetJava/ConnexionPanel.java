@@ -135,6 +135,18 @@ public class ConnexionPanel extends javax.swing.JPanel {
     public javax.swing.JButton getInviteButton() {
         return jButtonInvite;
     }
+    
+    public String getPseudoField(){
+        return jTextFieldPseudo.getText();
+    }
+    
+    public String getPasswordField(){
+        String pwd = "";
+        for(char c : jPasswordField.getPassword()){
+            pwd += c;
+        }
+        return pwd;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConnexion;
     private javax.swing.JButton jButtonInscription;

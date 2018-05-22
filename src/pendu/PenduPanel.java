@@ -5,8 +5,11 @@
  */
 package pendu;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +27,20 @@ public class PenduPanel extends javax.swing.JPanel {
         Dictionnaire d = new Dictionnaire();
         jeu = new JeuPendu(d.motAleatoire());
         this.update();
+        addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent evt) {
+                motLabel.setText(evt.getKeyChar() + "");
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
     }
 
     /**
@@ -40,6 +57,7 @@ public class PenduPanel extends javax.swing.JPanel {
         lettrePanel = new javax.swing.JPanel();
         imageLabel = new javax.swing.JLabel();
 
+        setFocusable(true);
         setMinimumSize(new java.awt.Dimension(640, 480));
         setPreferredSize(new java.awt.Dimension(640, 480));
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -81,7 +99,6 @@ public class PenduPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void update() {
-        System.out.println("plop");
         //imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/pendu" + jeu.nbErreurs() + ".jpg")));
         motLabel.setText(jeu.getMot());
         if (!(jeu.derniereLettreUtil() == null)) {
@@ -96,4 +113,5 @@ public class PenduPanel extends javax.swing.JPanel {
     private javax.swing.JPanel lettrePanel;
     private javax.swing.JLabel motLabel;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -5,11 +5,9 @@
  */
 package pendu;
 
-import ProjetJava.AdminPanel;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -20,7 +18,6 @@ public class Pendu {
 
     /**
      * @param args the command line arguments
-     * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args){
         // TODO code application logic here
