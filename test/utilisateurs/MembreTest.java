@@ -58,7 +58,7 @@ public class MembreTest {
             int[] scorePen2 = {m.getScore(pendu)[0], m.getScore(pendu)[1]};
 
             assertArrayEquals(scoreTestPen2, scorePen2);
-        } catch (ScoreException | ConnexionException ex) {
+        } catch (ScoreException ex) {
             ex.printStackTrace();
         }
     }
@@ -97,7 +97,6 @@ public class MembreTest {
     @Test
     public void testIncrementGagne() {
 
-        try {
             /**
              * Le score change bien en augmentant de 1 les victoires et les
              * parties jouees de bataille navale.
@@ -109,14 +108,16 @@ public class MembreTest {
 
             for (int i = 0; i < 10000; i++) {
 
-                int[] score = {m.getScore(batailleNav)[0], m.getScore(batailleNav)[1]};
-
-                assertArrayEquals(scoreTest, score);
-
-                scoreTest[0] += 1;
-                scoreTest[1] += 1;
-
-                m.incrementGagne(batailleNav);
+                try {
+                    int[] score = {m.getScore(batailleNav)[0], m.getScore(batailleNav)[1]};
+                    
+                    assertArrayEquals(scoreTest, score);
+                    
+                    scoreTest[0] += 1;
+                    scoreTest[1] += 1;
+                    
+                    m.incrementGagne(batailleNav);
+                } catch (ScoreException ex) {}
             }
 
             /**
@@ -131,17 +132,17 @@ public class MembreTest {
             for (int i = 0;
                     i < 10000; i++) {
 
-                int[] score = {m.getScore(pendu)[0], m.getScore(pendu)[1]};
-                assertArrayEquals(scoreTest, score);
-
-                scoreTest[0] += 1;
-                scoreTest[1] += 1;
-
-                m.incrementGagne(pendu);
+                try {
+                    int[] score = {m.getScore(pendu)[0], m.getScore(pendu)[1]};
+                    assertArrayEquals(scoreTest, score);
+                    
+                    scoreTest[0] += 1;
+                    scoreTest[1] += 1;
+                    
+                    m.incrementGagne(pendu);
+                } catch (ScoreException ex) {}
             }
-        } catch (ScoreException | ConnexionException ex) {
-            ex.printStackTrace();
-        }
+        
 
     }
 
@@ -168,10 +169,7 @@ public class MembreTest {
                     scoreTest[0] += 1;
 
                     m.incrementPerdu(batailleNav);
-                } catch (ScoreException ex) {
-                    ex.printStackTrace();
-                }
-
+                } catch (ScoreException ex) {}
             }
             /**
              * Le score change bien en augmentant de 1 les parties jouees
@@ -192,9 +190,7 @@ public class MembreTest {
                 m.incrementPerdu(pendu);
 
             }
-        } catch (ScoreException | ConnexionException ex) {
-            ex.printStackTrace();
-        }
+        } catch (ScoreException ex) {}
     }
 
     /**

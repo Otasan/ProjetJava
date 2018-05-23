@@ -5,6 +5,8 @@
  */
 package pendu;
 
+import ProjetJava.Membre;
+import ProjetJava.Utilisateur;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
@@ -15,18 +17,21 @@ import javax.swing.JOptionPane;
  *
  * @author KREATURE
  */
-public class PenduPanel extends javax.swing.JPanel{
+public class PenduPanel extends javax.swing.JPanel {
 
     private JeuPendu jeu;
+    private Utilisateur u;
 
     /**
-     * Creates new form PenduPanel
+     *
+     * @param u
+     * @param difficulte
+     * @throws FileNotFoundException
      */
-    public PenduPanel() throws FileNotFoundException {
+    public PenduPanel(ProjetJava.Utilisateur u, int difficulte) throws FileNotFoundException {
         initComponents();
         Dictionnaire d = new Dictionnaire();
-        jeu = new JeuPendu(d.motAleatoire());
-        this.update();
+        jeu = new JeuPendu(d.motAleatoire(), difficulte);
 
         addKeyListener(new KeyListener() {
             @Override
@@ -35,7 +40,29 @@ public class PenduPanel extends javax.swing.JPanel{
 
             @Override
             public void keyPressed(KeyEvent evt) {
-                motLabel.setText(evt.getKeyChar() + "");
+                jeu.etapeJeu(evt.getKeyChar());
+                int i = jeu.status();
+                if (i == 1) {
+                    if (u.getClass().getSimpleName().equals("Membre")) {
+                        Membre m = (Membre) u;
+                        m.incrementGagne("Pendu");
+                    }
+                    JOptionPane.showMessageDialog(null, "Vous avez Gagné !!!");
+
+                } else if (i == -1) {
+                    if (u.getClass().getSimpleName().equals("Membre")) {
+                        Membre m = (Membre) u;
+                        m.incrementPerdu("Pendu");
+                    }
+                    JOptionPane.showMessageDialog(null, "Vous avez perdu ...");
+
+                }
+
+                imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/pendu" + jeu.nbErreurs() + ".jpg")));
+                motLabel.setText(jeu.getMot());
+                if (!(jeu.derniereLettreUtil() == null)) {
+                    lettrePanel.add(new JLabel(jeu.derniereLettreUtil()));
+                }
             }
 
             @Override
