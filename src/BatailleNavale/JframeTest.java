@@ -1,5 +1,6 @@
 package BatailleNavale;
 
+import ProjetJava.Membre;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.IOException;
@@ -16,22 +17,23 @@ import java.io.IOException;
  */
 public class JframeTest extends javax.swing.JFrame {
     private PanelGrilleBN grille;
+    private Membre mem;
     /**
      * Creates new form JframeTest
      * me permet de tester mes panels, ignore cette classe.
      */
     public JframeTest() throws Exception {
         initComponents();
-        
+        mem=new Membre("Aah","B0otah",false);
         /*GrilleBN g = new GrilleBN();
         grille = new PanelGrilleBNIA(g);
         add(grille, BorderLayout.CENTER);
         grille.redimensionner(380);*/
-        
-        BatailleNavale b = new BatailleNavale(1);
+        BatailleNavale b = new BatailleNavale(mem,1);
         add(b, BorderLayout.CENTER);
         
         this.setVisible(true);
+        
         b.jeu();
     }
 
@@ -45,7 +47,7 @@ public class JframeTest extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 800));
+        setPreferredSize(new java.awt.Dimension(1600, 800));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import ProjetJava.Utilisateur;
+import ProjetJava.Membre;
 
 /**
  *
@@ -26,18 +28,20 @@ public class BatailleNavale extends JPanel{
     private PanelGrilleBNIA pIa;
     private BNIA ia;
     private volatile EtatsBN etat;
+    private Utilisateur util;
     
     /**
      * 
      * @param diff La difficulté (allant de 0 à 2)
      * @throws Exception 
      */
-    public BatailleNavale(int diff) throws Exception{
+    public BatailleNavale(Utilisateur user,int diff) throws Exception{
         setLayout(new GridBagLayout());
         gJoueur = new GrilleBN();
         gIa = new GrilleBN();
         pJoueur = new PanelGrilleBNJ(gJoueur);
         pIa = new PanelGrilleBNIA(gIa);
+        util=user;
         switch(diff){
             case 0:
                 ia = new EasyBNIA(gIa, gJoueur);
@@ -99,12 +103,12 @@ public class BatailleNavale extends JPanel{
     
     /**
      * Lance le Jeu
-     * @return 
      * @throws java.io.IOException 
      */
-    public int jeu() throws IOException{
+    public void jeu() throws IOException{
         pJoueur.updateGrille();
         pIa.updateGrille();
+        this.setVisible(true);
         setTour(EtatsBN.placerBateau);
         ia.placerBateaux();
         synchronized(pJoueur){
@@ -151,6 +155,17 @@ public class BatailleNavale extends JPanel{
             }
         }
         System.out.println("fin");
-        return 1;
+        if(gJoueur.nbBateauRestant()==0){
+            if(util instanceof Membre){
+                ((Membre)util).incrementPerdu("BatailleNavale");
+            }
+            JOptionPane.showMessageDialog(this,util.getPseudo()+" a perdu!", "Perdu", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            if(util instanceof Membre){
+                ((Membre)util).incrementGagne("BatailleNavale");
+            }
+            JOptionPane.showMessageDialog(this,util.getPseudo()+" a gagné!", "Gagné", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }
