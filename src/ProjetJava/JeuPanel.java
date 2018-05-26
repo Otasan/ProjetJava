@@ -5,22 +5,45 @@
  */
 package ProjetJava;
 
-import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 
 /**
- *Panel contenant le jeu qui est entre en parametre.
+ * Panel contenant le jeu qui est entre en parametre.
+ *
  * @author deux
  */
 public class JeuPanel extends javax.swing.JPanel {
 
     /**
      * Creation du Panel et lancement du jeu.
+     *
+     * @param jeu
+     * @param u
+     * @param diff
      */
-    public JeuPanel(String jeu) {
+    public JeuPanel(String jeu, Utilisateur u, int diff) {
         initComponents();
         this.titleLabel.setText(jeu);
-        
-        //this.jeuPanel.add();
+        switch (jeu) {
+            case "Bataille Navale":
+
+                try {
+                    BatailleNavale.BatailleNavale bat = new BatailleNavale.BatailleNavale(u, diff);
+                    synchronized (bat) {
+                        jeuPanel.add(bat);
+                        bat.jeu();
+                        wait();
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Une ou plusieurs images de la bataille navale sont absentes");
+                }
+
+                break;
+            case "Pendu":
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Votre jeu est inconnu");
+        }
     }
 
     /**
@@ -45,7 +68,7 @@ public class JeuPanel extends javax.swing.JPanel {
         layout.rowWeights = new double[] {0.15, 0.7, 0.15};
         setLayout(layout);
 
-        titleLabel.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("Test");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -55,6 +78,7 @@ public class JeuPanel extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(titleLabel, gridBagConstraints);
 
+        quitButton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         quitButton.setText("Abandon");
         quitButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();

@@ -35,11 +35,11 @@ public class ChoixJeuPanel extends javax.swing.JPanel {
         chgPwdButton = new javax.swing.JButton();
 
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.columnWeights = new double[] {0.2, 0.8};
+        layout.columnWeights = new double[] {0.4, 0.6};
         layout.rowWeights = new double[] {0.1, 0.7, 0.2};
         setLayout(layout);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Choix de jeu");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -57,13 +57,17 @@ public class ChoixJeuPanel extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(groupeJeuPanel, gridBagConstraints);
 
-        retourButton.setText("Retour");
+        retourButton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        retourButton.setText("Deconnexion");
+        retourButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         add(retourButton, gridBagConstraints);
 
+        chgPwdButton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         chgPwdButton.setText("Changer de mot de passe");
+        chgPwdButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;

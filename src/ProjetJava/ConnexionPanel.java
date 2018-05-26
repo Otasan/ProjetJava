@@ -49,15 +49,16 @@ public class ConnexionPanel extends javax.swing.JPanel {
         jPanel1Layout.rowHeights = new int[] {40, 40};
         jPanel1.setLayout(jPanel1Layout);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Pseudo :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         jPanel1.add(jLabel1, gridBagConstraints);
 
-        jTextFieldPseudo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jTextFieldPseudo.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jTextFieldPseudo.setMaximumSize(new java.awt.Dimension(200, 25));
         jTextFieldPseudo.setMinimumSize(new java.awt.Dimension(100, 25));
         jTextFieldPseudo.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -66,15 +67,16 @@ public class ConnexionPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         jPanel1.add(jTextFieldPseudo, gridBagConstraints);
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Mot de passe :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         jPanel1.add(jLabel2, gridBagConstraints);
 
-        jPasswordField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPasswordField.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jPasswordField.setText("MotDePasse");
         jPasswordField.setMaximumSize(new java.awt.Dimension(200, 25));
         jPasswordField.setMinimumSize(new java.awt.Dimension(100, 25));
@@ -93,7 +95,7 @@ public class ConnexionPanel extends javax.swing.JPanel {
         jPanel2Layout.columnWidths = new int[] {150, 150, 150};
         jPanel2.setLayout(jPanel2Layout);
 
-        jButtonConnexion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButtonConnexion.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jButtonConnexion.setText("Connexion");
         jButtonConnexion.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -101,7 +103,7 @@ public class ConnexionPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         jPanel2.add(jButtonConnexion, gridBagConstraints);
 
-        jButtonInscription.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButtonInscription.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jButtonInscription.setText("Inscription");
         jButtonInscription.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -109,7 +111,7 @@ public class ConnexionPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         jPanel2.add(jButtonInscription, gridBagConstraints);
 
-        jButtonInvite.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButtonInvite.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jButtonInvite.setText("Invité");
         jButtonInvite.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();

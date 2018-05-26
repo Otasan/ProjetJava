@@ -63,7 +63,7 @@ public class ImageJeuPanel extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(imageLabel, gridBagConstraints);
 
-        titleLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Ubuntu", 0, 20)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setLabelFor(imageLabel);
         titleLabel.setText("Titre");

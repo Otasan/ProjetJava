@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
+import java.util.HashSet;
+
 /**
  * Sauvegarde tous les utilisateurs.
  *
@@ -27,7 +29,7 @@ public class Identification {
      */
     public Identification() {
         this.comptes = new HashMap<>();
-        this.addMembre("administrateur", "administrateur", true);
+        this.addMembre("admin", "administrateur", true);
     }
 
     /**
@@ -48,7 +50,7 @@ public class Identification {
 
         } catch (IOException | ClassNotFoundException ex) {
             this.comptes = new HashMap<>();
-            this.addMembre("administrateur", "administrateur", true);
+            this.addMembre("admin", "administrateur", true);
 
         }
     }
@@ -64,10 +66,15 @@ public class Identification {
      * aucun utilisateur.
      */
     public Membre connexion(String pseudo, String mdp) throws ConnexionException {
-        if (comptes.get(pseudo).connexion(mdp)) {
-            return comptes.get(pseudo);
+        if (comptes.containsKey(pseudo)) {
+            Membre m = comptes.get(pseudo);
+            if (m.connexion(mdp)) {
+                return m;
+            } else {
+                throw new ConnexionException();
+            }
         } else {
-            throw new ConnexionException("Erreur dans le mot de passe.");
+            throw new ConnexionException();
         }
     }
 
@@ -128,17 +135,15 @@ public class Identification {
         return retour;
     }
 
-    public String getScores(String jeu) {
-        String score = "Pseudo\t\tVictoires\tRatio";
-        for (Membre m : comptes.values()) {
-            try {
-                if (m.estAdmin()) {
-                    score += "\n" + m.getPseudo() + "\t" + m.getScore(jeu)[1] + "\t" + m.getRatio(jeu);
-                }
-            } catch (ScoreException ex) {
-                score += "\n" + m.getPseudo() + "\t####\t####";
-            }
+    public HashSet<Membre> getMembres() {
+        HashSet<Membre> membres = new HashSet<>();
+        for (String n : comptes.keySet()) {
+            membres.add(comptes.get(n));
         }
-        return score;
+        return membres;
+    }
+
+    public boolean membreExiste(String pseudo) {
+        return comptes.containsKey(pseudo);
     }
 }

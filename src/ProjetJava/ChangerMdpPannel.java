@@ -41,6 +41,7 @@ public class ChangerMdpPannel extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         jLabel4.setText("Ancien mot de passe :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -49,6 +50,7 @@ public class ChangerMdpPannel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(48, 57, 0, 0);
         add(jLabel4, gridBagConstraints);
 
+        oldPassword.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         oldPassword.setText("jPasswordField1");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -58,6 +60,7 @@ public class ChangerMdpPannel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(46, 21, 0, 24);
         add(oldPassword, gridBagConstraints);
 
+        newPassword.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         newPassword.setText("jPasswordField2");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -67,6 +70,7 @@ public class ChangerMdpPannel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(41, 21, 0, 24);
         add(newPassword, gridBagConstraints);
 
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         jLabel3.setText("Nouveau mot de passe :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -75,6 +79,7 @@ public class ChangerMdpPannel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(43, 50, 0, 0);
         add(jLabel3, gridBagConstraints);
 
+        jLabel5.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         jLabel5.setText("Confirmation du mot de passe :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -83,6 +88,7 @@ public class ChangerMdpPannel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(43, 24, 0, 0);
         add(jLabel5, gridBagConstraints);
 
+        newPasswordValidation.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         newPasswordValidation.setText("jPasswordField3");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -92,6 +98,7 @@ public class ChangerMdpPannel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(41, 21, 0, 24);
         add(newPasswordValidation, gridBagConstraints);
 
+        validerButton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         validerButton.setText("Changer de mot de passe");
         validerButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -101,6 +108,7 @@ public class ChangerMdpPannel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(41, 86, 47, 0);
         add(validerButton, gridBagConstraints);
 
+        retourButton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         retourButton.setText("Retour");
         retourButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -138,11 +146,15 @@ public class ChangerMdpPannel extends javax.swing.JPanel {
      * @return Vrai si les deux mots de passe sont égaux.
      */
     public boolean isConfirmation(){
-        if (newPassword.equals(newPasswordValidation)){
-            return true;
-        } else {
-            return false;
+        String newP = "";
+        for (char c:newPassword.getPassword()){
+            newP+=c;
         }
+        String newPC = "";
+        for (char c:newPassword.getPassword()){
+            newPC+=c;
+        }
+        return newP.equals(newPC);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;

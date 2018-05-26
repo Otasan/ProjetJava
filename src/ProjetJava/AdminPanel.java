@@ -5,8 +5,12 @@
  */
 package ProjetJava;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
- *Panel d'administration.
+ * Panel d'administration.
+ *
  * @author deux
  */
 public class AdminPanel extends javax.swing.JPanel {
@@ -14,8 +18,31 @@ public class AdminPanel extends javax.swing.JPanel {
     /**
      * Creates new form adminPanel
      */
-    public AdminPanel() {
+    public AdminPanel(Identification id) {
         initComponents();
+        DefaultListModel dlm = new DefaultListModel();
+        for (Membre m : id.getMembres()) {
+            if (!m.estAdmin()) {
+                dlm.addElement(m.getPseudo());
+            }
+        }
+        membresList.setModel(dlm);
+
+        suprimerButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            String pseudo = membresList.getSelectedValue();
+            int result = JOptionPane.showConfirmDialog(null,
+                    "Voulez vous réellement supprimer le Membre " + pseudo, "choose one", JOptionPane.YES_NO_OPTION);
+            if (result == JOptionPane.YES_OPTION) {
+                id.removeMembre(pseudo);
+                dlm.clear();
+                for (Membre m : id.getMembres()) {
+                    if (!m.estAdmin()) {
+                        dlm.addElement(m.getPseudo());
+                    }
+                }
+                membresList.setModel(dlm);
+            }
+        });
     }
 
     /**
@@ -36,83 +63,115 @@ public class AdminPanel extends javax.swing.JPanel {
         retourButton = new javax.swing.JButton();
         chMdpButton = new javax.swing.JButton();
         addAdminButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jouerButton = new javax.swing.JButton();
 
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.columnWeights = new double[] {0.5, 0.5};
-        layout.rowWeights = new double[] {0.1, 0.3, 0.3, 0.1};
+        layout.columnWeights = new double[] {0.7, 0.3};
+        layout.rowWeights = new double[] {0.2, 0.2, 0.2, 0.2, 0.2, 0.2};
         setLayout(layout);
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel2.setText("Supression d'un utilisateur");
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 20)); // NOI18N
+        jLabel2.setText("Supression d'un Membre");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         add(jLabel2, gridBagConstraints);
 
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(200, 200));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(259, 200));
+
+        membresList.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        membresList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        membresList.setMinimumSize(new java.awt.Dimension(200, 200));
         jScrollPane1.setViewportView(membresList);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.ipady = 2;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.4;
         add(jScrollPane1, gridBagConstraints);
 
+        suprimerButton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         suprimerButton.setText("Supprimer");
         suprimerButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         add(suprimerButton, gridBagConstraints);
 
-        retourButton.setText("Retour");
+        retourButton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        retourButton.setText("Deconnexion");
         retourButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         add(retourButton, gridBagConstraints);
 
+        chMdpButton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         chMdpButton.setText("Changer de mot de passe");
         chMdpButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         add(chMdpButton, gridBagConstraints);
 
+        addAdminButton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         addAdminButton.setText("Créer un compte administrateur");
         addAdminButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         add(addAdminButton, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 32)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Administration des Membres");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        add(jLabel1, gridBagConstraints);
+
+        jouerButton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        jouerButton.setText("Jouer");
+        jouerButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        add(jouerButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    public javax.swing.JButton getRetourButton(){
+    public javax.swing.JButton getRetourButton() {
         return retourButton;
     }
-    
-    public javax.swing.JButton getSupprimerButton(){
-        return suprimerButton;
-    }
-    
-    public javax.swing.JButton getAddAdminButton(){
+
+    public javax.swing.JButton getAddAdminButton() {
         return addAdminButton;
     }
-    
-    public javax.swing.JButton getChMdpButton(){
+
+    public javax.swing.JButton getChMdpButton() {
         return chMdpButton;
     }
-    
+
+    public javax.swing.JButton getJouerButton() {
+        return jouerButton;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addAdminButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton chMdpButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jouerButton;
     private javax.swing.JList<String> membresList;
     private javax.swing.JButton retourButton;
     private javax.swing.JButton suprimerButton;

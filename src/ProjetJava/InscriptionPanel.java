@@ -43,7 +43,7 @@ public class InscriptionPanel extends javax.swing.JPanel {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Pseudo :");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -53,7 +53,7 @@ public class InscriptionPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(15, 10, 15, 10);
         jPanel1.add(jLabel1, gridBagConstraints);
 
-        jTextFieldPseudo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jTextFieldPseudo.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jTextFieldPseudo.setMaximumSize(new java.awt.Dimension(200, 25));
         jTextFieldPseudo.setMinimumSize(new java.awt.Dimension(100, 25));
         jTextFieldPseudo.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -64,7 +64,7 @@ public class InscriptionPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(15, 10, 15, 10);
         jPanel1.add(jTextFieldPseudo, gridBagConstraints);
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Mot de passe :");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -74,7 +74,7 @@ public class InscriptionPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(15, 10, 15, 10);
         jPanel1.add(jLabel2, gridBagConstraints);
 
-        jPasswordField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPasswordField.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jPasswordField.setMaximumSize(new java.awt.Dimension(200, 25));
         jPasswordField.setMinimumSize(new java.awt.Dimension(100, 25));
         jPasswordField.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -85,7 +85,7 @@ public class InscriptionPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(15, 10, 15, 10);
         jPanel1.add(jPasswordField, gridBagConstraints);
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Mot de passe (confirmation):");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -95,7 +95,7 @@ public class InscriptionPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(15, 10, 15, 10);
         jPanel1.add(jLabel3, gridBagConstraints);
 
-        jPasswordFieldConfirmation.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPasswordFieldConfirmation.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jPasswordFieldConfirmation.setMaximumSize(new java.awt.Dimension(200, 25));
         jPasswordFieldConfirmation.setMinimumSize(new java.awt.Dimension(100, 25));
         jPasswordFieldConfirmation.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -116,7 +116,7 @@ public class InscriptionPanel extends javax.swing.JPanel {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jButtonInscription.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButtonInscription.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jButtonInscription.setText("Inscription");
         jButtonInscription.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -125,7 +125,7 @@ public class InscriptionPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(50, 50, 20, 50);
         jPanel2.add(jButtonInscription, gridBagConstraints);
 
-        jButtonRetour.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButtonRetour.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jButtonRetour.setText("Retour");
         jButtonRetour.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
