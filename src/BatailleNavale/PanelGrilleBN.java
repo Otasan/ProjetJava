@@ -24,7 +24,7 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
     /**
      * crée un PanelGrille BN carrée de longueur 160 (redimensionable avec la methode redimentionner)
      */
-    public PanelGrilleBN(GrilleBN g) throws Exception {
+    public PanelGrilleBN(GrilleBN g) throws IOException {
         initComponents();
         grille=g;
         etat=EtatsBN.rien;

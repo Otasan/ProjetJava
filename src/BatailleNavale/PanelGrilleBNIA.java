@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class PanelGrilleBNIA extends PanelGrilleBN{
     
-    public PanelGrilleBNIA(GrilleBN g) throws Exception {
+    public PanelGrilleBNIA(GrilleBN g) throws IOException {
         super(g);
         createGrille();
         etat=EtatsBN.placerBateau;
@@ -56,7 +56,7 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
      * Si l'utilisateur doit tirer sur les bateaux ennemis, alors il pourra.
      * @param caseP 
      */
-    synchronized void caseClick(PanelCaseBN caseP) {
+    private synchronized void caseClick(PanelCaseBN caseP) {
         //System.out.println(caseP);
         if (etat == EtatsBN.tourj) {
             try {

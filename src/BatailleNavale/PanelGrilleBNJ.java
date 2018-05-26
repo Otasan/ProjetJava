@@ -20,7 +20,7 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
     private FrameChoixBateau choix;
     
     
-    public PanelGrilleBNJ(GrilleBN g) throws Exception {
+    public PanelGrilleBNJ(GrilleBN g) throws IOException {
         super(g);
         createGrille();
         System.out.println("Je suis crée");
@@ -70,7 +70,7 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
      * Si l'utilisateur doit placer des bateaux, alors il pourra.
      * @param caseP 
      */
-    synchronized void caseClick(PanelCaseBN caseP){
+    private synchronized void caseClick(PanelCaseBN caseP){
         System.out.println(etat);
         if(etat==EtatsBN.placerBateau){
             if(choix.getValide()){
