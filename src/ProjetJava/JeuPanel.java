@@ -26,23 +26,24 @@ public class JeuPanel extends javax.swing.JPanel {
         this.titleLabel.setText(jeu);
         switch (jeu) {
             case "Bataille Navale":
-
                 try {
                     BatailleNavale.BatailleNavale bat = new BatailleNavale.BatailleNavale(u, diff);
+                    jeuPanel.add(bat);
                     synchronized (bat) {
-                        jeuPanel.add(bat);
                         bat.jeu();
-                        wait();
+                        bat.wait();
                     }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Une ou plusieurs images de la bataille navale sont absentes");
                 }
-
                 break;
+
             case "Pendu":
                 break;
+
             default:
                 JOptionPane.showMessageDialog(null, "Votre jeu est inconnu");
+
         }
     }
 
@@ -85,6 +86,8 @@ public class JeuPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         add(quitButton, gridBagConstraints);
+
+        jeuPanel.setLayout(new java.awt.BorderLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
