@@ -26,14 +26,13 @@ public class Membre extends Utilisateur implements Serializable {
      * @param pseudo Pseudo permettant au Membre de se connecter.
      * @param mdp Mot de passe permettant au Membre de se connecter.
      * @param admin true si me Membre est un Administrateur.
-     * @throws ConnexionException Si le mdp ou le pseudo ne sont pas valide.
      */
     public Membre(String pseudo, String mdp, boolean admin) {
         super(pseudo);
         this.admin = admin;
 
         scores = new HashMap<>();
-        String[] jeux = {"BatailleNavale", "Pendu"};
+        String[] jeux = {"Bataille Navale", "Pendu"};
         resetScore(jeux);
         this.mdp = this.keyGen(pseudo, mdp);
 
@@ -69,7 +68,7 @@ public class Membre extends Utilisateur implements Serializable {
         }
     }
 
-    public boolean getAdmin() {
+    public boolean estAdmin() {
         return admin;
     }
 

@@ -30,17 +30,14 @@ public class Utilisateur implements Serializable {
     }
 
     /**
-     * Teste si le pseudo est null et s'il contient entre 6 et 30 characteres
+     * Teste si le pseudo est null et s'il contient entre 5 et 15 characteres
      * classiques ([a-z][A-Z][0-9]).
      *
      * @param pseudo Pseudo a tester pour savoir s'il est conforme.
      * @return true si le pseudo est conforme aux tests.
      */
     public static boolean estPseudoValide(String pseudo) {
-        if (pseudo == null || pseudo.equals("")) {
-            return false;
-        }
-        if (pseudo.length() < 6 || pseudo.length() > 30) {
+        if (pseudo == null || pseudo.equals("") || pseudo.length() < 5 || pseudo.length() > 15) {
             return false;
         } else {
             return pseudo.matches("[[a-z][A-Z][0-9]]*");

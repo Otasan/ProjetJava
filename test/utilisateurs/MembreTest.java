@@ -76,19 +76,16 @@ public class MembreTest {
      */
     @Test
     public void testSetMotDePasse() {
-        try {
-            String pseudo = "zzzzzzzzzzzzzz";
-            String mdp1 = "XXXXXXXXXXXXX";
-            String mdp2 = "xxxxxxxxxxxxx";
-            Membre u = new Membre(pseudo, mdp1, false);
-            assertTrue(u.connexion(mdp1));
-            assertFalse(!u.connexion(mdp1));
-            u.setMotDePasse(mdp2);
-            assertTrue(u.connexion(mdp2));
-            assertFalse(!u.connexion(mdp2));
-        } catch (ConnexionException ex) {
-            Logger.getLogger(MembreTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String pseudo = "zzzzzzzzzzzzzz";
+        String mdp1 = "XXXXXXXXXXXXX";
+        String mdp2 = "xxxxxxxxxxxxx";
+        Membre u = new Membre(pseudo, mdp1, false);
+        assertTrue(u.connexion(mdp1));
+        assertFalse(!u.connexion(mdp1));
+        u.setMotDePasse(mdp2);
+        assertTrue(u.connexion(mdp2));
+        assertFalse(!u.connexion(mdp2));
+
     }
 
     /**
@@ -97,52 +94,53 @@ public class MembreTest {
     @Test
     public void testIncrementGagne() {
 
-            /**
-             * Le score change bien en augmentant de 1 les victoires et les
-             * parties jouees de bataille navale.
-             */
-            Membre m = new Membre("XXXXXX", "XXXXXXX", false);
-            String batailleNav = "BatailleNavale";
+        /**
+         * Le score change bien en augmentant de 1 les victoires et les parties
+         * jouees de bataille navale.
+         */
+        Membre m = new Membre("XXXXXX", "XXXXXXX", false);
+        String batailleNav = "BatailleNavale";
 
-            int[] scoreTest = {0, 0};
+        int[] scoreTest = {0, 0};
 
-            for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 10000; i++) {
 
-                try {
-                    int[] score = {m.getScore(batailleNav)[0], m.getScore(batailleNav)[1]};
-                    
-                    assertArrayEquals(scoreTest, score);
-                    
-                    scoreTest[0] += 1;
-                    scoreTest[1] += 1;
-                    
-                    m.incrementGagne(batailleNav);
-                } catch (ScoreException ex) {}
+            try {
+                int[] score = {m.getScore(batailleNav)[0], m.getScore(batailleNav)[1]};
+
+                assertArrayEquals(scoreTest, score);
+
+                scoreTest[0] += 1;
+                scoreTest[1] += 1;
+
+                m.incrementGagne(batailleNav);
+            } catch (ScoreException ex) {
             }
+        }
 
-            /**
-             * Le score change bien en augmentant de 1 les victoires et les
-             * parties jouees de pendu.
-             */
-            String pendu = "Pendu";
+        /**
+         * Le score change bien en augmentant de 1 les victoires et les parties
+         * jouees de pendu.
+         */
+        String pendu = "Pendu";
 
-            scoreTest[0] = 0;
-            scoreTest[1] = 0;
+        scoreTest[0] = 0;
+        scoreTest[1] = 0;
 
-            for (int i = 0;
-                    i < 10000; i++) {
+        for (int i = 0;
+                i < 10000; i++) {
 
-                try {
-                    int[] score = {m.getScore(pendu)[0], m.getScore(pendu)[1]};
-                    assertArrayEquals(scoreTest, score);
-                    
-                    scoreTest[0] += 1;
-                    scoreTest[1] += 1;
-                    
-                    m.incrementGagne(pendu);
-                } catch (ScoreException ex) {}
+            try {
+                int[] score = {m.getScore(pendu)[0], m.getScore(pendu)[1]};
+                assertArrayEquals(scoreTest, score);
+
+                scoreTest[0] += 1;
+                scoreTest[1] += 1;
+
+                m.incrementGagne(pendu);
+            } catch (ScoreException ex) {
             }
-        
+        }
 
     }
 
@@ -169,7 +167,8 @@ public class MembreTest {
                     scoreTest[0] += 1;
 
                     m.incrementPerdu(batailleNav);
-                } catch (ScoreException ex) {}
+                } catch (ScoreException ex) {
+                }
             }
             /**
              * Le score change bien en augmentant de 1 les parties jouees
@@ -190,7 +189,8 @@ public class MembreTest {
                 m.incrementPerdu(pendu);
 
             }
-        } catch (ScoreException ex) {}
+        } catch (ScoreException ex) {
+        }
     }
 
     /**
@@ -198,24 +198,21 @@ public class MembreTest {
      */
     @Test
     public void testConnexion() {
-        try {
-            String pseudo = "XXXXXXX";
-            String mdp = "XXXXXXX";
+        String pseudo = "XXXXXXX";
+        String mdp = "XXXXXXX";
 
-            Membre m = new Membre(pseudo, mdp, false);
-            assertFalse(m.connexion(null));
-            String s = "";
-            while (s.length() < 1000) {
-                if (mdp.equals(s)) {
-                    assertTrue(m.connexion(s));
-                } else {
-                    assertFalse(m.connexion(s));
-                }
-                s += "X";
+        Membre m = new Membre(pseudo, mdp, false);
+        assertFalse(m.connexion(null));
+        String s = "";
+        while (s.length() < 1000) {
+            if (mdp.equals(s)) {
+                assertTrue(m.connexion(s));
+            } else {
+                assertFalse(m.connexion(s));
             }
-        } catch (ConnexionException ex) {
-            ex.printStackTrace();
+            s += "X";
         }
+
     }
 
     /**

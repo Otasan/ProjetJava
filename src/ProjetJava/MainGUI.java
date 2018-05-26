@@ -118,17 +118,13 @@ public class MainGUI extends javax.swing.JFrame {
         inscription.getInscriptionButton().addActionListener((java.awt.event.ActionEvent evt) -> {
             String pseudo = inscription.getPseudoField();
             String mdp = inscription.getPasswordField();
-            if (!Membre.estPseudoValide(pseudo) || pseudo == null) {
-                JOptionPane.showMessageDialog(null, "Votre pseudo est invalide");
-
-            } else if (!Membre.estMdpValide(mdp) || mdp == null) {
-                JOptionPane.showMessageDialog(null, "Votre mot de passe est invalide");
-
-            } else if (id.addMembre(pseudo, mdp, admin)) {
+            if (id.addMembre(pseudo, mdp, admin)) {
                 interfaceConnexion();
 
             } else {
-                JOptionPane.showMessageDialog(null, "Ce pseudo est déjà utilisé");
+                JOptionPane.showMessageDialog(null, "Votre pseudo et votre mot "
+                        + "de passe doivent contenir entre 6 et 30 charactères "
+                        + "dont uniquement des lettres et des chiffres.");
             }
         });
 
@@ -136,16 +132,67 @@ public class MainGUI extends javax.swing.JFrame {
         this.pack();
     }
 
+    /**
+     * 
+     * @param u 
+     */
     private void interfaceChoixJeu(Utilisateur u) {
         this.getContentPane().removeAll();
-        this.getContentPane().add(new ChoixJeuPanel());
+        ChoixJeuPanel choix = new ChoixJeuPanel();
+
+        //Tableau contenant tous les jeux.
+        String jeux[] = {"Pendu", "Bataille Navale"};
+
+        //Ajout d'une image pour chaque jeu.
+        for (String jeu : jeux) {
+            ImageJeuPanel img = new ImageJeuPanel(jeu, true);
+            img.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    interfaceInfoJeu(jeu, u);
+                }
+            });
+
+            choix.getGroupeJeuPanel().add(img);
+        }
+
+        choix.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceConnexion();
+            if (u.getClass().getSimpleName().equals("Membre")) {
+                Membre m = (Membre) u;
+                if (m.estAdmin()) {
+                    interfaceAdmin(m);
+                }
+            }
+        });
+        this.getContentPane().add(choix);
         this.pack();
     }
 
-    /*
-    Initialisation de la fenetre de jeu.
+    /**
+     * 
+     * @param jeu 
      */
-    private void interfaceJeu(String jeu) {
+    public void interfaceInfoJeu(String jeu, Utilisateur u) {
+        this.getContentPane().removeAll();
+        InfoJeuPanel info = new InfoJeuPanel(this.id, jeu);
+        info.getJouerButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceJeu(jeu, u, info.getDifficulte());
+        });
+        
+        info.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            interfaceChoixJeu(u);
+        });
+        
+        this.getContentPane().add(info);
+        this.pack();
+    }
+
+    /**
+     * 
+     * @param jeu 
+     */
+    private void interfaceJeu(String jeu, Utilisateur u, int diff) {
         this.getContentPane().removeAll();
         this.getContentPane().add(new JeuPanel(jeu));
         this.pack();

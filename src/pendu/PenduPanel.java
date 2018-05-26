@@ -40,7 +40,7 @@ public class PenduPanel extends javax.swing.JPanel {
 
             @Override
             public void keyPressed(KeyEvent evt) {
-                jeu.etapeJeu(evt.getKeyChar());
+                jeu.etapeJeu((char) evt.getKeyCode());
                 int i = jeu.status();
                 if (i == 1) {
                     if (u.getClass().getSimpleName().equals("Membre")) {

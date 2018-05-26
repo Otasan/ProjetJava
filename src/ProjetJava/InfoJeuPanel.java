@@ -14,8 +14,11 @@ public class InfoJeuPanel extends javax.swing.JPanel {
     /**
      * Creates new form InfoJeuPanel
      */
-    public InfoJeuPanel() {
+    public InfoJeuPanel(Identification id, String jeu) {
         initComponents();
+        scoreTextArea.setText(id.getScores(jeu));
+        this.imagePanel.add(new ImageJeuPanel(jeu, false));
+        nomJeuLabel.setText(jeu);
     }
 
     /**
@@ -28,9 +31,17 @@ public class InfoJeuPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jLabel1 = new javax.swing.JLabel();
+        nomJeuLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButtonRetour = new javax.swing.JButton();
+        imagePanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        reglesTextArea = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        scoreTextArea = new javax.swing.JTextArea();
+        jPanel3 = new javax.swing.JPanel();
+        difficulteComboBox = new javax.swing.JComboBox<>();
+        jouerButton = new javax.swing.JButton();
+        retourButton = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(640, 360));
@@ -40,49 +51,86 @@ public class InfoJeuPanel extends javax.swing.JPanel {
         layout.rowWeights = new double[] {0.15, 0.7, 0.15};
         setLayout(layout);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jLabel1.setText("Choix du Jeu");
+        nomJeuLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        nomJeuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nomJeuLabel.setText("Choix du Jeu");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        add(jLabel1, gridBagConstraints);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        add(nomJeuLabel, gridBagConstraints);
 
         jPanel1.setForeground(new java.awt.Color(51, 51, 31));
         jPanel1.setMinimumSize(new java.awt.Dimension(640, 298));
         jPanel1.setPreferredSize(new java.awt.Dimension(854, 384));
+        jPanel1.setLayout(new java.awt.GridLayout(2, 2, 10, 10));
+        jPanel1.add(imagePanel);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 821, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
-        );
+        reglesTextArea.setEditable(false);
+        reglesTextArea.setColumns(20);
+        reglesTextArea.setRows(5);
+        jScrollPane1.setViewportView(reglesTextArea);
+
+        jPanel1.add(jScrollPane1);
+
+        scoreTextArea.setEditable(false);
+        scoreTextArea.setColumns(3);
+        scoreTextArea.setRows(5);
+        jScrollPane2.setViewportView(scoreTextArea);
+
+        jPanel1.add(jScrollPane2);
+
+        java.awt.GridBagLayout jPanel3Layout = new java.awt.GridBagLayout();
+        jPanel3Layout.columnWeights = new double[] {0.5, 0.5};
+        jPanel3.setLayout(jPanel3Layout);
+
+        difficulteComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Facile", "Moyen", "Difficile" }));
+        jPanel3.add(difficulteComboBox, new java.awt.GridBagConstraints());
+
+        jouerButton.setText("Jouer");
+        jPanel3.add(jouerButton, new java.awt.GridBagConstraints());
+
+        jPanel1.add(jPanel3);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(jPanel1, gridBagConstraints);
 
-        jButtonRetour.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButtonRetour.setText("Retour");
-        jButtonRetour.setMargin(new java.awt.Insets(3, 20, 3, 20));
+        retourButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        retourButton.setText("Retour");
+        retourButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        add(jButtonRetour, gridBagConstraints);
+        add(retourButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    public javax.swing.JButton getRetourButton(){
+        return retourButton;
+    }
 
+    public javax.swing.JButton getJouerButton(){
+        return jouerButton;
+    }
+    
+    public int getDifficulte(){
+        return difficulteComboBox.getSelectedIndex();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonRetour;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> difficulteComboBox;
+    private javax.swing.JPanel imagePanel;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jouerButton;
+    private javax.swing.JLabel nomJeuLabel;
+    private javax.swing.JTextArea reglesTextArea;
+    private javax.swing.JButton retourButton;
+    private javax.swing.JTextArea scoreTextArea;
     // End of variables declaration//GEN-END:variables
 }

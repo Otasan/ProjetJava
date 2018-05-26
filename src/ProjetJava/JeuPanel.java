@@ -19,6 +19,8 @@ public class JeuPanel extends javax.swing.JPanel {
     public JeuPanel(String jeu) {
         initComponents();
         this.titleLabel.setText(jeu);
+        
+        //this.jeuPanel.add();
     }
 
     /**
@@ -33,6 +35,7 @@ public class JeuPanel extends javax.swing.JPanel {
 
         titleLabel = new javax.swing.JLabel();
         quitButton = new javax.swing.JButton();
+        jeuPanel = new javax.swing.JPanel();
 
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(640, 360));
@@ -52,16 +55,23 @@ public class JeuPanel extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(titleLabel, gridBagConstraints);
 
-        quitButton.setText("Quitter");
+        quitButton.setText("Abandon");
         quitButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         add(quitButton, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        add(jeuPanel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jeuPanel;
     private javax.swing.JButton quitButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
