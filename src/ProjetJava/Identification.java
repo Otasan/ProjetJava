@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
-
 /**
  * Sauvegarde tous les utilisateurs.
  *
@@ -81,7 +80,7 @@ public class Identification {
      * @return true si l'ajout à fonctionne, false si l'ajout a ete impossible.
      */
     public boolean addMembre(String pseudo, String mdp, boolean admin) {
-        try {
+        if (Membre.estPseudoValide(pseudo) && Membre.estMdpValide(mdp)) {
             Membre m = new Membre(pseudo, mdp, admin);
             if (comptes.containsKey(pseudo)) {
                 return false;
@@ -89,7 +88,7 @@ public class Identification {
                 comptes.put(pseudo, m);
                 return true;
             }
-        } catch (ConnexionException ex) {
+        } else {
             return false;
         }
 
@@ -127,5 +126,19 @@ public class Identification {
             retour += m.toString() + "\n";
         }
         return retour;
+    }
+
+    public String getScores(String jeu) {
+        String score = "Pseudo\t\tVictoires\tRatio";
+        for (Membre m : comptes.values()) {
+            try {
+                if (m.estAdmin()) {
+                    score += "\n" + m.getPseudo() + "\t" + m.getScore(jeu)[1] + "\t" + m.getRatio(jeu);
+                }
+            } catch (ScoreException ex) {
+                score += "\n" + m.getPseudo() + "\t####\t####";
+            }
+        }
+        return score;
     }
 }

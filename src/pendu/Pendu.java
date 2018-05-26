@@ -9,7 +9,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,8 +28,9 @@ public class Pendu {
         JFrame frame = new JFrame();
         frame.getContentPane().removeAll();
         try {
-            frame.getContentPane().add(new PenduPanel());
+            frame.getContentPane().add(new PenduPanel(new ProjetJava.Utilisateur("Invite"),0));
         } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Impossible de lancer le jeu, le dictionnaire n'as pas été trouvé.");
         }
         frame.pack();
         frame.setVisible(true);

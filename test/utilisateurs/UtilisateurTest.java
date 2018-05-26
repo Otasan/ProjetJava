@@ -36,7 +36,7 @@ public class UtilisateurTest {
         final String SUFFIX = "XXXXXXXX";
         String ch = "";
         for (int i = 0; i <= 35; i++) {
-            if (i <= 30 && i >= 6) {
+            if (i <= 15 && i >= 5) {
                 assertTrue(Utilisateur.estPseudoValide(ch));
             } else {
                 assertFalse(Utilisateur.estPseudoValide(ch));

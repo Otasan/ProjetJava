@@ -7,6 +7,7 @@ package ProjetJava;
 
 /**
  * Panel pour choisir le jeu.
+ *
  * @author deux
  */
 public class ChoixJeuPanel extends javax.swing.JPanel {
@@ -16,16 +17,6 @@ public class ChoixJeuPanel extends javax.swing.JPanel {
      */
     public ChoixJeuPanel() {
         initComponents();
-        
-        
-        //Tableau contenant tous les jeux.
-        String jeux[] = {"pendu", "bataillenavale"};
-        
-        
-        //Ajout d'une image pour chaque jeu.
-        for (String jeu : jeux) {
-            groupeJeuPanel.add(new ImageJeuPanel(jeu));
-        }
     }
 
     /**
@@ -41,6 +32,7 @@ public class ChoixJeuPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         groupeJeuPanel = new javax.swing.JPanel();
         retourButton = new javax.swing.JButton();
+        chgPwdButton = new javax.swing.JButton();
 
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
         layout.columnWeights = new double[] {0.2, 0.8};
@@ -57,7 +49,7 @@ public class ChoixJeuPanel extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(jLabel1, gridBagConstraints);
 
-        groupeJeuPanel.setLayout(new java.awt.GridBagLayout());
+        groupeJeuPanel.setFocusable(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -70,10 +62,27 @@ public class ChoixJeuPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         add(retourButton, gridBagConstraints);
+
+        chgPwdButton.setText("Changer de mot de passe");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        add(chgPwdButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    public javax.swing.JPanel getGroupeJeuPanel(){
+        return groupeJeuPanel;
+    }
 
+    public javax.swing.JButton getRetourButton(){
+        return retourButton;
+    }
+    
+    public javax.swing.JButton getChgPwdButton(){
+        return chgPwdButton;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton chgPwdButton;
     private javax.swing.JPanel groupeJeuPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton retourButton;

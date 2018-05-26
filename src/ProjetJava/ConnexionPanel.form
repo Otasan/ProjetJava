@@ -533,11 +533,7 @@
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
           </StatementProvider>
           <Parameters>
-<<<<<<< HEAD
-            <CodeExpression id="31_jButtonConnexion">
-=======
             <CodeExpression id="27_jButtonConnexion">
->>>>>>> GUI
               <CodeVariable name="jButtonConnexion" type="8194" declaredType="javax.swing.JButton"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">
@@ -593,11 +589,8 @@
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
           </StatementProvider>
           <Parameters>
-<<<<<<< HEAD
-            <CodeExpression id="35_jButtonInscription">
-=======
+
             <CodeExpression id="31_jButtonInscription">
->>>>>>> GUI
               <CodeVariable name="jButtonInscription" type="8194" declaredType="javax.swing.JButton"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">
@@ -653,11 +646,8 @@
             <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
           </StatementProvider>
           <Parameters>
-<<<<<<< HEAD
-            <CodeExpression id="39_jButtonInvite">
-=======
+
             <CodeExpression id="35_jButtonInvite">
->>>>>>> GUI
               <CodeVariable name="jButtonInvite" type="8194" declaredType="javax.swing.JButton"/>
               <ExpressionOrigin>
                 <ExpressionProvider type="ComponentRef">

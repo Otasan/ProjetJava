@@ -5,6 +5,8 @@
  */
 package ProjetJava;
 
+import java.awt.event.MouseListener;
+
 /**
  * Panel de l'image d'un jeu.
  *
@@ -12,18 +14,19 @@ package ProjetJava;
  */
 public class ImageJeuPanel extends javax.swing.JPanel {
 
-    private String nomJeu;
-
     /**
      * Creation du Panel et changement du titre et de l'image en fonction du
      * jeu.
      */
-    public ImageJeuPanel(String nomJeu) {
-        this.nomJeu = nomJeu;
+    public ImageJeuPanel(String nomJeu, boolean titre) {
         initComponents();
-        titleLabel.setText(nomJeu);
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/" + nomJeu + ".jpg")));
-
+        if (!titre) {
+            this.titleLabel = null;
+        } else {
+            titleLabel.setText(nomJeu);
+            this.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        }
     }
 
     /**
@@ -39,14 +42,10 @@ public class ImageJeuPanel extends javax.swing.JPanel {
         imageLabel = new javax.swing.JLabel();
         titleLabel = new javax.swing.JLabel();
 
+        setFocusable(true);
         setMaximumSize(new java.awt.Dimension(300, 315));
         setMinimumSize(new java.awt.Dimension(220, 240));
         setPreferredSize(new java.awt.Dimension(220, 240));
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
-            }
-        });
         java.awt.GridBagLayout layout1 = new java.awt.GridBagLayout();
         layout1.columnWidths = new int[] {200};
         layout1.rowHeights = new int[] {180, 30};
@@ -74,10 +73,6 @@ public class ImageJeuPanel extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(titleLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        System.out.println(nomJeu);
-    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

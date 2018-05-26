@@ -1,4 +1,5 @@
 Interface\ java-1.docx
-nbproject/*
+nbproject/
 *.save
-build/*
+build/classes/
+private/

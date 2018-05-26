@@ -26,20 +26,16 @@ public class Membre extends Utilisateur implements Serializable {
      * @param pseudo Pseudo permettant au Membre de se connecter.
      * @param mdp Mot de passe permettant au Membre de se connecter.
      * @param admin true si me Membre est un Administrateur.
-     * @throws ConnexionException Si le mdp ou le pseudo ne sont pas valide.
      */
-    public Membre(String pseudo, String mdp, boolean admin) throws ConnexionException {
+    public Membre(String pseudo, String mdp, boolean admin) {
         super(pseudo);
         this.admin = admin;
 
-        if (Membre.estMdpValide(mdp)) {
-            scores = new HashMap<>();
-            String[] jeux = {"BatailleNavale", "Pendu"};
-            resetScore(jeux);
-            this.mdp = this.keyGen(pseudo, mdp);
-        } else {
-            throw new ConnexionException();
-        }
+        scores = new HashMap<>();
+        String[] jeux = {"Bataille Navale", "Pendu"};
+        resetScore(jeux);
+        this.mdp = this.keyGen(pseudo, mdp);
+
     }
 
     /**
@@ -72,7 +68,7 @@ public class Membre extends Utilisateur implements Serializable {
         }
     }
 
-    public boolean getAdmin() {
+    public boolean estAdmin() {
         return admin;
     }
 
@@ -112,6 +108,7 @@ public class Membre extends Utilisateur implements Serializable {
 
     /**
      * Renvoie le ratio (partiesJouees/partiesGagnees)
+     *
      * @param jeu Nom du jeu pour lequel on veut recuperer le ratio.
      * @return Le ratio de victoires <1.
      * @throws ScoreException Le score n'est pas conforme.
@@ -134,6 +131,7 @@ public class Membre extends Utilisateur implements Serializable {
 
     /**
      * Change le mot de passe du Membre.
+     *
      * @param mdp Nouveau mot de passe du Membre.
      */
     public void setMotDePasse(String mdp) {
@@ -157,15 +155,17 @@ public class Membre extends Utilisateur implements Serializable {
 
     /**
      * Change le score du Membre lorsqu'il a gagne.
+     *
      * @param jeu Nom du jeu que le Membre viens de gagner.
      */
     public void incrementGagne(String jeu) {
         scores.get(jeu)[0] += 1;
         scores.get(jeu)[1] += 1;
     }
-    
+
     /**
      * Change le score du Membre lorsqu'il a perdu.
+     *
      * @param jeu Nom du jeu que le Membre viens de perdre.
      */
     public void incrementPerdu(String jeu) {
@@ -174,6 +174,7 @@ public class Membre extends Utilisateur implements Serializable {
 
     /**
      * Teste si le mot de passe entre pour se connecter est le bon.
+     *
      * @param mdp Mot de passe entre par le Membre.
      * @return true si le mot de passe est celui du Membre.
      */
@@ -192,10 +193,11 @@ public class Membre extends Utilisateur implements Serializable {
 
     /**
      * Remet le score du Membre a zero pour les jeux entres en parametre.
+     *
      * @param jeux Tableau contenant tous les jeux a remetre a zero.
      */
     public void resetScore(String[] jeux) {
-        Integer[] tableauVide = {0,0};
+        Integer[] tableauVide = {0, 0};
         for (String j : jeux) {
             scores.put(j, tableauVide.clone());
         }

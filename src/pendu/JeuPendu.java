@@ -7,6 +7,7 @@ package pendu;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,14 +19,15 @@ public class JeuPendu {
     private ArrayList<Character> value;
     private ArrayList<Character> lettresUtilisees;
     private ArrayList<Character> lettresMauvaises;
+    private int difficulte;
 
-    public JeuPendu(String motADeviner) {
+    public JeuPendu(String motADeviner, int diff) {
         this.mot = new ArrayList<>();
         this.value = new ArrayList<>();
         this.lettresMauvaises = new ArrayList<>();
         this.lettresUtilisees = new ArrayList<>();
-        
-        
+        difficulte = diff;
+
         char[] tableau = motADeviner.toCharArray();
         //System.out.println(tableau);
         for (int i = 0; i < motADeviner.length(); i++) {
@@ -53,6 +55,7 @@ public class JeuPendu {
         for (char s : lettresUtilisees) {
             if (lettre[0] == s) {
                 System.out.println("La lettre a déjà été utilisées.");
+                JOptionPane.showMessageDialog(null, "La lettre a déjà été utilisées.");
                 return false;
             }
         }
@@ -61,6 +64,7 @@ public class JeuPendu {
             return true;
         } else {
             System.out.println("Le caractere saisi n'est pas valide.");
+            JOptionPane.showMessageDialog(null, "Le caractere saisi n'est pas valide.");
         }
         return false;
     }
@@ -76,12 +80,14 @@ public class JeuPendu {
     public void DemarerLeJeu() {
         boolean motTrouve = false;
 
-        while (motTrouve == false) {
+        while (!motTrouve) {
             boolean lettreFausse = true;
             Scanner sc = new Scanner(System.in);
             System.out.print("\nVeuillez saisir une lettre : ");
             String str = sc.nextLine();
             str = str.toUpperCase();
+
+            //Methode(char c){
             char[] lettreAComparer = str.toCharArray();
 
             int j = 0;
@@ -111,16 +117,45 @@ public class JeuPendu {
                 if (lettreFausse == true) {
                     lettresMauvaises.add(lettreAComparer[0]);
                 }
+                // fin methode (char c)
                 System.out.println("les lettres qui ne sont pas dans le mot à deviner : " + lettresMauvaises.toString());
-                if (perdu() == true) {
+                if (perdu()) {
                     break;
                 }
             }
         }
     }
 
+    public void etapeJeu(char c) {
+        char[] lettre = {};
+        if (estLettreValide(lettre)) {
+            boolean estLettreFausse = true;
+
+            for (int i = 0; i < mot.size(); i++) {
+                if (c == mot.get(i)) {
+                    value.set(i, c);
+                    estLettreFausse = false;
+                }
+            }
+            if (estLettreFausse) {
+                lettresMauvaises.add(c);
+            }
+            lettresUtilisees.add(c);
+        }
+    }
+
+    public int status() {
+        if (value.equals(mot)) {
+            return 1;
+        } else if (lettresMauvaises.size() >= 11-difficulte) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
     public int nbErreurs() {
-        if (this.lettresMauvaises.isEmpty()){
+        if (this.lettresMauvaises.isEmpty()) {
             return 0;
         } else {
             return lettresMauvaises.size();
@@ -128,7 +163,7 @@ public class JeuPendu {
     }
 
     public String derniereLettreUtil() {
-        if (lettresUtilisees.isEmpty()){
+        if (lettresUtilisees.isEmpty()) {
             return null;
         } else {
             String lettre = "";
@@ -141,7 +176,7 @@ public class JeuPendu {
 
     public String getMot() {
         String mot = "";
-        for (char c : this.mot) {
+        for (char c : this.value) {
             mot += c;
         }
         return mot;

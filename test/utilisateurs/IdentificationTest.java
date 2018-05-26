@@ -29,17 +29,11 @@ public class IdentificationTest {
         String mdp = "xxxxxxxxxxxxxx";
         String path = "TestSauvegarde.save";
 
-        try {
-            Identification i = new Identification();
-            Membre m = new Membre(pseudo, mdp, false);
+        Identification i = new Identification();
+        Membre m = new Membre(pseudo, mdp, false);
 
-            i.addMembre(pseudo, mdp, false);
-            i.sauvegarde(path);
- 
-        } catch (ConnexionException ex) {
-            System.out.println("Sauvegarde Exception");
-
-        }
+        i.addMembre(pseudo, mdp, false);
+        i.sauvegarde(path);
 
         try {
             Identification i2 = new Identification(path);
