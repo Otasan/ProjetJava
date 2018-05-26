@@ -35,7 +35,7 @@ public class BatailleNavale extends JPanel{
      * @param diff La difficulté (allant de 0 à 2)
      * @throws Exception 
      */
-    public BatailleNavale(Utilisateur user,int diff) throws Exception{
+    public BatailleNavale(Utilisateur user,int diff) throws IOException{
         setLayout(new GridBagLayout());
         gJoueur = new GrilleBN();
         gIa = new GrilleBN();
@@ -50,6 +50,7 @@ public class BatailleNavale extends JPanel{
                 ia = new MediumBNIA(gIa, gJoueur);
                 break;
             case 2:
+                ia = new MediumBNIA(gIa, gJoueur);//TODO: Modifier par la HardBNIA quand elle sera finie
                 break;
         }
         setTour(EtatsBN.rien);
@@ -60,7 +61,7 @@ public class BatailleNavale extends JPanel{
      * Initialise le panel (aide le constructeur, ne pas utiliser)
      * @throws Exception 
      */
-    protected void init() throws Exception{
+    protected void init() throws IOException{
         pJoueur.redimensionner(340);
         pIa.redimensionner(340);
         GridBagConstraints c = new GridBagConstraints();
@@ -105,7 +106,7 @@ public class BatailleNavale extends JPanel{
      * Lance le Jeu
      * @throws java.io.IOException 
      */
-    public void jeu() throws IOException{
+    public synchronized void jeu() throws IOException{
         pJoueur.updateGrille();
         pIa.updateGrille();
         this.setVisible(true);
@@ -120,7 +121,6 @@ public class BatailleNavale extends JPanel{
                     System.out.println(e);
                 }
                 setTour(pJoueur.getTour());
-                System.out.println(gJoueur.nbBateauRestant());
             }
         }
         setTour(EtatsBN.tourj);
@@ -167,5 +167,14 @@ public class BatailleNavale extends JPanel{
             }
             JOptionPane.showMessageDialog(this,util.getPseudo()+" a gagné!", "Gagné", JOptionPane.INFORMATION_MESSAGE);
         }
+        notify();
+    }
+    
+    /**
+     * renvoie une description du jeu
+     * @return 
+     */
+    public static String description(){
+        return "\n";
     }
 }

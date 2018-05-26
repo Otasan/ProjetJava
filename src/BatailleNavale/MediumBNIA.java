@@ -117,6 +117,10 @@ public class MediumBNIA extends BNIA {
         System.out.println("Effectué en "+c+" tours");
     }
 
+    /**
+     * tire sur des cases au hasard jusqu'à trouver un bateau, puis le suit jusquà ce qu'il soi coulé
+     * @return la case sur laquelle l'IA a tiré
+     */
     @Override
     public CaseBN tirer() {
         CaseBN res = null;
@@ -222,6 +226,10 @@ public class MediumBNIA extends BNIA {
         return res;
     }
     
+    /**
+     * complément de la fonction tire, suit le bateau une fois qu'il a été trouvé
+     * @return la case sur laquelle l'IA a tiré
+     */
     private CaseBN tireTrouve(){
         CaseBN res=null;
         switch(direct){

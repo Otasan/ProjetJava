@@ -108,7 +108,7 @@ public class EasyBNIA extends BNIA{
 
     /**
      * tire sur une case au hasard. si cette case était déja touchée, recommence avec une nouvelle case au hasard
-     * @return
+     * @return La case sur laquelle l'IA a tiré
      */
     @Override
     public CaseBN tirer() {

@@ -57,6 +57,9 @@ public class HardBNIA extends BNIA{
         }
     }
     
+    /**
+     * place les bateaux
+     */
     @Override
     public void placerBateaux() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
