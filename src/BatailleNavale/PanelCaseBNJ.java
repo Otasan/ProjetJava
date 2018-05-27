@@ -26,7 +26,7 @@ public class PanelCaseBNJ extends PanelCaseBN {
         try{
             image.setImage(ImageIO.read(getClass().getResourceAsStream("/BatailleNavaleIMG/"+caseBN.getCase().toString()+".png")));
         }
-        catch(IOException e){
+        catch(Exception e){
             JOptionPane.showMessageDialog(this, "L'image : '/BatailleNavaleIMG/"+caseBN.getCase().toString()+".png' est introuvable", "Erreur image", JOptionPane.INFORMATION_MESSAGE);
             Graphics g = this.getGraphics();
             switch(caseBN.getCase()){
@@ -43,7 +43,7 @@ public class PanelCaseBNJ extends PanelCaseBN {
                     g.setColor(Color.red);
                     break;
             }
-            g.drawRect(0, 0, 20, 20);
+            g.fillRect(0, 0, 20, 20);
             image.paintIcon(this.getComponent(0), g, 0, 0);
         }
         this.setIcon(image);
@@ -86,7 +86,7 @@ public class PanelCaseBNJ extends PanelCaseBN {
         try{
             image.setImage(ImageIO.read(getClass().getResourceAsStream(nomFic)));
         }
-        catch(IOException e){
+        catch(Exception e){
             JOptionPane.showMessageDialog(this, "L'image : '"+nomFic+"' est introuvable", "Erreur image", JOptionPane.INFORMATION_MESSAGE);
             Graphics g = this.getGraphics();
             switch(caseBN.getCase()){
@@ -103,7 +103,7 @@ public class PanelCaseBNJ extends PanelCaseBN {
                     g.setColor(Color.red);
                     break;
             }
-            g.drawRect(0, 0, 20, 20);
+            g.fillRect(0, 0, 20, 20);
             image.paintIcon(this.getComponent(0), g, 0, 0);
         }
         this.setIcon(image);

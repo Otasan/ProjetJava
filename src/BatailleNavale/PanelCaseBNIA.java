@@ -27,7 +27,7 @@ public class PanelCaseBNIA extends PanelCaseBN{
                 image.setImage(ImageIO.read(getClass().getResourceAsStream("/BatailleNavaleIMG/"+caseBN.getCase().toString()+".png")));
             }
         }
-        catch(IOException e){
+        catch(Exception e){
             Graphics g = this.getGraphics();
             if(caseBN.getCase()==TypeCase.bateau){
                 JOptionPane.showMessageDialog(this, "L'image : '/BatailleNavaleIMG/vierge.png' est introuvable", "Erreur image", JOptionPane.INFORMATION_MESSAGE);
@@ -47,7 +47,7 @@ public class PanelCaseBNIA extends PanelCaseBN{
                         break;
                 }
             }
-            g.drawRect(0, 0, 20, 20);
+            g.fillRect(0, 0, 20, 20);
             image.paintIcon(this.getComponent(0), g, 0, 0);
         }
         this.setIcon(image);
@@ -67,7 +67,7 @@ public class PanelCaseBNIA extends PanelCaseBN{
                 image.setImage(ImageIO.read(getClass().getResourceAsStream("/BatailleNavaleIMG/"+caseBN.getCase().toString()+".png")));
             }
         }
-        catch(IOException e){
+        catch(Exception e){
             Graphics g = this.getGraphics();
             if(caseBN.getCase()==TypeCase.bateau){
                 JOptionPane.showMessageDialog(this, "L'image : '/BatailleNavaleIMG/vierge.png' est introuvable", "Erreur image", JOptionPane.INFORMATION_MESSAGE);
@@ -87,7 +87,7 @@ public class PanelCaseBNIA extends PanelCaseBN{
                         break;
                 }
             }
-            g.drawRect(0, 0, 20, 20);
+            g.fillRect(0, 0, 20, 20);
             image.paintIcon(this.getComponent(0), g, 0, 0);
         }
         this.setIcon(image);
