@@ -5,7 +5,6 @@
  */
 package BatailleNavale;
 
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.TreeSet;
@@ -18,14 +17,14 @@ import javax.swing.JOptionPane;
  */
 public class PanelGrilleBNIA extends PanelGrilleBN{
     
-    public PanelGrilleBNIA(GrilleBN g) throws IOException {
+    public PanelGrilleBNIA(GrilleBN g){
         super(g);
         createGrille();
         etat=EtatsBN.placerBateau;
     }
     
     @Override
-    protected void createGrille() throws IOException{
+    protected void createGrille(){
         TreeSet g = grille.getGrille();
         Iterator it = g.iterator();
         int i=0;
@@ -83,12 +82,6 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
             catch (BNException e) {
                 etat=EtatsBN.tourj;
                 JOptionPane.showMessageDialog(this, e, "Case déjà touchée", JOptionPane.INFORMATION_MESSAGE);
-            }
-            catch (IOException e) {
-                System.out.println(e);
-            }
-            catch (Exception e) {
-                System.out.println(e + " " + grille.getBateaux().toString());
             }
         }
     }

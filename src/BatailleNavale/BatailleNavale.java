@@ -34,7 +34,7 @@ public class BatailleNavale extends JPanel{
      * @param diff La difficulté (allant de 0 à 2)
      * @throws Exception 
      */
-    public BatailleNavale(Utilisateur user,int diff) throws IOException{
+    public BatailleNavale(Utilisateur user,int diff){
         GridBagLayout layout=new GridBagLayout();
         layout.columnWeights = new double[]{(double)7/16,(double)2/16,(double)7/16};
         layout.rowWeights = new double[]{(double)7/9,(double)2/9};
@@ -63,7 +63,8 @@ public class BatailleNavale extends JPanel{
      * Initialise le panel (aide le constructeur, ne pas utiliser)
      * @throws Exception 
      */
-    protected void init() throws IOException{Dimension d = new Dimension();
+    protected void init(){
+        Dimension d = new Dimension();
         d.height=450;
         d.width=800;
         setSize(800,450);
@@ -110,7 +111,7 @@ public class BatailleNavale extends JPanel{
      * Lance le Jeu
      * @throws java.io.IOException 
      */
-    public synchronized void jeu() throws IOException{
+    public synchronized void jeu(){
         pJoueur.updateGrille();
         pIa.updateGrille();
         this.setVisible(true);

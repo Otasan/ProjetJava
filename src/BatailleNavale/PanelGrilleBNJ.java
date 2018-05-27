@@ -20,11 +20,15 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
     private FrameChoixBateau choix;
     
     
-    public PanelGrilleBNJ(GrilleBN g) throws IOException {
+    public PanelGrilleBNJ(GrilleBN g){
         super(g);
         createGrille();
     }
     
+    /**
+     * Identique à la méthode de la classe parent mais génère une FrameChoixBateau si val=placerBateau et que cette frame n'a pas encore été créé.
+     * @param val 
+     */
     @Override
     public void setTour(EtatsBN val){
         super.setTour(val);
@@ -34,11 +38,10 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
     }
     
     /**
-     * génère la grille qà être affichée. utile uniquement dans le constructeur
-     * @throws IOException 
+     * génère la grille à afficher. utile uniquement dans le constructeur
      */
     @Override
-    protected void createGrille() throws IOException{
+    protected void createGrille(){
         TreeSet g = grille.getGrille();
         Iterator it = g.iterator();
         int i=0;
@@ -79,9 +82,6 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
                 }
                 catch(BNException e){
                     JOptionPane.showMessageDialog(this, e.toString(), "Bateau mal placé", JOptionPane.INFORMATION_MESSAGE);
-                }
-                catch(Exception e){
-                    System.out.println(e+" TODO gerer les exceptions caseClick");
                 }
             }
             if(grille.getBateaux().size()<5){

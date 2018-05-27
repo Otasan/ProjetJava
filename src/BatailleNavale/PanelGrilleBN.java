@@ -23,8 +23,9 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
     protected volatile EtatsBN etat;
     /**
      * crée un PanelGrille BN carrée de longueur 160 (redimensionable avec la methode redimentionner)
+     * @param g
      */
-    public PanelGrilleBN(GrilleBN g) throws IOException {
+    public PanelGrilleBN(GrilleBN g){
         initComponents();
         grille=g;
         etat=EtatsBN.rien;
@@ -62,9 +63,8 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
     /**
      * tes à jour toutes toutes les images de la grille (lent, à utiliser rarement)
      * préferer grilleB.get(i).updateImage(grille.getBateaux());
-     * @throws IOException 
      */
-    public void updateGrille() throws IOException{
+    public void updateGrille(){
         for(PanelCaseBN g:grilleB){
             g.updateImage();
         }
@@ -89,9 +89,9 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
      * @param typeBateau
      * @param cI
      * @param sens
-     * @throws Exception 
+     * @throws BNException 
      */
-    public void placerBateau(String typeBateau, CaseBN cI, Direction sens) throws Exception{
+    public void placerBateau(String typeBateau, CaseBN cI, Direction sens) throws BNException{
         grille.placerBateau(typeBateau, cI, sens);
         System.out.println(grille.getGrille().toString());
         updateGrille();

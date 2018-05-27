@@ -5,13 +5,7 @@
  */
 package BatailleNavale;
 
-import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashSet;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 /**
  *
@@ -24,9 +18,8 @@ public  abstract class PanelCaseBN extends javax.swing.JButton{
     /**
      * crée un Panel à partir de la case c et charge l'image correspondante
      * @param c
-     * @throws IOException si l'image n'est pas trouvée
      */
-    public PanelCaseBN(CaseBN c) throws IOException {
+    public PanelCaseBN(CaseBN c){
         initComponents();
         caseBN=c;
         image=new ImageIcon();
@@ -35,9 +28,8 @@ public  abstract class PanelCaseBN extends javax.swing.JButton{
     
     /**
      * mets à jour l'image de la case
-     * @throws IOException 
      */
-    abstract public void updateImage() throws IOException;
+    abstract public void updateImage();
     
     /**
      * 
@@ -49,9 +41,9 @@ public  abstract class PanelCaseBN extends javax.swing.JButton{
     
     /**
      * touche la case logique puis update l'image
-     * @throws Exception 
+     * @throws BNException 
      */
-    public void touche() throws Exception{
+    public void touche() throws BNException{
         caseBN.touche();
         updateImage();
     }
