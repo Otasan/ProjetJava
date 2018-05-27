@@ -82,7 +82,7 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
             }
             catch (BNException e) {
                 etat=EtatsBN.tourj;
-                System.out.println(e);
+                JOptionPane.showMessageDialog(this, e, "Case déjà touchée", JOptionPane.INFORMATION_MESSAGE);
             }
             catch (IOException e) {
                 System.out.println(e);

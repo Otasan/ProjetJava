@@ -114,7 +114,7 @@ public class MediumBNIA extends BNIA {
             i++;
             c++;
         }
-        System.out.println("Effectué en "+c+" tours");
+        //System.out.println("Effectué en "+c+" tours");
     }
 
     /**

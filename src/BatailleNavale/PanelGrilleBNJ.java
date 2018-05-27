@@ -23,7 +23,6 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
     public PanelGrilleBNJ(GrilleBN g) throws IOException {
         super(g);
         createGrille();
-        System.out.println("Je suis crée");
     }
     
     @Override
@@ -71,7 +70,7 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
      * @param caseP 
      */
     private synchronized void caseClick(PanelCaseBN caseP){
-        System.out.println(etat);
+        //System.out.println(etat);
         if(etat==EtatsBN.placerBateau){
             if(choix.getValide()){
                 try{

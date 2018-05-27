@@ -38,6 +38,7 @@ public class FrameChoixBateau extends javax.swing.JDialog {
 
         choixBateau = new javax.swing.ButtonGroup();
         choixSens = new javax.swing.ButtonGroup();
+        jProgressBar1 = new javax.swing.JProgressBar();
         selPorteAvion = new javax.swing.JRadioButton();
         selCroiseur = new javax.swing.JRadioButton();
         selContreTorpilleur = new javax.swing.JRadioButton();
@@ -46,6 +47,7 @@ public class FrameChoixBateau extends javax.swing.JDialog {
         selVertical = new javax.swing.JRadioButton();
         selHorizontal = new javax.swing.JRadioButton();
         valider = new javax.swing.JButton();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Choix bateau");
@@ -54,7 +56,7 @@ public class FrameChoixBateau extends javax.swing.JDialog {
 
         choixBateau.add(selPorteAvion);
         selPorteAvion.setSelected(true);
-        selPorteAvion.setText("Porte Avion");
+        selPorteAvion.setText("Porte Avion (5 cases)");
         selPorteAvion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selPorteAvionActionPerformed(evt);
@@ -62,7 +64,7 @@ public class FrameChoixBateau extends javax.swing.JDialog {
         });
 
         choixBateau.add(selCroiseur);
-        selCroiseur.setText("Croiseur");
+        selCroiseur.setText("Croiseur (4 cases)");
         selCroiseur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selCroiseurActionPerformed(evt);
@@ -70,7 +72,7 @@ public class FrameChoixBateau extends javax.swing.JDialog {
         });
 
         choixBateau.add(selContreTorpilleur);
-        selContreTorpilleur.setText("Contre Torpilleur");
+        selContreTorpilleur.setText("Contre Torpilleur (3 cases)");
         selContreTorpilleur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selContreTorpilleurActionPerformed(evt);
@@ -78,7 +80,7 @@ public class FrameChoixBateau extends javax.swing.JDialog {
         });
 
         choixBateau.add(selSousMarin);
-        selSousMarin.setText("Sous Marin");
+        selSousMarin.setText("Sous Marin (3 cases)");
         selSousMarin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selSousMarinActionPerformed(evt);
@@ -86,7 +88,7 @@ public class FrameChoixBateau extends javax.swing.JDialog {
         });
 
         choixBateau.add(selTorpilleur);
-        selTorpilleur.setText("Torpilleur");
+        selTorpilleur.setText("Torpilleur (2 cases)");
         selTorpilleur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selTorpilleurActionPerformed(evt);
@@ -118,6 +120,11 @@ public class FrameChoixBateau extends javax.swing.JDialog {
             }
         });
 
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Séléctionnez le bateau que vous voulez ainsi que la direction,\ncliquez sur valider puis cliquez sur la grille de gauche pour\nplacer le bateau");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,22 +132,28 @@ public class FrameChoixBateau extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(selCroiseur)
-                    .addComponent(selTorpilleur)
-                    .addComponent(selSousMarin)
                     .addComponent(selPorteAvion)
-                    .addComponent(selContreTorpilleur))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(selVertical)
-                    .addComponent(selHorizontal)
-                    .addComponent(valider, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(selCroiseur)
+                                .addComponent(selTorpilleur)
+                                .addComponent(selSousMarin)
+                                .addComponent(selContreTorpilleur))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(selVertical)
+                                .addComponent(selHorizontal)
+                                .addComponent(valider, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextArea1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(selVertical)
@@ -201,7 +214,6 @@ public class FrameChoixBateau extends javax.swing.JDialog {
     }//GEN-LAST:event_selHorizontalActionPerformed
 
     private void validerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerActionPerformed
-        // TODO add your handling code here:
         aValide=true;
         this.setVisible(false);
     }//GEN-LAST:event_validerActionPerformed
@@ -212,18 +224,23 @@ public class FrameChoixBateau extends javax.swing.JDialog {
             switch(b.getClass().getSimpleName()){
                 case"PorteAvion":
                     selPorteAvion.setEnabled(false);
+                    selPorteAvion.setSelected(false);
                     break;
                 case"Croiseur":
                     selCroiseur.setEnabled(false);
+                    selCroiseur.setSelected(false);
                     break;
                 case"Torpilleur":
                     selTorpilleur.setEnabled(false);
+                    selTorpilleur.setSelected(false);
                     break;
                 case"ContreTorpilleur":
                     selContreTorpilleur.setEnabled(false);
+                    selContreTorpilleur.setSelected(false);
                     break;
                 case"SousMarin":
                     selSousMarin.setEnabled(false);
+                    selSousMarin.setSelected(false);
                     break;
             }
         }
@@ -245,6 +262,8 @@ public class FrameChoixBateau extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup choixBateau;
     private javax.swing.ButtonGroup choixSens;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JRadioButton selContreTorpilleur;
     private javax.swing.JRadioButton selCroiseur;
     private javax.swing.JRadioButton selHorizontal;

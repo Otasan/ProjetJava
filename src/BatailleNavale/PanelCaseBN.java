@@ -70,6 +70,7 @@ public  abstract class PanelCaseBN extends javax.swing.JButton{
      * @param l nouvelle longueur
      */
     public void redimensionner(int l){
+        //this.setSize(l, l);
         image.setImage(image.getImage().getScaledInstance(l, l, Image.SCALE_DEFAULT));
     }
     /**

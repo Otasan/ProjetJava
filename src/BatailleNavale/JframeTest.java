@@ -29,8 +29,9 @@ public class JframeTest extends javax.swing.JFrame {
         grille = new PanelGrilleBNIA(g);
         add(grille, BorderLayout.CENTER);
         grille.redimensionner(380);*/
-        BatailleNavale b = new BatailleNavale(mem,1);
+        BatailleNavale b = new BatailleNavale(mem,0);
         add(b, BorderLayout.CENTER);
+        System.out.println(BatailleNavale.description());
         
         this.setVisible(true);
         

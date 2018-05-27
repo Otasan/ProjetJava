@@ -29,7 +29,10 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
         grille=g;
         etat=EtatsBN.rien;
         grilleB=new ArrayList();
-        setLayout(new GridLayout(11,11));
+        GridLayout layout = new GridLayout(11,11);
+        layout.setHgap(0);
+        layout.setVgap(0);
+        setLayout(layout);
         setSize(180,180);
     }
     
@@ -75,8 +78,9 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
      */
     public void redimensionner(int l){
         setSize(l, l);
+        int nl = l/11;
         for(int i=0;i<100;i++){
-            grilleB.get(i).redimensionner((int)(l/10));
+            grilleB.get(i).redimensionner(nl);
         }
     }
     

@@ -64,12 +64,14 @@ public class GrilleBN {
             }
             //System.out.println(b+"\n"+lesCases);
             if(lesBateaux.contains(b)){
+                lesCases.ceiling(cI).setCase(TypeCase.vierge);
                 throw new BNException("Bateau déjà existant sur cete grille : "+typeBateau+" : "+lesBateaux.toString());
             }
             else{
                 switch(d){
                     case horizontal:
                         if(cI.getX()+b.getTaille()>10){
+                            lesCases.ceiling(cI).setCase(TypeCase.vierge);
                             throw new BNException("Bateau hors de la grille "+cI.toString()+" taille : "+b.getTaille()+" direction : "+d);
                         }
                         else{
@@ -88,6 +90,7 @@ public class GrilleBN {
                         break;
                     case vertical:
                         if(cI.getY()+b.getTaille()>10){
+                            lesCases.ceiling(cI).setCase(TypeCase.vierge);
                             throw new BNException("Bateau hors de la grille "+cI.toString()+" taille : "+b.getTaille()+" direction : "+d);
                         }
                         else{
@@ -173,7 +176,7 @@ public class GrilleBN {
                     break;
             }
             if(nbTouche == b.getTaille()){
-                System.out.println(b);
+                //System.out.println(b);
                 bat=b;
             }
         }

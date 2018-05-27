@@ -9,13 +9,12 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ProjetJava.Utilisateur;
 import ProjetJava.Membre;
+import javax.swing.Box;
 
 /**
  *
@@ -36,7 +35,10 @@ public class BatailleNavale extends JPanel{
      * @throws Exception 
      */
     public BatailleNavale(Utilisateur user,int diff) throws IOException{
-        setLayout(new GridBagLayout());
+        GridBagLayout layout=new GridBagLayout();
+        layout.columnWeights = new double[]{(double)7/16,(double)2/16,(double)7/16};
+        layout.rowWeights = new double[]{(double)7/9,(double)2/9};
+        setLayout(layout);
         gJoueur = new GrilleBN();
         gIa = new GrilleBN();
         pJoueur = new PanelGrilleBNJ(gJoueur);
@@ -61,33 +63,35 @@ public class BatailleNavale extends JPanel{
      * Initialise le panel (aide le constructeur, ne pas utiliser)
      * @throws Exception 
      */
-    protected void init() throws IOException{
+    protected void init() throws IOException{Dimension d = new Dimension();
+        d.height=450;
+        d.width=800;
+        setSize(800,450);
+        setPreferredSize(d);
+        
         pJoueur.redimensionner(340);
         pIa.redimensionner(340);
         GridBagConstraints c = new GridBagConstraints();
         c.gridx=0;
         c.gridy=0;
-        c.gridwidth=7;
-        c.gridheight=7;
-        c.weightx=0.5;
-        c.weighty=0.5;
         this.add(pJoueur,c);
         
-        c.gridx=8;
-        c.gridy=1;
+        c = new GridBagConstraints();
+        c.gridx=1;
+        c.gridy=0;
+        add(Box.createHorizontalGlue(),c);
+        
+        c = new GridBagConstraints();
+        c.gridx=2;
+        c.gridy=0;
         this.add(pIa,c);
         
-        c.gridheight=2;
-        c.gridwidth=16;
+        c = new GridBagConstraints();
         c.gridx=0;
-        c.gridy=7;
+        c.gridy=1;
+        c.gridwidth=3;
         this.add(new JLabel("Sample text"),c);
         
-        Dimension d = new Dimension();
-        d.height=450;
-        d.height=800;
-        setSize(800,450);
-        setPreferredSize(d);
         setVisible(true);
     }
     
@@ -133,7 +137,7 @@ public class BatailleNavale extends JPanel{
                     System.out.println(e);
                 }
                 setTour(pIa.getTour());
-                if(etat==EtatsBN.touria){
+                if(etat==EtatsBN.touria && gIa.nbBateauRestant()>0){
                     int nb = gJoueur.nbBateauRestant();
                     CaseBN c =ia.tirer();
                     pJoueur.updateGrille();
@@ -154,16 +158,16 @@ public class BatailleNavale extends JPanel{
                 }
             }
         }
-        System.out.println("fin");
+        //System.out.println("fin");
         if(gJoueur.nbBateauRestant()==0){
             if(util instanceof Membre){
-                ((Membre)util).incrementPerdu("BatailleNavale");
+                ((Membre)util).incrementPerdu("Bataille Navale");
             }
             JOptionPane.showMessageDialog(this,util.getPseudo()+" a perdu!", "Perdu", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             if(util instanceof Membre){
-                ((Membre)util).incrementGagne("BatailleNavale");
+                ((Membre)util).incrementGagne("Bataille Navale");
             }
             JOptionPane.showMessageDialog(this,util.getPseudo()+" a gagné!", "Gagné", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -175,6 +179,6 @@ public class BatailleNavale extends JPanel{
      * @return 
      */
     public static String description(){
-        return "\n";
+        return "Placez vos bateaux stratégiquement et essayez de couler les navires ennemis\nPour jouer:\n\t-Dans une première phase, placez vos cinq bateaux sur votre grille\n\t-Puis cliquez sur la grille de l'adversaire pour tirer sur la case séléctionnée.\nVous gagnez si il vous reste au moins un bateau et que vous avez coulé tout les bateaux ennemis.\nBonne chance, commandant!";
     }
 }

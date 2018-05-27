@@ -103,7 +103,7 @@ public class EasyBNIA extends BNIA{
             i++;
             c++;
         }
-        System.out.println("Effectué en "+c+" tours");
+        //System.out.println("Effectué en "+c+" tours");
     }
 
     /**
