@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pendu;
+package Pendu;
 
+import ProjetJava.Utilisateur;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -23,15 +22,20 @@ public class Pendu {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args){
-        // TODO code application logic here
+    public static void main(String[] args) {
+
         JFrame frame = new JFrame();
         frame.getContentPane().removeAll();
+
         try {
-            frame.getContentPane().add(new PenduPanel(new ProjetJava.Utilisateur("Invite"),0));
+            JeuPendu jeu = new JeuPendu(new Utilisateur("Invite"), 0);
+            PenduPanel pen = new PenduPanel(jeu);
+            jeu.addObserver(pen);
+            frame.getContentPane().add(pen);
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Impossible de lancer le jeu, le dictionnaire n'as pas été trouvé.");
         }
+
         frame.pack();
         frame.setVisible(true);
         WindowListener exitListener = new WindowAdapter() {
@@ -50,7 +54,5 @@ public class Pendu {
         //m.DemarerLeJeu();
         //JeuPendu p =new JeuPendu(d.motAleatoire());
         //p.DemarerLeJeu();
+    }
 }
-}
-
-

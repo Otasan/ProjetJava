@@ -3,70 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pendu;
 
-import ProjetJava.Membre;
-import ProjetJava.Utilisateur;
+package Pendu;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author KREATURE
  */
-public class PenduPanel extends javax.swing.JPanel {
+public class PenduPanel extends javax.swing.JPanel implements Observer {
 
     private JeuPendu jeu;
-    private Utilisateur u;
 
     /**
      *
-     * @param u
-     * @param difficulte
      * @throws FileNotFoundException
      */
-    public PenduPanel(ProjetJava.Utilisateur u, int difficulte) throws FileNotFoundException {
+    public PenduPanel(JeuPendu jeu) throws FileNotFoundException {
         initComponents();
-        Dictionnaire d = new Dictionnaire();
-        jeu = new JeuPendu(d.motAleatoire(), difficulte);
-
+        this.jeu = jeu;
+        motLabel.setText(this.jeu.getMot());
         addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
             @Override
             public void keyPressed(KeyEvent evt) {
                 jeu.etapeJeu((char) evt.getKeyCode());
-                int i = jeu.status();
-                if (i == 1) {
-                    if (u.getClass().getSimpleName().equals("Membre")) {
-                        Membre m = (Membre) u;
-                        m.incrementGagne("Pendu");
-                    }
-                    JOptionPane.showMessageDialog(null, "Vous avez Gagné !!!");
-
-                } else if (i == -1) {
-                    if (u.getClass().getSimpleName().equals("Membre")) {
-                        Membre m = (Membre) u;
-                        m.incrementPerdu("Pendu");
-                    }
-                    JOptionPane.showMessageDialog(null, "Vous avez perdu ...");
-
-                }
-
-                imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/pendu" + jeu.nbErreurs() + ".jpg")));
-                motLabel.setText(jeu.getMot());
-                if (!(jeu.derniereLettreUtil() == null)) {
-                    lettrePanel.add(new JLabel(jeu.derniereLettreUtil()));
-                }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
+            }
+
+            @Override
+            public void keyTyped(KeyEvent e) {
             }
         });
     }
@@ -121,11 +95,15 @@ public class PenduPanel extends javax.swing.JPanel {
         add(imageLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void update() {
-        //imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/pendu" + jeu.nbErreurs() + ".jpg")));
-        motLabel.setText(jeu.getMot());
-        if (!(jeu.derniereLettreUtil() == null)) {
-            lettrePanel.add(new JLabel(jeu.derniereLettreUtil()));
+    @Override
+    public void update(Observable o, Object arg) {
+        if (arg == null) {
+            //imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/pendu" + jeu.nbErreurs() + ".jpg")));
+            this.motLabel.setText(jeu.getMot());
+            if (jeu.derniereLettreUtil() != null) {
+                this.lettrePanel.add(new JLabel(jeu.derniereLettreUtil()));
+            }
+            this.repaint();
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
