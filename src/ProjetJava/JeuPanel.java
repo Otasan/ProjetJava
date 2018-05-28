@@ -5,14 +5,18 @@
  */
 package ProjetJava;
 
-import javax.swing.JOptionPane;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Panel contenant le jeu qui est entre en parametre.
  *
  * @author deux
  */
-public class JeuPanel extends javax.swing.JPanel {
+public class JeuPanel extends javax.swing.JPanel implements Observer {
+
+    private Utilisateur u;
+    private String jeu;
 
     /**
      * Creation du Panel et lancement du jeu.
@@ -21,29 +25,34 @@ public class JeuPanel extends javax.swing.JPanel {
      * @param u
      * @param diff
      */
-    public JeuPanel(String jeu, Utilisateur u, int diff) {
+    public JeuPanel(String jeu) {
         initComponents();
         this.titleLabel.setText(jeu);
+<<<<<<< Updated upstream
         switch (jeu) {
             case "Bataille Navale":
-
                 try {
                     BatailleNavale.BatailleNavale bat = new BatailleNavale.BatailleNavale(u, diff);
+                    jeuPanel.add(bat);
                     synchronized (bat) {
-                        jeuPanel.add(bat);
                         bat.jeu();
-                        wait();
+                        bat.wait();
                     }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Une ou plusieurs images de la bataille navale sont absentes");
                 }
-
                 break;
+
             case "Pendu":
                 break;
+
             default:
                 JOptionPane.showMessageDialog(null, "Votre jeu est inconnu");
+
         }
+=======
+        this.jeu = jeu;
+>>>>>>> Stashed changes
     }
 
     /**
@@ -58,7 +67,6 @@ public class JeuPanel extends javax.swing.JPanel {
 
         titleLabel = new javax.swing.JLabel();
         quitButton = new javax.swing.JButton();
-        jeuPanel = new javax.swing.JPanel();
 
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(640, 360));
@@ -85,18 +93,39 @@ public class JeuPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         add(quitButton, gridBagConstraints);
+<<<<<<< Updated upstream
+
+        jeuPanel.setLayout(new java.awt.BorderLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(jeuPanel, gridBagConstraints);
+=======
+>>>>>>> Stashed changes
     }// </editor-fold>//GEN-END:initComponents
 
+    public javax.swing.JButton getQuitButton() {
+        return quitButton;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jeuPanel;
     private javax.swing.JButton quitButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        switch (jeu) {
+            case "Pendu":
+                if (arg instanceof String) {
+                    System.out.println("Plop");
+                }
+                break;
+            case "Bataille Navale":
+
+                break;
+        }
+    }
 }

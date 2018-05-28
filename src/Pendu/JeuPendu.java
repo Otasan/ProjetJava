@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pendu;
+package Pendu;
 
+import ProjetJava.Membre;
+import ProjetJava.Utilisateur;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -13,30 +17,33 @@ import javax.swing.JOptionPane;
  *
  * @author KREATURE
  */
-public class JeuPendu {
+public class JeuPendu extends Observable {
 
     private ArrayList<Character> mot;
     private ArrayList<Character> value;
     private ArrayList<Character> lettresUtilisees;
     private ArrayList<Character> lettresMauvaises;
     private int difficulte;
+    private Utilisateur u;
 
-    public JeuPendu(String motADeviner, int diff) {
+    public JeuPendu(Utilisateur u, int diff) throws FileNotFoundException {
+        super();
+        Dictionnaire d = new Dictionnaire();
+        String mot = d.motAleatoire();
+        this.u = u;
         this.mot = new ArrayList<>();
         this.value = new ArrayList<>();
         this.lettresMauvaises = new ArrayList<>();
         this.lettresUtilisees = new ArrayList<>();
         difficulte = diff;
 
-        char[] tableau = motADeviner.toCharArray();
-        //System.out.println(tableau);
-        for (int i = 0; i < motADeviner.length(); i++) {
+        char[] tableau = mot.toCharArray();
+        for (int i = 0; i < mot.length(); i++) {
             this.mot.add(tableau[i]);
         }
         int i = 0;
         for (char r : this.mot) {
-            value.add('_');
-            System.out.print(value.get(i));
+            value.add('*');
             i += 1;
         }
     }
@@ -46,6 +53,7 @@ public class JeuPendu {
         return this.mot + " " + this.value;
     }
 
+    /*
     public boolean estLettreValide(char[] lettre) {
         if (lettre.length >= 2) {
             System.out.println("Veuillez ne saisir qu'une lettre à la fois.");
@@ -68,16 +76,38 @@ public class JeuPendu {
         }
         return false;
     }
+     */
+    public boolean estLettreValide(char lettre) {
+        for (char s : lettresUtilisees) {
+            if (lettre == s) {
+                JOptionPane.showMessageDialog(null, "La lettre a déjà été utilisées.");
+                return false;
+            }
+        }
+
+        if (lettre >= 'A' && lettre <= 'Z') {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Le caractere saisi n'est pas valide.");
+        }
+        return false;
+    }
 
     public boolean perdu() {
-        if (lettresMauvaises.size() > 7) {
-            System.out.println("Vous avez perdu !\n" + "le mot a deviner était : " + mot);
+        if (lettresMauvaises.size() + difficulte > 10) {
             return true;
         }
         return false;
     }
 
-    public void DemarerLeJeu() {
+    public boolean gagne() {
+        if (mot.equals(value)) {
+            return true;
+        }
+        return false;
+    }
+
+    /*    public void DemarerLeJeu() {
         boolean motTrouve = false;
 
         while (!motTrouve) {
@@ -125,10 +155,9 @@ public class JeuPendu {
             }
         }
     }
-
+     */
     public void etapeJeu(char c) {
-        char[] lettre = {};
-        if (estLettreValide(lettre)) {
+        if (estLettreValide(c)) {
             boolean estLettreFausse = true;
 
             for (int i = 0; i < mot.size(); i++) {
@@ -141,16 +170,30 @@ public class JeuPendu {
                 lettresMauvaises.add(c);
             }
             lettresUtilisees.add(c);
+            this.setChanged();
+            status();
         }
     }
 
-    public int status() {
-        if (value.equals(mot)) {
-            return 1;
-        } else if (lettresMauvaises.size() >= 11-difficulte) {
-            return -1;
+    public void status() {
+        if (perdu()) {
+            if (u instanceof Membre) {
+                Membre m = (Membre) u;
+                m.incrementPerdu("Pendu");
+            }
+            JOptionPane.showMessageDialog(null, "Vous avez perdu ...");
+            notifyObservers("");
+            quitter();
+        } else if (gagne()) {
+            if (u instanceof Membre) {
+                Membre m = (Membre) u;
+                m.incrementGagne("Pendu");
+            }
+            JOptionPane.showMessageDialog(null, "Vous avez Gagné !!!");
+            notifyObservers("");
+            quitter();
         } else {
-            return 0;
+            notifyObservers();
         }
     }
 
@@ -181,4 +224,5 @@ public class JeuPendu {
         }
         return mot;
     }
+    public void quitter(){}
 }

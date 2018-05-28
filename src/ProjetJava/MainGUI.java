@@ -9,6 +9,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -149,8 +151,9 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     /**
+     * Interface permettant de choisir un jeu ou de modifier son mot de passe.
      *
-     * @param u
+     * @param u Utilisateur connecte.
      */
     private void interfaceChoixJeu(Utilisateur u) {
         this.getContentPane().removeAll();
@@ -196,8 +199,10 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     /**
+     * Interface donnant toutes les informations sur un jeu donne.
      *
-     * @param jeu
+     * @param jeu Nom du jeu duquel on veut les informations.
+     * @param u Utilisateur connecte.
      */
     public void interfaceInfoJeu(String jeu, Utilisateur u) {
         this.getContentPane().removeAll();
@@ -216,12 +221,43 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      *
-     * @param jeu
+     * Interface utilisateur permettant de jouer à un jeu.
+     *
+     * @param jeu Nom du jeu auquel on souhaite jouer.
+     * @param u Utilisateur connecte.
+     * @param diff Niveau de difficulté (de 0 a 2).
      */
     private void interfaceJeu(String jeu, Utilisateur u, int diff) {
         this.getContentPane().removeAll();
-        JeuPanel jeuP = new JeuPanel(jeu, u, diff);
-        this.getContentPane().add(jeuP);
+        JeuPanel GUI = new JeuPanel(jeu);
+        switch (jeu) {
+            case "Pendu":
+                try {
+                    Pendu.JeuPendu pendu = new Pendu.JeuPendu(u, diff){
+                        @Override
+                        public void quitter(){
+                            interfaceInfoJeu(jeu, m);
+                        }
+                    };
+                    Pendu.PenduPanel panelJeu = new Pendu.PenduPanel(pendu);
+                    pendu.addObserver(panelJeu);
+                    
+                    java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridy = 1;
+                    gridBagConstraints.gridwidth = 2;
+                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                    GUI.add(panelJeu, gridBagConstraints);
+                } catch (FileNotFoundException ex) {
+                    JOptionPane.showMessageDialog(null, "Dictionnaire abscent.");
+                    interfaceInfoJeu(jeu,u);
+                }
+                break;
+            case "Bataille Navale":
+                break;
+        }
+
+        this.getContentPane().add(GUI);
         this.pack();
     }
 
