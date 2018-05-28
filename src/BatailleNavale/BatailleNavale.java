@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ProjetJava.Utilisateur;
 import ProjetJava.Membre;
+import java.awt.GridLayout;
 import javax.swing.Box;
 
 /**
@@ -32,12 +33,15 @@ public class BatailleNavale extends JPanel{
     /**
      * 
      * @param diff La difficulté (allant de 0 à 2)
-     * @throws Exception 
      */
     public BatailleNavale(Utilisateur user,int diff){
-        GridBagLayout layout=new GridBagLayout();
+        /*GridBagLayout layout=new GridBagLayout();
         layout.columnWeights = new double[]{(double)7/16,(double)2/16,(double)7/16};
         layout.rowWeights = new double[]{(double)7/9,(double)2/9};
+        setLayout(layout);*/
+        GridLayout layout = new GridLayout(1,2);
+        layout.setHgap(0);
+        layout.setVgap(0);
         setLayout(layout);
         gJoueur = new GrilleBN();
         gIa = new GrilleBN();
@@ -72,26 +76,26 @@ public class BatailleNavale extends JPanel{
         
         pJoueur.redimensionner(340);
         pIa.redimensionner(340);
-        GridBagConstraints c = new GridBagConstraints();
+        /*GridBagConstraints c = new GridBagConstraints();
         c.gridx=0;
-        c.gridy=0;
-        this.add(pJoueur,c);
+        c.gridy=0;*/
+        this.add(pJoueur);
         
-        c = new GridBagConstraints();
+        /*c = new GridBagConstraints();
         c.gridx=1;
         c.gridy=0;
         add(Box.createHorizontalGlue(),c);
         
         c = new GridBagConstraints();
         c.gridx=2;
-        c.gridy=0;
-        this.add(pIa,c);
+        c.gridy=0;*/
+        this.add(pIa);
         
-        c = new GridBagConstraints();
+        /*c = new GridBagConstraints();
         c.gridx=0;
         c.gridy=1;
         c.gridwidth=3;
-        this.add(new JLabel("Sample text"),c);
+        this.add(new JLabel("Sample text"),c);*/
         
         setVisible(true);
     }
