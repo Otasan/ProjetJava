@@ -109,9 +109,8 @@ public class BatailleNavale extends JPanel{
     
     /**
      * Lance le Jeu
-     * @throws java.io.IOException 
      */
-    public synchronized void jeu(){
+    public void jeu(){
         pJoueur.updateGrille();
         pIa.updateGrille();
         this.setVisible(true);
@@ -122,7 +121,7 @@ public class BatailleNavale extends JPanel{
                 try{
                     pJoueur.wait();
                 }
-                catch(Exception e){
+                catch(InterruptedException e){
                     System.out.println(e);
                 }
                 setTour(pJoueur.getTour());
@@ -134,7 +133,7 @@ public class BatailleNavale extends JPanel{
                 try{
                     pIa.wait();
                 }
-                catch(Exception e){
+                catch(InterruptedException e){
                     System.out.println(e);
                 }
                 setTour(pIa.getTour());
@@ -172,7 +171,6 @@ public class BatailleNavale extends JPanel{
             }
             JOptionPane.showMessageDialog(this,util.getPseudo()+" a gagné!", "Gagné", JOptionPane.INFORMATION_MESSAGE);
         }
-        notify();
     }
     
     /**

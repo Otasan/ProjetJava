@@ -5,7 +5,9 @@
  */
 package BatailleNavale;
 
+import java.util.Arrays;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  *
@@ -14,32 +16,21 @@ import java.util.TreeMap;
 
 //Source de l'algorithme http://datagenetics.com/blog/december32011/index.html
 public class HardBNIA extends BNIA{
-    private TreeMap<CaseBN,Double> proba;
+    private TreeMap<CaseBN,Integer> proba;
 
     public HardBNIA(GrilleBN adv, GrilleBN j) {
         super(adv, j);
         proba=new TreeMap();
-        createProba();
+        proba = ProbaTorpilleur();
     }
 
     /**
      * créé la carte de probabilité du placement d'un bateau sur une case
      */
-    private void createProba(){
-        int[] porteAvion={1,2,3,4,5,5,4,3,2,1};
-        int[] croiseur={1,2,3,4,4,4,4,3,2,1};
-        int[] sousContre={2,4,6,6,6,6,6,6,4,2};
-        int[] torpilleur={1,2,2,2,2,2,2,2,2,1};
-        for(int y=0;y<10;y++){
-            for(int x=0;x<10;x++){
-                double val=(porteAvion[x]+porteAvion[y]+croiseur[x]+croiseur[y]+sousContre[x]+sousContre[y]+torpilleur[x]+torpilleur[y])/500;
-                setProba(x,y,val);
-            }
-        }
-    }
-    
-    private void updateProba(CaseBN c){
+    private TreeMap<CaseBN,Integer> ProbaTorpilleur(){
+        TreeMap<CaseBN,Integer> res = new TreeMap();
         
+        return res;
     }
     
     /**
@@ -48,13 +39,73 @@ public class HardBNIA extends BNIA{
      * @param y
      * @param val 
      */
-    private void setProba(int x, int y, Double val){
+    private void setProba(int x, int y, int val){
         if(val<0){
-            proba.put(new CaseBN(x,y), 0.0);
+            proba.put(joueur.getCase(x, y), 0);
         }
         else{
-            proba.put(new CaseBN(x,y), val);
+            proba.put(joueur.getCase(x, y), val);
         }
+    }
+    
+    /**
+     * définie la probabilité de la case, mets 0 par defaut si négatif
+     * @param c
+     * @param val 
+     */
+    private void setProba(CaseBN c, int val){
+        if(val<0){
+            proba.put(joueur.getCase(c),0);
+        }
+        else{
+            proba.put(joueur.getCase(c), val);
+        }
+    }
+    
+    /**
+     * recursion pour calculer la probabilité d'avoir un torpilleur sur une case
+     * @param carre
+     * @return 
+     */
+    private TreeMap<CaseBN,Integer> recurTorpilleur(TreeMap<CaseBN,Integer> carre){
+        if(carre.size()==1){
+            if(carre.firstKey().getCase()==TypeCase.toucheVierge)
+                carre.put(carre.firstKey(), 0);
+            else
+                carre.put(carre.firstKey(), 4);
+        }
+        else{
+            TreeMap<CaseBN,Integer> hg = new TreeMap();
+            for(int y=carre.firstKey().getY();y<Math.sqrt((double) carre.size())-1;y++){
+                for(int x=carre.firstKey().getX();x<Math.sqrt((double) carre.size())-1;x++){
+                    hg.put(carre.ceilingKey(new CaseBN(x,y)), 0);
+                }
+            }
+            TreeMap<CaseBN,Integer> hd = new TreeMap();
+            for(int y=carre.firstKey().getY();y<Math.sqrt((double) carre.size())-1;y++){
+                for(int x=carre.firstKey().getX()+1;x<Math.sqrt((double) carre.size());x++){
+                    hg.put(carre.ceilingKey(new CaseBN(x,y)), 0);
+                }
+            }
+            TreeMap<CaseBN,Integer> bg = new TreeMap();
+            for(int y=carre.firstKey().getY()+1;y<Math.sqrt((double) carre.size());y++){
+                for(int x=carre.firstKey().getX();x<Math.sqrt((double) carre.size())-1;x++){
+                    hg.put(carre.ceilingKey(new CaseBN(x,y)), 0);
+                }
+            }
+            TreeMap<CaseBN,Integer> bd = new TreeMap();
+            for(int y=carre.firstKey().getY()+1;y<Math.sqrt((double) carre.size());y++){
+                for(int x=carre.firstKey().getX()+1;x<Math.sqrt((double) carre.size());x++){
+                    hg.put(carre.ceilingKey(new CaseBN(x,y)), 0);
+                }
+            }
+            hg=recurTorpilleur(hg);
+            hd=recurTorpilleur(hd);
+            bg=recurTorpilleur(bg);
+            bd=recurTorpilleur(bd);
+            
+        }
+        return carre;
     }
     
     /**
