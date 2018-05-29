@@ -8,20 +8,18 @@ package BatailleNavale;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ProjetJava.Utilisateur;
 import ProjetJava.Membre;
-import java.awt.GridLayout;
-import javax.swing.Box;
+import java.util.Observable;
 
 /**
  *
  * @author Utilisateur
  */
-public class BatailleNavale extends JPanel{
+public class BatailleNavale extends Observable{
     private GrilleBN gJoueur;
     private GrilleBN gIa;
     private PanelGrilleBNJ pJoueur;
@@ -29,25 +27,20 @@ public class BatailleNavale extends JPanel{
     private BNIA ia;
     private volatile EtatsBN etat;
     private Utilisateur util;
+    private JPanel panel;
     
     /**
-     * 
+     * Constructeur de BatailleNavale
+     * @param user L'utilisateur ayant lancé la bataille navale
      * @param diff La difficulté (allant de 0 à 2)
      */
     public BatailleNavale(Utilisateur user,int diff){
-        /*GridBagLayout layout=new GridBagLayout();
-        layout.columnWeights = new double[]{(double)7/16,(double)2/16,(double)7/16};
-        layout.rowWeights = new double[]{(double)7/9,(double)2/9};
-        setLayout(layout);*/
-        GridLayout layout = new GridLayout(1,2);
-        layout.setHgap(0);
-        layout.setVgap(0);
-        setLayout(layout);
         gJoueur = new GrilleBN();
         gIa = new GrilleBN();
         pJoueur = new PanelGrilleBNJ(gJoueur);
         pIa = new PanelGrilleBNIA(gIa);
         util=user;
+        panel=new JPanel();
         switch(diff){
             case 0:
                 ia = new EasyBNIA(gIa, gJoueur);
@@ -64,40 +57,32 @@ public class BatailleNavale extends JPanel{
     }   
     
     /**
-     * Initialise le panel (aide le constructeur, ne pas utiliser)
-     * @throws Exception 
+     * Initialise le JPanel (aide le constructeur, ne pas utiliser)
      */
     protected void init(){
+        GridBagLayout layout=new GridBagLayout();
+        layout.columnWeights = new double[]{(double)1/2,(double)1/2};
+        layout.rowWeights = new double[]{(double)1/5,(double)4/5};
+        panel.setLayout(layout);
         Dimension d = new Dimension();
         d.height=450;
         d.width=800;
-        setSize(800,450);
-        setPreferredSize(d);
-        
+        panel.setSize(800,450);
+        panel.setPreferredSize(d);
         pJoueur.redimensionner(340);
         pIa.redimensionner(340);
-        /*GridBagConstraints c = new GridBagConstraints();
+        GridBagConstraints c = new GridBagConstraints();
         c.gridx=0;
-        c.gridy=0;*/
-        this.add(pJoueur);
-        
-        /*c = new GridBagConstraints();
-        c.gridx=1;
         c.gridy=0;
-        add(Box.createHorizontalGlue(),c);
-        
-        c = new GridBagConstraints();
-        c.gridx=2;
-        c.gridy=0;*/
-        this.add(pIa);
-        
-        /*c = new GridBagConstraints();
+        panel.add(new JLabel("Votre Grille"),c);
+        c.gridx=1;
+        panel.add(new JLabel("Grille de l'adversaire"),c);
         c.gridx=0;
         c.gridy=1;
-        c.gridwidth=3;
-        this.add(new JLabel("Sample text"),c);*/
-        
-        setVisible(true);
+        panel.add(pJoueur,c);
+        c.gridx=1;
+        panel.add(pIa,c);
+        panel.setVisible(true);
     }
     
     /**
@@ -117,7 +102,6 @@ public class BatailleNavale extends JPanel{
     public void jeu(){
         pJoueur.updateGrille();
         pIa.updateGrille();
-        this.setVisible(true);
         setTour(EtatsBN.placerBateau);
         ia.placerBateaux();
         synchronized(pJoueur){
@@ -167,14 +151,23 @@ public class BatailleNavale extends JPanel{
             if(util instanceof Membre){
                 ((Membre)util).incrementPerdu("Bataille Navale");
             }
-            JOptionPane.showMessageDialog(this,util.getPseudo()+" a perdu!", "Perdu", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(panel,util.getPseudo()+" a perdu!", "Perdu", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             if(util instanceof Membre){
                 ((Membre)util).incrementGagne("Bataille Navale");
             }
-            JOptionPane.showMessageDialog(this,util.getPseudo()+" a gagné!", "Gagné", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(panel,util.getPseudo()+" a gagné!", "Gagné", JOptionPane.INFORMATION_MESSAGE);
         }
+        notifyObservers("Fin de la BatailleNavale");
+    }
+    
+    /**
+     * 
+     * @return JPanel de la bataille navale
+     */
+    public JPanel getPanel(){
+        return panel;
     }
     
     /**

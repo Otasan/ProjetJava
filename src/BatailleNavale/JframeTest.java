@@ -4,6 +4,8 @@ import ProjetJava.Membre;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +17,7 @@ import java.io.IOException;
  *
  * @author Utilisateur
  */
-public class JframeTest extends javax.swing.JFrame {
+public class JframeTest extends javax.swing.JFrame implements Observer {
     private PanelGrilleBN grille;
     private Membre mem;
     /**
@@ -30,11 +32,11 @@ public class JframeTest extends javax.swing.JFrame {
         add(grille, BorderLayout.CENTER);
         grille.redimensionner(380);*/
         BatailleNavale b = new BatailleNavale(mem,0);
-        add(b, BorderLayout.CENTER);
+        add(b.getPanel(), BorderLayout.CENTER);
         System.out.println(BatailleNavale.description());
         
         this.setVisible(true);
-        
+        b.addObserver(this);
         b.jeu();
     }
 
@@ -63,6 +65,11 @@ public class JframeTest extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    @Override
+    public void update(Observable o, Object arg) {
+        this.setVisible(false);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
