@@ -181,7 +181,7 @@ public class JeuPendu extends Observable {
                 Membre m = (Membre) u;
                 m.incrementPerdu("Pendu");
             }
-            JOptionPane.showMessageDialog(null, "Vous avez perdu ...");
+            JOptionPane.showMessageDialog(null, "Vous avez perdu ... Le mot à deviner était " + this.getMot());
             notifyObservers("");
             quitter();
         } else if (gagne()) {
@@ -217,12 +217,21 @@ public class JeuPendu extends Observable {
         }
     }
 
-    public String getMot() {
+    public String getValue() {
         String mot = "";
         for (char c : this.value) {
             mot += c;
         }
         return mot;
     }
+    
+    public String getMot(){
+        String mot ="";
+        for (char c : this.mot){
+            mot+=c;
+        }
+        return mot;
+    }
+    
     public void quitter(){}
 }

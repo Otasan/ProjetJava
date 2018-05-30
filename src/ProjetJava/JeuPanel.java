@@ -28,31 +28,7 @@ public class JeuPanel extends javax.swing.JPanel implements Observer {
     public JeuPanel(String jeu) {
         initComponents();
         this.titleLabel.setText(jeu);
-<<<<<<< Updated upstream
-        switch (jeu) {
-            case "Bataille Navale":
-                try {
-                    BatailleNavale.BatailleNavale bat = new BatailleNavale.BatailleNavale(u, diff);
-                    jeuPanel.add(bat);
-                    synchronized (bat) {
-                        bat.jeu();
-                        bat.wait();
-                    }
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Une ou plusieurs images de la bataille navale sont absentes");
-                }
-                break;
-
-            case "Pendu":
-                break;
-
-            default:
-                JOptionPane.showMessageDialog(null, "Votre jeu est inconnu");
-
-        }
-=======
         this.jeu = jeu;
->>>>>>> Stashed changes
     }
 
     /**
@@ -93,17 +69,6 @@ public class JeuPanel extends javax.swing.JPanel implements Observer {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         add(quitButton, gridBagConstraints);
-<<<<<<< Updated upstream
-
-        jeuPanel.setLayout(new java.awt.BorderLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        add(jeuPanel, gridBagConstraints);
-=======
->>>>>>> Stashed changes
     }// </editor-fold>//GEN-END:initComponents
 
     public javax.swing.JButton getQuitButton() {
