@@ -28,7 +28,7 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
     public PenduPanel(JeuPendu jeu) throws FileNotFoundException {
         initComponents();
         this.jeu = jeu;
-        motLabel.setText(this.jeu.getMot());
+        motLabel.setText(this.jeu.getValue());
         addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent evt) {
@@ -99,7 +99,7 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
     public void update(Observable o, Object arg) {
         if (arg == null) {
             //imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/pendu" + jeu.nbErreurs() + ".jpg")));
-            this.motLabel.setText(jeu.getMot());
+            this.motLabel.setText(jeu.getValue());
             if (jeu.derniereLettreUtil() != null) {
                 this.lettrePanel.add(new JLabel(jeu.derniereLettreUtil()));
             }
