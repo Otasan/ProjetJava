@@ -220,7 +220,6 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     /**
-     *
      * Interface utilisateur permettant de jouer à un jeu.
      *
      * @param jeu Nom du jeu auquel on souhaite jouer.
