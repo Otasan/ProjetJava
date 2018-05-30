@@ -12,11 +12,11 @@ import java.io.FileNotFoundException;
 import javax.swing.JOptionPane;
 
 /**
- * Frame contenant tous les Panels.
+ * Gere les interractions entre les différents JPanel au sein de la mainFrame.
  *
  * @author deux
  */
-public class Main extends javax.swing.JFrame {
+public class Main {
 
     private Identification id;
     private Membre m;
@@ -26,11 +26,11 @@ public class Main extends javax.swing.JFrame {
      * Creates new form ConnexionGUI
      */
     public Main() {
-        new Thread() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 mainFrame = new javax.swing.JFrame();
-                mainFrame.setExtendedState(MAXIMIZED_BOTH);
+                mainFrame.setExtendedState(mainFrame.MAXIMIZED_BOTH);
 
                 //Tentative de lire dans le ficher de sauvegarde, sinon cree une liste 
                 //d'utilisateurs vierge.
@@ -62,7 +62,7 @@ public class Main extends javax.swing.JFrame {
 
                 mainFrame.setVisible(true);
             }
-        };
+        });
     }
 
     /**
