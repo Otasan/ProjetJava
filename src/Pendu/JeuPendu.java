@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author KREATURE
  */
-public class JeuPendu extends Observable {
+public class JeuPendu extends Observable implements ProjetJava.Jeu{
 
     private ArrayList<Character> mot;
     private ArrayList<Character> value;
@@ -94,7 +94,7 @@ public class JeuPendu extends Observable {
     }
 
     public boolean perdu() {
-        if (lettresMauvaises.size() + difficulte > 10) {
+        if (lettresMauvaises.size() + difficulte > 9) {
             return true;
         }
         return false;
@@ -176,13 +176,13 @@ public class JeuPendu extends Observable {
     }
 
     public void status() {
+        notifyObservers();
         if (perdu()) {
             if (u instanceof Membre) {
                 Membre m = (Membre) u;
                 m.incrementPerdu("Pendu");
             }
             JOptionPane.showMessageDialog(null, "Vous avez perdu ... Le mot à deviner était " + this.getMot());
-            notifyObservers("");
             quitter();
         } else if (gagne()) {
             if (u instanceof Membre) {
@@ -190,10 +190,9 @@ public class JeuPendu extends Observable {
                 m.incrementGagne("Pendu");
             }
             JOptionPane.showMessageDialog(null, "Vous avez Gagné !!!");
-            notifyObservers("");
             quitter();
         } else {
-            notifyObservers();
+            
         }
     }
 
@@ -233,5 +232,6 @@ public class JeuPendu extends Observable {
         return mot;
     }
     
+    @Override
     public void quitter(){}
 }

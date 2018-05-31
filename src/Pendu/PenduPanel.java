@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Pendu;
 
 import java.awt.event.KeyEvent;
@@ -43,6 +42,8 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
             public void keyTyped(KeyEvent e) {
             }
         });
+        this.requestFocusInWindow();
+        System.out.println(this.isFocusOwner());
     }
 
     /**
@@ -59,6 +60,7 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
         lettrePanel = new javax.swing.JPanel();
         imageLabel = new javax.swing.JLabel();
 
+        setFocusCycleRoot(true);
         setFocusable(true);
         setMinimumSize(new java.awt.Dimension(640, 480));
         setPreferredSize(new java.awt.Dimension(640, 480));
@@ -78,7 +80,7 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(motLabel, gridBagConstraints);
 
-        lettrePanel.setBackground(new java.awt.Color(31, 31, 51));
+        lettrePanel.setBackground(new java.awt.Color(140, 159, 161));
         lettrePanel.setPreferredSize(new java.awt.Dimension(100, 100));
         lettrePanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -97,15 +99,20 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if (arg == null) {
-            //imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/pendu" + jeu.nbErreurs() + ".jpg")));
-            this.motLabel.setText(jeu.getValue());
-            if (jeu.derniereLettreUtil() != null) {
-                this.lettrePanel.add(new JLabel(jeu.derniereLettreUtil()));
-            }
-            this.repaint();
+        //imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/pendu" + jeu.nbErreurs() + ".jpg")));
+        this.motLabel.setText(jeu.getValue());
+        if (jeu.derniereLettreUtil() != null) {
+            System.out.println(jeu.derniereLettreUtil());
+            JLabel lettre = new JLabel(jeu.derniereLettreUtil());
+            lettre.setFont(new java.awt.Font("Ubuntu", 0, 24));
+            lettre.setForeground(new java.awt.Color(51, 0, 102));
+            
+            this.lettrePanel.add(lettre);
+            
         }
+
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imageLabel;
     private javax.swing.JPanel lettrePanel;

@@ -5,15 +5,12 @@
  */
 package ProjetJava;
 
-import java.util.Observable;
-import java.util.Observer;
-
 /**
  * Panel contenant le jeu qui est entre en parametre.
  *
  * @author deux
  */
-public class JeuPanel extends javax.swing.JPanel implements Observer {
+public class JeuPanel extends javax.swing.JPanel{
 
     private Utilisateur u;
     private String jeu;
@@ -79,18 +76,4 @@ public class JeuPanel extends javax.swing.JPanel implements Observer {
     private javax.swing.JButton quitButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void update(Observable o, Object arg) {
-        switch (jeu) {
-            case "Pendu":
-                if (arg instanceof String) {
-                    System.out.println("Plop");
-                }
-                break;
-            case "Bataille Navale":
-
-                break;
-        }
-    }
 }

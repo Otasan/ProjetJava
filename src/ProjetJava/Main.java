@@ -61,6 +61,7 @@ public class Main {
                 interfaceConnexion();
 
                 mainFrame.setVisible(true);
+                mainFrame.requestFocus();
             }
         });
     }
@@ -166,7 +167,7 @@ public class Main {
 
         choix.getRetourButton().addActionListener((java.awt.event.ActionEvent evt) -> {
             interfaceConnexion();
-            if (u.getClass().getSimpleName().equals("Membre")) {
+            if (u instanceof Membre) {
                 Membre m = (Membre) u;
                 if (m.estAdmin()) {
                     interfaceAdmin(m);
@@ -174,7 +175,7 @@ public class Main {
             }
         });
         javax.swing.JButton chPwd = choix.getChgPwdButton();
-        if (u.getClass().getSimpleName().equals("Membre")) {
+        if (u instanceof Membre) {
             Membre m = (Membre) u;
             chPwd.addActionListener((java.awt.event.ActionEvent evt) -> {
                 interfaceChMdp(m.estAdmin(), m);
@@ -235,6 +236,13 @@ public class Main {
                     gridBagConstraints.gridy = 1;
                     gridBagConstraints.gridwidth = 2;
                     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                    GUI.getQuitButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+                        if (u instanceof Membre){
+                            Membre m = (Membre) u;
+                            m.incrementPerdu(jeu);
+                        }
+                        interfaceInfoJeu(jeu,u);
+                    });
                     GUI.add(panelJeu, gridBagConstraints);
                 } catch (FileNotFoundException ex) {
                     JOptionPane.showMessageDialog(null, "Dictionnaire abscent.");
