@@ -19,7 +19,7 @@ import java.util.Observable;
  *
  * @author Utilisateur
  */
-public class BatailleNavale extends Observable{
+public class BatailleNavale extends Observable implements ProjetJava.Jeu{
     private GrilleBN gJoueur;
     private GrilleBN gIa;
     private PanelGrilleBNJ pJoueur;
@@ -176,5 +176,13 @@ public class BatailleNavale extends Observable{
      */
     public static String description(){
         return "Placez vos bateaux stratégiquement et essayez de couler les navires ennemis\nPour jouer:\n\t-Dans une première phase, placez vos cinq bateaux sur votre grille\n\t-Puis cliquez sur la grille de l'adversaire pour tirer sur la case séléctionnée.\nVous gagnez si il vous reste au moins un bateau et que vous avez coulé tout les bateaux ennemis.\nBonne chance, commandant!";
+    }
+
+    /**
+     * Override cette methode pour fermer la BatailleNavale
+     */
+    @Override
+    public void quitter() {
+        System.out.println("Override cette methode");
     }
 }
