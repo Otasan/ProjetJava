@@ -5,6 +5,8 @@
  */
 package ProjetJava;
 
+import BatailleNavale.BatailleNavale;
+import BatailleNavale.JframeTest;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -237,11 +239,11 @@ public class Main {
                     gridBagConstraints.gridwidth = 2;
                     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
                     GUI.getQuitButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-                        if (u instanceof Membre){
+                        if (u instanceof Membre) {
                             Membre m = (Membre) u;
                             m.incrementPerdu(jeu);
                         }
-                        interfaceInfoJeu(jeu,u);
+                        interfaceInfoJeu(jeu, u);
                     });
                     GUI.add(panelJeu, gridBagConstraints);
                 } catch (FileNotFoundException ex) {
@@ -250,6 +252,36 @@ public class Main {
                 }
                 break;
             case "Bataille Navale":
+                Thread t = new Thread() {
+                    @Override
+                    public void run() {
+                        BatailleNavale b = new BatailleNavale(u, diff) {
+                            @Override
+                            public void quitter() {
+                                super.quitter();
+                                interfaceInfoJeu(jeu, m);
+                            }
+                        };
+                        java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
+                        gridBagConstraints.gridx = 0;
+                        gridBagConstraints.gridy = 1;
+                        gridBagConstraints.gridwidth = 2;
+                        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                        GUI.getQuitButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+                            if (u instanceof Membre) {
+                                Membre m = (Membre) u;
+                                m.incrementPerdu(jeu);
+                            }
+                            b.quitter();
+                            interfaceInfoJeu(jeu, u);
+                        });
+                        GUI.add(b.getPanel(),gridBagConstraints);
+                        mainFrame.getContentPane().add(GUI);
+                        mainFrame.pack();
+                        b.jeu();
+                    }
+                };
+                t.start();
                 break;
         }
 

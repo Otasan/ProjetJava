@@ -5,11 +5,11 @@
  */
 package BatailleNavale;
 
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.TreeSet;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -34,10 +34,10 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
                 add(new JLabel(""));
             }
             else if(i<11){
-                add(new JLabel(Character.toString((char) (i+64))));
+                add(new JLabel(Character.toString((char) (i+64)),SwingConstants.CENTER));
             }
             else if(i%11==0){
-                add(new JLabel(Integer.toString(i/11)));
+                add(new JLabel(Integer.toString(i/11),SwingConstants.CENTER));
             }
             else{
                 grilleB.add(new PanelCaseBNIA((CaseBN)it.next()));
