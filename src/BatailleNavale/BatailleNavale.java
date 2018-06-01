@@ -48,7 +48,7 @@ public class BatailleNavale implements ProjetJava.Jeu{
                 ia = new MediumBNIA(gIa, gJoueur);
                 break;
             case 2:
-                ia = new MediumBNIA(gIa, gJoueur);//TODO: Modifier par la HardBNIA quand elle sera finie
+                ia = new HardBNIA(gIa, gJoueur);//TODO: Modifier par la HardBNIA quand elle sera finie
                 break;
         }
         setTour(EtatsBN.rien);
