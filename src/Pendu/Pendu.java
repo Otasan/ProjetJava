@@ -46,13 +46,5 @@ public class Pendu {
             }
         };
         frame.addWindowListener(exitListener);
-        //Dictionnaire d = new Dictionnaire();
-        //System.out.println(d.motAleatoire());
-        //System.out.print(d.toString());
-        //MotPendu m = new MotPendu(d.motAleatoire());
-        //System.out.println(m);
-        //m.DemarerLeJeu();
-        //JeuPendu p =new JeuPendu(d.motAleatoire());
-        //p.DemarerLeJeu();
     }
 }

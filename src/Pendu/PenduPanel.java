@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
@@ -21,7 +22,7 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
     private JeuPendu jeu;
 
     /**
-     *
+     *Initialise le jeuPanel
      * @throws FileNotFoundException
      */
     public PenduPanel(JeuPendu jeu) throws FileNotFoundException {
@@ -89,23 +90,20 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(lettrePanel, gridBagConstraints);
 
+        imageLabel.setBackground(new java.awt.Color(255, 255, 255));
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        add(imageLabel, gridBagConstraints);
+        add(imageLabel, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
     public void update(Observable o, Object arg) {
-        //imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/pendu" + jeu.nbErreurs() + ".jpg")));
+        //imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/ProjetJava/src/Pendu" + jeu.nbErreurs()+jeu.getDiff() + ".jpg")));
         this.motLabel.setText(jeu.getValue());
-        if (jeu.derniereLettreUtil() != null) {
-            System.out.println(jeu.derniereLettreUtil());
-            JLabel lettre = new JLabel(jeu.derniereLettreUtil());
+        if (jeu.derniereLettreMauvaises() != null) {
+            System.out.println(jeu.derniereLettreMauvaises());
+            JLabel lettre = new JLabel(jeu.derniereLettreMauvaises());
             lettre.setFont(new java.awt.Font("Ubuntu", 0, 24));
-            lettre.setForeground(new java.awt.Color(51, 0, 102));
+            lettre.setForeground(new java.awt.Color(169, 234, 254));
             
             this.lettrePanel.add(lettre);
             

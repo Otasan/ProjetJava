@@ -21,7 +21,7 @@ public class Membre extends Utilisateur implements Serializable {
     private boolean admin;
 
     /**
-     * Creation d'un Membre avec un score nul.
+     * Creation d'un Membre avec un score null.
      *
      * @param pseudo Pseudo permettant au Membre de se connecter.
      * @param mdp Mot de passe permettant au Membre de se connecter.

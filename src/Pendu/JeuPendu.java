@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author KREATURE
  */
-public class JeuPendu extends Observable implements ProjetJava.Jeu{
+public class JeuPendu extends Observable implements ProjetJava.Jeu {
 
     private ArrayList<Character> mot;
     private ArrayList<Character> value;
@@ -26,10 +26,19 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu{
     private int difficulte;
     private Utilisateur u;
 
+    /**
+     * Recuperation des caracteres du mot choisi aleatoirement dans le
+     * dictionnaire dans l'Arraylist mot Transforme les caracteres du mot en
+     * symbole dans l'Arraylist value
+     *
+     * @param u utilisateur
+     * @param diff niveau de difficulté
+     * @throws FileNotFoundException
+     */
     public JeuPendu(Utilisateur u, int diff) throws FileNotFoundException {
         super();
         Dictionnaire d = new Dictionnaire();
-        String mot = d.motAleatoire();
+        String motAlea = d.motAleatoire();
         this.u = u;
         this.mot = new ArrayList<>();
         this.value = new ArrayList<>();
@@ -37,8 +46,8 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu{
         this.lettresUtilisees = new ArrayList<>();
         difficulte = diff;
 
-        char[] tableau = mot.toCharArray();
-        for (int i = 0; i < mot.length(); i++) {
+        char[] tableau = motAlea.toCharArray();
+        for (int i = 0; i < motAlea.length(); i++) {
             this.mot.add(tableau[i]);
         }
         int i = 0;
@@ -47,35 +56,21 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu{
             i += 1;
         }
     }
+    public int getDiff(){
+        return difficulte;
+    }
 
     @Override
     public String toString() {
         return this.mot + " " + this.value;
     }
 
-    /*
-    public boolean estLettreValide(char[] lettre) {
-        if (lettre.length >= 2) {
-            System.out.println("Veuillez ne saisir qu'une lettre à la fois.");
-            return false;
-        }
-
-        for (char s : lettresUtilisees) {
-            if (lettre[0] == s) {
-                System.out.println("La lettre a déjà été utilisées.");
-                JOptionPane.showMessageDialog(null, "La lettre a déjà été utilisées.");
-                return false;
-            }
-        }
-
-        if (lettre[0] >= 'A' && lettre[0] <= 'Z') {
-            return true;
-        } else {
-            System.out.println("Le caractere saisi n'est pas valide.");
-            JOptionPane.showMessageDialog(null, "Le caractere saisi n'est pas valide.");
-        }
-        return false;
-    }
+    /**
+     * Teste si le caractere choisi par l'utilisateur appartient a [A-Z] et n'a
+     * jamais ete utilise
+     *
+     * @param lettre caractere choisi au clavier par l'utilisateur
+     * @return true si le caractere est conforme
      */
     public boolean estLettreValide(char lettre) {
         for (char s : lettresUtilisees) {
@@ -93,7 +88,14 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu{
         return false;
     }
 
+    /**
+     * Verifie si l'utilisateur a perdu (9 chances en facile, 8 en moyenne, 7 en
+     * difficile)
+     *
+     * @return true si l'utilisateur a perdu
+     */
     public boolean perdu() {
+        //La difficlte est un entier de 0 a 2 (difficulte facile 0 difficulte moyenne 1, difficute difficile 2)
         if (lettresMauvaises.size() + difficulte > 9) {
             return true;
         }
@@ -107,54 +109,12 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu{
         return false;
     }
 
-    /*    public void DemarerLeJeu() {
-        boolean motTrouve = false;
-
-        while (!motTrouve) {
-            boolean lettreFausse = true;
-            Scanner sc = new Scanner(System.in);
-            System.out.print("\nVeuillez saisir une lettre : ");
-            String str = sc.nextLine();
-            str = str.toUpperCase();
-
-            //Methode(char c){
-            char[] lettreAComparer = str.toCharArray();
-
-            int j = 0;
-            if (estLettreValide(lettreAComparer)) {
-                for (char c : mot) {
-
-                    if (c == lettreAComparer[0]) {
-                        lettreFausse = false;
-                        System.out.println("good");
-                        value.set(j, lettreAComparer[0]);
-                        System.out.println(value);
-                        j += 1;
-                        if (mot.toString().equals(value.toString())) {
-                            motTrouve = true;
-                            System.out.println("Vous avez gagné !");
-                        }
-                    } else {
-                        j += 1;
-
-                    }
-                    this.toString();
-                }
-
-                for (char c : lettreAComparer) {
-                    lettresUtilisees.add(c);
-                }
-                if (lettreFausse == true) {
-                    lettresMauvaises.add(lettreAComparer[0]);
-                }
-                // fin methode (char c)
-                System.out.println("les lettres qui ne sont pas dans le mot à deviner : " + lettresMauvaises.toString());
-                if (perdu()) {
-                    break;
-                }
-            }
-        }
-    }
+    /**
+     * Verifie si la caractere appartient au mot a deviner et l'ajout a
+     * l'Arraylist lettresUtilisees Si le caractere n'est pas dans le mot, il
+     * est ajouter a l'Arraylist lettresMauvaises
+     *
+     * @param c caractere saisi au clavier par l'utilisateur
      */
     public void etapeJeu(char c) {
         if (estLettreValide(c)) {
@@ -175,6 +135,9 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu{
         }
     }
 
+    /**
+     * Verifie l'etat de la partie (en cours, perdue, gagnee)
+     */
     public void status() {
         notifyObservers();
         if (perdu()) {
@@ -191,8 +154,6 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu{
             }
             JOptionPane.showMessageDialog(null, "Vous avez Gagné !!!");
             quitter();
-        } else {
-            
         }
     }
 
@@ -200,20 +161,20 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu{
         if (this.lettresMauvaises.isEmpty()) {
             return 0;
         } else {
-            return lettresMauvaises.size();
+            return lettresMauvaises.size(); //le nombre d'erreurs est egale au nombre de lettre saisi qui n'appartiennent pas au mot a deviner
         }
     }
 
-    public String derniereLettreUtil() {
-        if (lettresUtilisees.isEmpty()) {
+    public String derniereLettreMauvaises() {
+        if (lettresMauvaises.isEmpty()) {
             return null;
         } else {
             String lettre = "";
-            if (!(this.lettresUtilisees.size() == 0)) {
-                lettre += lettresUtilisees.get(lettresUtilisees.size() - 1);
+            if (!(lettresMauvaises.size() == 0)) {
+                lettre += lettresMauvaises.get(lettresMauvaises.size() - 1);
             }
             return lettre;
-        }
+        } 
     }
 
     public String getValue() {
@@ -223,15 +184,16 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu{
         }
         return mot;
     }
-    
-    public String getMot(){
-        String mot ="";
-        for (char c : this.mot){
-            mot+=c;
+
+    public String getMot() {
+        String mot = "";
+        for (char c : this.mot) {
+            mot += c;
         }
         return mot;
     }
-    
+
     @Override
-    public void quitter(){}
+    public void quitter() {
+    }
 }
