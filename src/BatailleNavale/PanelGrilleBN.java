@@ -6,12 +6,8 @@
 package BatailleNavale;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.TreeSet;
 
 /**
  *
@@ -21,9 +17,10 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
     protected ArrayList<PanelCaseBN> grilleB;
     protected GrilleBN grille;
     protected volatile EtatsBN etat;
+    
     /**
-     * crée un PanelGrille BN carrée de longueur 160 (redimensionable avec la methode redimentionner)
-     * @param g
+     * crée un PanelGrille BN carrée de longueur 180 (redimensionable avec la methode redimentionner)
+     * @param g grille a être affiché
      */
     public PanelGrilleBN(GrilleBN g){
         initComponents();
@@ -38,9 +35,8 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
     }
     
     /**
-     * autorise ou non le joueur à cliquer sur la grille
-     * TODO: remplacer par une variable etat qui permet de placer des bateaux
-     * @param t 
+     * modifie l'état de la bataille navale
+     * @param t nouvel etat
      */
     public void setTour(EtatsBN t){
         etat=t;
@@ -48,7 +44,7 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
     
     /**
      * Donne l'état actuel de la grille
-     * @return 
+     * @return etat
      */
     public EtatsBN getTour(){
         return etat;
@@ -56,12 +52,11 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
     
     /**
      * génère la grille qui va être affichée. utile uniquement dans le constructeur
-     * @throws IOException 
      */
-    abstract protected void createGrille() throws IOException;
+    abstract protected void createGrille();
     
     /**
-     * tes à jour toutes toutes les images de la grille (lent, à utiliser rarement)
+     * mets à jour toutes toutes les images de la grille (lent, à utiliser rarement)
      * préferer grilleB.get(i).updateImage(grille.getBateaux());
      */
     public void updateGrille(){
@@ -86,9 +81,9 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
     
     /**
      * permet de placer un bateau logique puis mets à jou la grille.
-     * @param typeBateau
-     * @param cI
-     * @param sens
+     * @param typeBateau string correspondant au nom de la classe du bateau voulu
+     * @param cI case la plus en haut ou à gauche du bateau
+     * @param sens horizontal ou vertical
      * @throws BNException 
      */
     public void placerBateau(String typeBateau, CaseBN cI, Direction sens) throws BNException{

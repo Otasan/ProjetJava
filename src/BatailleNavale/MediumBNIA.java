@@ -9,7 +9,7 @@ import java.util.Random;
 
 /**
  *
- * @author Utilisateur
+ * @author aabdo
  */
 public class MediumBNIA extends BNIA {
     private boolean bateauTrouve;
@@ -114,11 +114,10 @@ public class MediumBNIA extends BNIA {
             i++;
             c++;
         }
-        //System.out.println("Effectué en "+c+" tours");
     }
 
     /**
-     * tire sur des cases au hasard jusqu'à trouver un bateau, puis le suit jusquà ce qu'il soi coulé
+     * tire sur une case au hasard jusqu'à trouver un bateau puis détermine le sens du bateau
      * @return la case sur laquelle l'IA a tiré
      */
     @Override

@@ -8,7 +8,7 @@ package BatailleNavale;
 
 /**
  *
- * @author Utilisateur
+ * @author aabdo
  */
 public enum EtatsBN {
     placerBateau,tourj,touria,rien

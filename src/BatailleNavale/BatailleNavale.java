@@ -16,7 +16,7 @@ import ProjetJava.Membre;
 
 /**
  *
- * @author Utilisateur
+ * @author aabdo
  */
 public class BatailleNavale implements ProjetJava.Jeu{
     private GrilleBN gJoueur;
@@ -86,7 +86,7 @@ public class BatailleNavale implements ProjetJava.Jeu{
     
     /**
      * defini l'état de la bataille navale
-     * @param val 
+     * @param val le nouvel etat
      */
     public void setTour(EtatsBN val){
         etat = val;
@@ -145,7 +145,6 @@ public class BatailleNavale implements ProjetJava.Jeu{
                 }
             }
         }
-        //System.out.println("fin");
         if(gJoueur.nbBateauRestant()==0){
             if(util instanceof Membre){
                 ((Membre)util).incrementPerdu("Bataille Navale");
@@ -170,14 +169,15 @@ public class BatailleNavale implements ProjetJava.Jeu{
     }
     
     /**
-     * renvoie une description du jeu
-     * @return 
+     * 
+     * @return une description du jeu
      */
     public static String description(){
         return "Placez vos bateaux stratégiquement et essayez de couler les navires ennemis\nPour jouer:\n\t-Dans une première phase, placez vos cinq bateaux sur votre grille\n\t-Puis cliquez sur la grille de l'adversaire pour tirer sur la case séléctionnée.\nVous gagnez si il vous reste au moins un bateau et que vous avez coulé tout les bateaux ennemis.\nBonne chance, commandant!";
     }
 
     /**
+     * Méthode appelée en fin de partie
      * Override cette methode pour fermer la BatailleNavale
      */
     @Override

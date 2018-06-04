@@ -27,7 +27,7 @@ public class CaseBN implements Comparable {
     
     /**
      * Change une case "vierge" en "toucheVierge" et une case "bateau" en "touche" et return le nouveau type de la case
- lève une BNException si une case est de type "touche" ou "toucheVierge"
+     * lève une BNException si une case est de type "touche" ou "toucheVierge"
      * @return le nouveau type de la case
      * @throws BNException 
      */

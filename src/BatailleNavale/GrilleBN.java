@@ -27,7 +27,7 @@ public class GrilleBN {
     
     /**
      * place un bateau du type typeBateau dont la case la plus en haut ou à gauche est cI et dont la direction est s
- lance des BNException si une des cases occupées par le nouveau bateau est déjà occupée ou en dehors de la grille
+     * lève une BNException si une des cases occupées par le nouveau bateau est déjà occupée ou en dehors de la grille
      * @param typeBateau string du nom de classe du bateau (ne respecte pas la case)
      * @param cI case la plus en haut ou à gauche du bateau
      * @param d direction du bateau
@@ -62,7 +62,6 @@ public class GrilleBN {
                 default:
                     throw new BNException("Bateau type : "+typeBateau+" n'existe pas");
             }
-            //System.out.println(b+"\n"+lesCases);
             if(lesBateaux.contains(b)){
                 lesCases.ceiling(cI).setCase(TypeCase.vierge);
                 throw new BNException("Bateau déjà existant sur cete grille : "+typeBateau+" : "+lesBateaux.toString());
@@ -120,8 +119,8 @@ public class GrilleBN {
     /**
      * "touche" la case [x;y] et vérifie si un bateau à été coulé.
      * Lance une BNException si la case est déjà touchée
-     * @param x
-     * @param y
+     * @param x coordonnée x de la case visée
+     * @param y coordonnée y de la case visée
      * @throws BNException 
      */
     public void tire(int x, int y) throws BNException{
@@ -138,7 +137,7 @@ public class GrilleBN {
     /**
      * "touche" une case à la même position que c et vérifie si un bateau à été coulé.
      * Lance une BNException si la case est déjà touchée
-     * @param c
+     * @param c case à la même position que celle visée
      * @throws BNException 
      */
     public void tire(CaseBN c) throws BNException{
@@ -176,7 +175,6 @@ public class GrilleBN {
                     break;
             }
             if(nbTouche == b.getTaille()){
-                //System.out.println(b);
                 bat=b;
             }
         }
@@ -211,8 +209,8 @@ public class GrilleBN {
     
     /**
      * 
-     * @param x
-     * @param y
+     * @param x coordonnée x de la case voulue
+     * @param y coordonnée y de la case voulue
      * @return la case à la position [x;y]
      */
     public CaseBN getCase(int x, int y){
@@ -221,7 +219,7 @@ public class GrilleBN {
     
     /**
      * 
-     * @param c
+     * @param c case à la même position que la case voulue
      * @return la case à la même position que c
      */
     public CaseBN getCase(CaseBN c){

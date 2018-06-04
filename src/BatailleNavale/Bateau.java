@@ -49,15 +49,6 @@ public abstract class Bateau {
         return this.getClass().getSimpleName()+" case initiale: "+caseInitiale.toString()+" taille :"+taille+" sens :"+sens;
     }
     
-    /*public boolean estCoule(){
-        return coule;
-    }
-    
-    public void setCoule(boolean val){
-        coule=val;
-    }*/
-    
-    
     /**
      * renvoie la case la plus en haut ou à gauche du bateau
      * @return caseInitiale
@@ -76,15 +67,19 @@ public abstract class Bateau {
     
     /**
      * Verifie si 2 bateaux sont identiques.
-     * puisqu'il n'y aura jamais 2 bateaux du même type, cette fonction comare juste les noms de classe des bateaux.
+     * puisqu'il n'y aura jamais 2 bateaux du même type, cette fonction compare juste les noms de classe des bateaux.
      * @param b
-     * @return
+     * @return true si les objets sont identiques, false sinon
      */
     @Override
     public boolean equals(Object b){
         return this.getClass().getSimpleName().equals(((Bateau)b).getClass().getSimpleName());
     }
     
+    /**
+     * Génère un hash d'un bateau à partir du nom de la classe
+     * @return hashCode
+     */
     @Override
     public int hashCode(){
         return this.getClass().getSimpleName().hashCode();

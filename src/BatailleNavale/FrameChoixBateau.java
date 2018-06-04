@@ -9,15 +9,13 @@ import java.util.HashSet;
 
 /**
  *
- * @author Utilisateur
+ * @author aabdo
  */
 public class FrameChoixBateau extends javax.swing.JDialog {
     private Direction sens;
     private String bateauChoisi;
     private boolean aValide;
-    /**
-     * Creates new form FrameChoixBateau
-     */
+    
     public FrameChoixBateau() {
         initComponents();
         aValide=false;
@@ -177,46 +175,84 @@ public class FrameChoixBateau extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Evenemet activé si "Croiseur" est selectionné
+     * modifie bateauChoisi en "Croiseur"
+     * @param evt 
+     */
     private void selCroiseurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selCroiseurActionPerformed
-        // TODO add your handling code here:
         bateauChoisi="croiseur";
     }//GEN-LAST:event_selCroiseurActionPerformed
 
+    /**
+     * Evenemet activé si "Porte avion" est selectionné
+     * modifie bateauChoisi en "Porte avion"
+     * @param evt 
+     */
     private void selPorteAvionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selPorteAvionActionPerformed
-        // TODO add your handling code here:
         bateauChoisi="porteavion";
     }//GEN-LAST:event_selPorteAvionActionPerformed
 
+    /**
+     * Evenemet activé si "Contre torpilleur" est selectionné
+     * modifie bateauChoisi en "Contre torpilleur"
+     * @param evt 
+     */
     private void selContreTorpilleurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selContreTorpilleurActionPerformed
-        // TODO add your handling code here:
         bateauChoisi="contretorpilleur";
     }//GEN-LAST:event_selContreTorpilleurActionPerformed
 
+    /**
+     * Evenemet activé si "Sous marin" est selectionné
+     * modifie bateauChoisi en "Sous marin"
+     * @param evt 
+     */
     private void selSousMarinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selSousMarinActionPerformed
-        // TODO add your handling code here:
         bateauChoisi="sousmarin";
     }//GEN-LAST:event_selSousMarinActionPerformed
 
+    /**
+     * Evenemet activé si "Torpilleur" est selectionné
+     * modifie bateauChoisi en "Torpilleur"
+     * @param evt 
+     */
     private void selTorpilleurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selTorpilleurActionPerformed
-        // TODO add your handling code here:
         bateauChoisi="torpilleur";
     }//GEN-LAST:event_selTorpilleurActionPerformed
 
+    /**
+     * Evenemet activé si "Vertical" est selectionné
+     * modifie sens en "vertical"
+     * @param evt 
+     */
     private void selVerticalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selVerticalActionPerformed
-        // TODO add your handling code here:
         sens=Direction.vertical;
     }//GEN-LAST:event_selVerticalActionPerformed
 
+    /**
+     * Evenemet activé si "Croiseur" est selectionné
+     * modifie sens en "horizontal"
+     * @param evt 
+     */
     private void selHorizontalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selHorizontalActionPerformed
-        // TODO add your handling code here:
         sens=Direction.horizontal;
     }//GEN-LAST:event_selHorizontalActionPerformed
 
+    /**
+     * Evenemet activé si l'utilisateur clique sur "Valider"
+     * cache la JFrame et change aValide en "true"
+     * @param evt 
+     */
     private void validerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerActionPerformed
         aValide=true;
         this.setVisible(false);
     }//GEN-LAST:event_validerActionPerformed
 
+    /**
+     * methode appelée quand l'utilisateur doit ajouter un nouveau bateau à la grille
+     * ouvre la JFrame, verifie quels bateaux sont déjà sur la grilleBN et supprime ces choix.
+     * @param lesBateaux bateaux déjà sur la grilleBN
+     */
     public void nouveauBateau(HashSet<Bateau> lesBateaux){
         aValide=false;
         for(Bateau b:lesBateaux){
@@ -246,14 +282,26 @@ public class FrameChoixBateau extends javax.swing.JDialog {
         this.setVisible(true);
     }
     
+    /**
+     * 
+     * @return la valeur de aValide (true si l'utilisateur a cliqué sur le bouton)
+     */
     public boolean getValide(){
         return aValide;
     }
     
+    /**
+     * 
+     * @return le bateau selectionné (sous forme de string)
+     */
     public String getBateau(){
         return bateauChoisi;
     }
     
+    /**
+     * 
+     * @return le sens selectionné
+     */
     public Direction getSens(){
         return sens;
     }

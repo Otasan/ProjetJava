@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 
 /**
  *
- * @author Utilisateur
+ * @author aabdo
  */
 public class PanelGrilleBNIA extends PanelGrilleBN{
     
@@ -23,6 +23,10 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
         etat=EtatsBN.placerBateau;
     }
     
+    /**
+     * génère la grille à afficher. utile uniquement dans le constructeur
+     * affiche les bateaux comme des cases vierges.
+     */
     @Override
     protected void createGrille(){
         TreeSet g = grille.getGrille();
@@ -51,9 +55,9 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
     }
     
     /**
-     * méthode appelée lorsque l'utilisateaur clique sur un bateau.
+     * méthode appelée lorsque l'utilisateaur clique sur une case
      * Si l'utilisateur doit tirer sur les bateaux ennemis, alors il pourra.
-     * @param caseP 
+     * @param caseP la case sur laquelle l'utilisateur a cliqué
      */
     private synchronized void caseClick(PanelCaseBN caseP) {
         //System.out.println(caseP);

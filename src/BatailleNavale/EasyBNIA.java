@@ -8,7 +8,7 @@ package BatailleNavale;
 import java.util.Random;
 /**
  *
- * @author Utilisateur
+ * @author aabdo
  */
 public class EasyBNIA extends BNIA{
 
@@ -103,7 +103,6 @@ public class EasyBNIA extends BNIA{
             i++;
             c++;
         }
-        //System.out.println("Effectué en "+c+" tours");
     }
 
     /**

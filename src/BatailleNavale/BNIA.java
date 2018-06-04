@@ -7,7 +7,7 @@ package BatailleNavale;
 
 /**
  *
- * @author Utilisateur
+ * @author aabdo
  */
 public abstract class BNIA {
     protected GrilleBN joueur;
@@ -35,6 +35,7 @@ public abstract class BNIA {
     
     /**
      * demande à l'IA de tirer sur une case
+     * @return la case sur laquelle l'IA a tirée
      */
     abstract public CaseBN tirer();
 }

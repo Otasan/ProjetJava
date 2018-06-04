@@ -2,7 +2,6 @@ package BatailleNavale;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.io.IOException;
 import java.util.HashSet;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
@@ -15,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Utilisateur
+ * @author aabdo
  */
 public class PanelCaseBNJ extends PanelCaseBN {
     private HashSet<Bateau> lesBateaux;
@@ -51,6 +50,7 @@ public class PanelCaseBNJ extends PanelCaseBN {
     
     /**
      * mets à jour l'image de la case
+     * affiche les bateaux
      */
     @Override
     public void updateImage(){
@@ -112,6 +112,10 @@ public class PanelCaseBNJ extends PanelCaseBN {
         this.repaint();
     }
     
+    /**
+     * 
+     * @return "(x,y),TypeCase Case Joueur"
+     */
     @Override
     public String toString(){
         return super.toString()+"Case Joueur";

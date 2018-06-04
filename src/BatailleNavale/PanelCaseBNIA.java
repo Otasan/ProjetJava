@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Utilisateur
+ * @author aabdo
  */
 public class PanelCaseBNIA extends PanelCaseBN{
 
@@ -27,7 +27,7 @@ public class PanelCaseBNIA extends PanelCaseBN{
                 image.setImage(ImageIO.read(getClass().getResourceAsStream("/BatailleNavaleIMG/"+caseBN.getCase().toString()+".png")));
             }
         }
-        catch(Exception e){
+        catch(IOException e){
             Graphics g = this.getGraphics();
             if(caseBN.getCase()==TypeCase.bateau){
                 JOptionPane.showMessageDialog(this, "L'image : '/BatailleNavaleIMG/vierge.png' est introuvable", "Erreur image", JOptionPane.INFORMATION_MESSAGE);
@@ -55,6 +55,7 @@ public class PanelCaseBNIA extends PanelCaseBN{
 
     /**
      * mets à jour l'image de la case
+     * affiche les bateaux comme des cases vierges
      */
     @Override
     public void updateImage(){
@@ -96,6 +97,10 @@ public class PanelCaseBNIA extends PanelCaseBN{
         this.repaint();
     }
     
+    /**
+     * 
+     * @return "(x,y),TypeCase Case IA"
+     */
     @Override
     public String toString(){
         return super.toString()+"Case IA";

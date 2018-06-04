@@ -10,7 +10,7 @@ import java.util.Random;
 
 /**
  *
- * @author Utilisateur
+ * @author aabdo
  */
 public class HardBNIA extends BNIA{
     private boolean bateauTrouve;
@@ -115,12 +115,11 @@ public class HardBNIA extends BNIA{
             i++;
             c++;
         }
-        //System.out.println("Effectué en "+c+" tours");
     }
 
     /**
-     * tire sur la case ou la probabilité de trouver un bateau est la plus élevée
-     * @return 
+     * tire sur une case sur deux jusqu'à trouver un bateau puis détermine le sens du bateau
+     * @return la case sur laquelle l'IA a tiré
      */
     @Override
     public CaseBN tirer() {

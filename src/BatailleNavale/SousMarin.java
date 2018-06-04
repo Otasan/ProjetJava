@@ -7,7 +7,7 @@ package BatailleNavale;
 
 /**
  *
- * @author Utilisateur
+ * @author aabdo
  */
 public class SousMarin extends Bateau{
     

@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 
 /**
  *
- * @author Utilisateur
+ * @author aabdo
  */
 public class PanelGrilleBNJ extends PanelGrilleBN {
     private FrameChoixBateau choix;
@@ -27,7 +27,8 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
     }
     
     /**
-     * Identique à la méthode de la classe parent mais génère une FrameChoixBateau si val=placerBateau et que cette frame n'a pas encore été créé.
+     * modifie l'état de la bataille navale
+     * génère une FrameChoixBateau si val=placerBateau et que cette frame n'a pas encore été créé.
      * @param val 
      */
     @Override
@@ -40,6 +41,7 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
     
     /**
      * génère la grille à afficher. utile uniquement dans le constructeur
+     * affiche tout ce qui est présent sur la grille.
      */
     @Override
     protected void createGrille(){
@@ -73,9 +75,9 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
     }
     
     /**
-     * méthode appelée lorsque l'utilisateaur clique sur un bateau.
+     * méthode appelée lorsque l'utilisateaur clique sur une case.
      * Si l'utilisateur doit placer des bateaux, alors il pourra.
-     * @param caseP 
+     * @param caseP la case sur laquelle l'utilisateur a cliqué
      */
     private synchronized void caseClick(PanelCaseBN caseP){
         //System.out.println(etat);

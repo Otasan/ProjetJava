@@ -1,0 +1,55 @@
+-- Package BatailleNavale
+
+-Enum TypeCase
+enumération de tout les états possible d'une case
+	vierge si elle n'a jamais été touchée et ne contient pas de bateau
+	bateau si elle n'a jamais été touchée et qu'elle contient un bateau
+	toucheVierge si elle a été touchée mais ne contient pas de bateau
+	touche si elle a étée touchée et contient un bateau
+
+-Enum Direction
+enumération représentant les directions possibles pour un bateau
+
+-Classe CaseBN
+Représente une case de la grille (plateau de jeu)
+une CaseBN a:
+	une position (représentée par x et y)
+	un type (TypeCase)
+
+-Classe Bateau
+Cette classe représente un bateau quelconque
+une bateau a:
+	une taille (int allant de 2 à 5)
+	une Direction (horizontal ou vertical)
+	une case initiale (la caseBN la plus en haut ou à gauche du bateau)
+
+-Classes ContreTorpilleur, Croiseur, PorteAvion, SousMarin, Torpilleur
+Ces classes représentent un bateau en partculier. Il s'agit de classes filles de Bateau.
+
+-Classe GrilleBN
+Cette classe représente la grille(plateau de jeu) de la bataille navale.
+Une grille a:
+	une liste de 100 casesBN (grille de 10*10 cases)
+	une liste des bateaux encore en jeu
+
+-Classe PanelCaseBN
+Affiche une CaseBN
+une CaseBN a:
+	une image
+	une CaseBN (la case a afficher)
+
+-Classe PanelCaseBNJ
+Affiche une case spécifiquement pour la grille du joueur.
+Cette Classe affiche tout les types de cases différemment.
+
+-Classe PanelCaseBNIA
+Affiche une case spécifiquement pour la grille de l'adversaire.
+Cette Classe affiche les bateaux et les cases "vierges" de la même façon.
+
+-Classe PanelGrilleBN
+Affiche une GrilleBN via les CaseBN.
+une GrilleBN a:
+	une liste de PanelCaseBN à afficher
+	la grille a être représentée
+	un etat qui varie selon le moment du jeu
+
