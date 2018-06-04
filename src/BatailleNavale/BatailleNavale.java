@@ -99,13 +99,11 @@ public class BatailleNavale implements ProjetJava.Jeu{
      * Lance le Jeu
      */
     public void jeu(){
-        System.out.println("jeu");
         pJoueur.updateGrille();
         pIa.updateGrille();
         setTour(EtatsBN.placerBateau);
         ia.placerBateaux();
         synchronized(pJoueur){
-            System.out.println("synchronisé");
             while(etat==EtatsBN.placerBateau){
                 try{
                     pJoueur.wait();
@@ -168,7 +166,6 @@ public class BatailleNavale implements ProjetJava.Jeu{
      * @return JPanel de la bataille navale
      */
     public JPanel getPanel(){
-        System.out.println("getPanel");
         return panel;
     }
     

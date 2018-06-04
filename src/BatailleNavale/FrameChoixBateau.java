@@ -19,7 +19,6 @@ public class FrameChoixBateau extends javax.swing.JDialog {
      * Creates new form FrameChoixBateau
      */
     public FrameChoixBateau() {
-        //super(parent, modal);
         initComponents();
         aValide=false;
         sens=Direction.vertical;

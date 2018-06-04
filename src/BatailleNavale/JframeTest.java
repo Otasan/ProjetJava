@@ -19,14 +19,14 @@ public class JframeTest extends javax.swing.JFrame {
      * Creates new form JframeTest
      * me permet de tester mes panels, ignore cette classe.
      */
-    public JframeTest(Membre u,int diff){
+    public JframeTest(){
         initComponents();
-        //mem=new Membre("Aah","B0otah",false);
+        mem=new Membre("Aah","B0otah",false);
         /*GrilleBN g = new GrilleBN();
         grille = new PanelGrilleBNIA(g);
         add(grille, BorderLayout.CENTER);
         grille.redimensionner(380);*/
-        BatailleNavale b = new BatailleNavale(u,diff);
+        BatailleNavale b = new BatailleNavale(mem,2);
         add(b.getPanel(), BorderLayout.CENTER);
         //System.out.println(BatailleNavale.description());
         
