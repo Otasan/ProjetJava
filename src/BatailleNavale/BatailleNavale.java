@@ -13,13 +13,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ProjetJava.Utilisateur;
 import ProjetJava.Membre;
-import java.util.Observable;
 
 /**
  *
  * @author Utilisateur
  */
-public class BatailleNavale extends Observable implements ProjetJava.Jeu{
+public class BatailleNavale implements ProjetJava.Jeu{
     private GrilleBN gJoueur;
     private GrilleBN gIa;
     private PanelGrilleBNJ pJoueur;
@@ -49,7 +48,7 @@ public class BatailleNavale extends Observable implements ProjetJava.Jeu{
                 ia = new MediumBNIA(gIa, gJoueur);
                 break;
             case 2:
-                ia = new MediumBNIA(gIa, gJoueur);//TODO: Modifier par la HardBNIA quand elle sera finie
+                ia = new HardBNIA(gIa, gJoueur);//TODO: Modifier par la HardBNIA quand elle sera finie
                 break;
         }
         setTour(EtatsBN.rien);
@@ -100,11 +99,13 @@ public class BatailleNavale extends Observable implements ProjetJava.Jeu{
      * Lance le Jeu
      */
     public void jeu(){
+        System.out.println("jeu");
         pJoueur.updateGrille();
         pIa.updateGrille();
         setTour(EtatsBN.placerBateau);
         ia.placerBateaux();
         synchronized(pJoueur){
+            System.out.println("synchronisé");
             while(etat==EtatsBN.placerBateau){
                 try{
                     pJoueur.wait();
@@ -159,7 +160,7 @@ public class BatailleNavale extends Observable implements ProjetJava.Jeu{
             }
             JOptionPane.showMessageDialog(panel,util.getPseudo()+" a gagné!", "Gagné", JOptionPane.INFORMATION_MESSAGE);
         }
-        notifyObservers("Fin de la BatailleNavale");
+        quitter();
     }
     
     /**
@@ -167,6 +168,7 @@ public class BatailleNavale extends Observable implements ProjetJava.Jeu{
      * @return JPanel de la bataille navale
      */
     public JPanel getPanel(){
+        System.out.println("getPanel");
         return panel;
     }
     
@@ -183,6 +185,6 @@ public class BatailleNavale extends Observable implements ProjetJava.Jeu{
      */
     @Override
     public void quitter() {
-        System.out.println("Override cette methode");
+        pJoueur.quitter();
     }
 }

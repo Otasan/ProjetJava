@@ -5,115 +5,117 @@
  */
 package BatailleNavale;
 
-import java.util.Arrays;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.Random;
+
 
 /**
  *
  * @author Utilisateur
  */
-
-//Source de l'algorithme http://datagenetics.com/blog/december32011/index.html
 public class HardBNIA extends BNIA{
-    private TreeMap<CaseBN,Integer> proba;
+    private boolean bateauTrouve;
+    private Direction direct;
+    private int deplacement;
+    private CaseBN caseTrouvee;
+    private int nbBateauRestant;
 
     public HardBNIA(GrilleBN adv, GrilleBN j) {
         super(adv, j);
-        proba=new TreeMap();
-        proba = ProbaTorpilleur();
-    }
-
-    /**
-     * créé la carte de probabilité du placement d'un bateau sur une case
-     */
-    private TreeMap<CaseBN,Integer> ProbaTorpilleur(){
-        TreeMap<CaseBN,Integer> res = new TreeMap();
-        
-        return res;
+        bateauTrouve=false;
+        direct=null;
+        deplacement=0;
+        caseTrouvee=null;
+        nbBateauRestant=joueur.nbBateauRestant();
     }
     
     /**
-     * définie la probabilité de la case [X;Y], mets 0 par defaut si négatif
-     * @param x
-     * @param y
-     * @param val 
-     */
-    private void setProba(int x, int y, int val){
-        if(val<0){
-            proba.put(joueur.getCase(x, y), 0);
-        }
-        else{
-            proba.put(joueur.getCase(x, y), val);
-        }
-    }
-    
-    /**
-     * définie la probabilité de la case, mets 0 par defaut si négatif
-     * @param c
-     * @param val 
-     */
-    private void setProba(CaseBN c, int val){
-        if(val<0){
-            proba.put(joueur.getCase(c),0);
-        }
-        else{
-            proba.put(joueur.getCase(c), val);
-        }
-    }
-    
-    /**
-     * recursion pour calculer la probabilité d'avoir un torpilleur sur une case
-     * @param carre
-     * @return 
-     */
-    private TreeMap<CaseBN,Integer> recurTorpilleur(TreeMap<CaseBN,Integer> carre){
-        if(carre.size()==1){
-            if(carre.firstKey().getCase()==TypeCase.toucheVierge)
-                carre.put(carre.firstKey(), 0);
-            else
-                carre.put(carre.firstKey(), 4);
-        }
-        else{
-            TreeMap<CaseBN,Integer> hg = new TreeMap();
-            for(int y=carre.firstKey().getY();y<Math.sqrt((double) carre.size())-1;y++){
-                for(int x=carre.firstKey().getX();x<Math.sqrt((double) carre.size())-1;x++){
-                    hg.put(carre.ceilingKey(new CaseBN(x,y)), 0);
-                }
-            }
-            TreeMap<CaseBN,Integer> hd = new TreeMap();
-            for(int y=carre.firstKey().getY();y<Math.sqrt((double) carre.size())-1;y++){
-                for(int x=carre.firstKey().getX()+1;x<Math.sqrt((double) carre.size());x++){
-                    hg.put(carre.ceilingKey(new CaseBN(x,y)), 0);
-                }
-            }
-            TreeMap<CaseBN,Integer> bg = new TreeMap();
-            for(int y=carre.firstKey().getY()+1;y<Math.sqrt((double) carre.size());y++){
-                for(int x=carre.firstKey().getX();x<Math.sqrt((double) carre.size())-1;x++){
-                    hg.put(carre.ceilingKey(new CaseBN(x,y)), 0);
-                }
-            }
-            TreeMap<CaseBN,Integer> bd = new TreeMap();
-            for(int y=carre.firstKey().getY()+1;y<Math.sqrt((double) carre.size());y++){
-                for(int x=carre.firstKey().getX()+1;x<Math.sqrt((double) carre.size());x++){
-                    hg.put(carre.ceilingKey(new CaseBN(x,y)), 0);
-                }
-            }
-            hg=recurTorpilleur(hg);
-            hd=recurTorpilleur(hd);
-            bg=recurTorpilleur(bg);
-            bd=recurTorpilleur(bd);
-            
-        }
-        return carre;
-    }
-    
-    /**
-     * place les bateaux
+     * place les bateaux au hasard
      */
     @Override
     public void placerBateaux() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Random rand = new Random();
+        Direction dir=Direction.vertical;
+        int x=0,y=0;
+        int i=0, c=0;
+        String bateau="";
+        while(i<5){
+            switch(i){
+                case 0:
+                    bateau="porteavion";
+                    if(rand.nextBoolean()){
+                        dir=Direction.vertical;
+                        x=rand.nextInt(10);
+                        y=rand.nextInt(6);
+                    }
+                    else{
+                        dir=Direction.horizontal;
+                        y=rand.nextInt(10);
+                        x=rand.nextInt(6);
+                    }
+                    break;
+                case 1:
+                    bateau="croiseur";
+                    if(rand.nextBoolean()){
+                        dir=Direction.vertical;
+                        x=rand.nextInt(10);
+                        y=rand.nextInt(7);
+                    }
+                    else{
+                        dir=Direction.horizontal;
+                        y=rand.nextInt(10);
+                        x=rand.nextInt(7);
+                    }
+                    break;
+                case 2:
+                    bateau="sousmarin";
+                    if(rand.nextBoolean()){
+                        dir=Direction.vertical;
+                        x=rand.nextInt(10);
+                        y=rand.nextInt(8);
+                    }
+                    else{
+                        dir=Direction.horizontal;
+                        y=rand.nextInt(10);
+                        x=rand.nextInt(8);
+                    }
+                    break;
+                case 3:
+                    bateau="contretorpilleur";
+                    if(rand.nextBoolean()){
+                        dir=Direction.vertical;
+                        x=rand.nextInt(10);
+                        y=rand.nextInt(8);
+                    }
+                    else{
+                        dir=Direction.horizontal;
+                        y=rand.nextInt(10);
+                        x=rand.nextInt(8);
+                    }
+                    break;
+                case 4:
+                    bateau="torpilleur";
+                    if(rand.nextBoolean()){
+                        dir=Direction.vertical;
+                        x=rand.nextInt(10);
+                        y=rand.nextInt(9);
+                    }
+                    else{
+                        dir=Direction.horizontal;
+                        y=rand.nextInt(10);
+                        x=rand.nextInt(9);
+                    }
+                    break;
+            }
+            try{
+                ia.placerBateau(bateau, new CaseBN(x,y), dir);
+            }
+            catch(BNException e){
+                i--;
+            }
+            i++;
+            c++;
+        }
+        //System.out.println("Effectué en "+c+" tours");
     }
 
     /**
@@ -122,28 +124,194 @@ public class HardBNIA extends BNIA{
      */
     @Override
     public CaseBN tirer() {
-        double max=0;
-        int nb=joueur.nbBateauRestant();
-        CaseBN caseProbable=null;
-        for(CaseBN c:proba.keySet()){
-            if(proba.get(c)>max){
-                max=proba.get(c);
-                caseProbable=c;
+        CaseBN res = null;
+        nbBateauRestant=joueur.nbBateauRestant();
+        if(bateauTrouve){
+            switch(direct){
+                case nord:
+                    try{
+                        joueur.tire(caseTrouvee.getX(), caseTrouvee.getY()-1);
+                        res=joueur.getCase(caseTrouvee.getX()+deplacement, caseTrouvee.getY());
+                        if(joueur.getCase(caseTrouvee.getX(), caseTrouvee.getY()-1).getCase()==TypeCase.touche){
+                            direct=Direction.vertical;
+                            deplacement=-1;
+                        }
+                        else{
+                            direct=Direction.ouest;
+                        }
+                    }
+                    catch(BNException e){
+                        direct=Direction.ouest;
+                        res=tirer();
+                    }
+                    break;
+                case ouest:
+                    try{
+                        joueur.tire(caseTrouvee.getX()-1, caseTrouvee.getY());
+                        res=joueur.getCase(caseTrouvee.getX()-1, caseTrouvee.getY());
+                        if(joueur.getCase(caseTrouvee.getX()-1, caseTrouvee.getY()).getCase()==TypeCase.touche){
+                            direct=Direction.horizontal;
+                            deplacement=-1;
+                        }
+                        else{
+                            direct=Direction.sud;
+                        }
+                    }
+                    catch(BNException e){
+                        direct=Direction.sud;
+                        res=tirer();
+                    }
+                    break;
+                case sud:
+                    try{
+                        joueur.tire(caseTrouvee.getX(), caseTrouvee.getY()+1);
+                        res=joueur.getCase(caseTrouvee.getX(), caseTrouvee.getY()+1);
+                        if(joueur.getCase(caseTrouvee.getX(), caseTrouvee.getY()+1).getCase()==TypeCase.touche){
+                            direct=Direction.vertical;
+                            deplacement=1;
+                        }
+                        else{
+                            direct=Direction.est;
+                        }
+                    }
+                    catch(BNException e){
+                        direct=Direction.est;
+                        res=tirer();
+                    }
+                    break;
+                case est:
+                    try{
+                        joueur.tire(caseTrouvee.getX()+1, caseTrouvee.getY());
+                        res=joueur.getCase(caseTrouvee.getX()+1, caseTrouvee.getY());
+                        if(joueur.getCase(caseTrouvee.getX()+1, caseTrouvee.getY()).getCase()==TypeCase.touche){
+                            direct=Direction.horizontal;
+                            deplacement=1;
+                        }
+                        else{
+                            bateauTrouve=false;
+                        }
+                    }
+                    catch(BNException e){
+                        bateauTrouve=false;
+                        res=tirer();
+                    }
+                    break;
+                default:
+                    res=tireTrouve();
+                    break;
             }
         }
-        try{
-            joueur.tire(caseProbable);
-            updateProba(caseProbable);
-            if(nb!=joueur.nbBateauRestant()){
-                //TODO recalculer la totalité des probabilités sans le bateau tombé
+        else{
+            Random rand=new Random();
+            int x=0,y=0;
+            boolean aTire = false;
+            while(!aTire){
+                x=rand.nextInt(10);
+                y=rand.nextInt(10);
+                while(y%2==x%2){
+                    y=rand.nextInt(10);
+                }
+                aTire=true;
+                try{
+                    joueur.tire(x, y);
+                }
+                catch(BNException e){
+                    aTire=false;
+                }
+            }
+            res = joueur.getCase(x, y);
+            if(joueur.getCase(x, y).getCase()==TypeCase.touche){
+                caseTrouvee=joueur.getCase(x,y);
+                deplacement=0;
+                direct = Direction.nord;
+                bateauTrouve=true;
             }
         }
-        catch(BNException e){
-            System.out.println(e);
-            proba.put(caseProbable,0.0);
-            caseProbable = tirer();
-        }
-        return caseProbable;
+        return res;
     }
     
+    /**
+     * complément de la fonction tire, suit le bateau une fois qu'il a été trouvé
+     * @return la case sur laquelle l'IA a tiré
+     */
+    private CaseBN tireTrouve(){
+        CaseBN res=null;
+        switch(direct){
+            case vertical:
+                if(deplacement<0){
+                    deplacement--;
+                }
+                else{
+                    deplacement++;
+                }
+                try{
+                    joueur.tire(caseTrouvee.getX(), caseTrouvee.getY()+deplacement);
+                    res=joueur.getCase(caseTrouvee.getX(),caseTrouvee.getY()+deplacement);
+                }
+                catch(BNException e){
+                    if(deplacement<0){
+                        deplacement=0;
+                        res=tireTrouve();
+                    }
+                    else{
+                        direct=Direction.est;
+                        res=tirer();
+                    }
+                }
+                if(joueur.getCase(caseTrouvee.getX(), caseTrouvee.getY()+deplacement).getCase()==TypeCase.touche){
+                    if(nbBateauRestant!=joueur.nbBateauRestant()){
+                        bateauTrouve=false;
+                    }
+                }
+                else{
+                    if(deplacement<0){
+                        deplacement=0;
+                    }
+                    else{
+                        direct=Direction.est;
+                    }
+                }
+                break;
+            case horizontal:
+                if(deplacement<0){
+                    deplacement--;
+                }
+                else{
+                    deplacement++;
+                }
+                try{
+                    joueur.tire(caseTrouvee.getX()+deplacement, caseTrouvee.getY());
+                    res=joueur.getCase(caseTrouvee.getX()+deplacement, caseTrouvee.getY());
+                }
+                catch(BNException e){
+                    if(deplacement<0){
+                        deplacement=0;
+                        res=tireTrouve();
+                    }
+                    else{
+                        direct=Direction.sud;
+                        res=tirer();
+                    }
+                }
+                if(joueur.getCase(caseTrouvee.getX()+deplacement, caseTrouvee.getY()).getCase()==TypeCase.touche){
+                    if(nbBateauRestant!=joueur.nbBateauRestant()){
+                        bateauTrouve=false;
+                    }
+                }
+                else{
+                    if(deplacement<0){
+                        deplacement=0;
+                    }
+                    else{
+                        direct=Direction.sud;
+                    }
+                }
+                break;
+            default:
+                bateauTrouve=false;
+                res=tirer();
+                break;
+        }
+        return res;
+    }
 }

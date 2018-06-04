@@ -2,11 +2,6 @@ package BatailleNavale;
 
 import ProjetJava.Membre;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.io.IOException;
-import java.util.Observable;
-import java.util.Observer;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,26 +12,25 @@ import java.util.Observer;
  *
  * @author Utilisateur
  */
-public class JframeTest extends javax.swing.JFrame implements Observer {
+public class JframeTest extends javax.swing.JFrame {
     private PanelGrilleBN grille;
     private Membre mem;
     /**
      * Creates new form JframeTest
      * me permet de tester mes panels, ignore cette classe.
      */
-    public JframeTest() throws Exception {
+    public JframeTest(Membre u,int diff){
         initComponents();
-        mem=new Membre("Aah","B0otah",false);
+        //mem=new Membre("Aah","B0otah",false);
         /*GrilleBN g = new GrilleBN();
         grille = new PanelGrilleBNIA(g);
         add(grille, BorderLayout.CENTER);
         grille.redimensionner(380);*/
-        BatailleNavale b = new BatailleNavale(mem,0);
+        BatailleNavale b = new BatailleNavale(u,diff);
         add(b.getPanel(), BorderLayout.CENTER);
-        System.out.println(BatailleNavale.description());
+        //System.out.println(BatailleNavale.description());
         
         this.setVisible(true);
-        b.addObserver(this);
         b.jeu();
     }
 
@@ -49,29 +43,37 @@ public class JframeTest extends javax.swing.JFrame implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1600, 800));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addComponent(jLabel1)
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    @Override
-    public void update(Observable o, Object arg) {
-        this.setVisible(false);
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

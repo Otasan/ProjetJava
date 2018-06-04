@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.TreeSet;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -51,10 +52,10 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
                 add(new JLabel(""));
             }
             else if(i<11){
-                add(new JLabel(Character.toString((char) (i+64))));
+                add(new JLabel(Character.toString((char) (i+64)),SwingConstants.CENTER));
             }
             else if(i%11==0){
-                add(new JLabel(Integer.toString(i/11)));
+                add(new JLabel(Integer.toString(i/11),SwingConstants.CENTER));
             }
             else{
                 grilleB.add(new PanelCaseBNJ((CaseBN)it.next(), grille.getBateaux()));
@@ -65,6 +66,10 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
             }
             i++;
         }
+    }
+    
+    public void quitter(){
+        choix.dispatchEvent(new WindowEvent(choix, WindowEvent.WINDOW_CLOSING));
     }
     
     /**
