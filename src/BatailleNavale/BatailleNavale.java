@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ProjetJava.Utilisateur;
 import ProjetJava.Membre;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
  *
@@ -82,6 +84,12 @@ public class BatailleNavale implements ProjetJava.Jeu{
         c.gridx=1;
         panel.add(pIa,c);
         panel.setVisible(true);
+        panel.addComponentListener(new ComponentAdapter(){
+            @Override
+            public void componentResized(ComponentEvent e){
+                redimensionner();
+            }
+        });
     }
     
     /**
@@ -101,6 +109,10 @@ public class BatailleNavale implements ProjetJava.Jeu{
     public void jeu(){
         pJoueur.updateGrille();
         pIa.updateGrille();
+        JOptionPane.showMessageDialog(panel, "Bienvenu(e) dans la bataille navale", "[INFO]",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(pJoueur, "Votre grille est sur la gauche.\nC'est là que vous allez placer vos bateaux", "[INFO]" ,JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(pIa, "La grille de l'adversaire est sur la droite.\nC'est là que vous allez pouvoir tirer sur l'ennemi.", "[INFO]", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(panel, "Bonne chance", "[INFO]", JOptionPane.INFORMATION_MESSAGE);
         setTour(EtatsBN.placerBateau);
         ia.placerBateaux();
         synchronized(pJoueur){
@@ -183,5 +195,15 @@ public class BatailleNavale implements ProjetJava.Jeu{
     @Override
     public void quitter() {
         pJoueur.quitter();
+    }
+    
+    /**
+     * méthode appelée lorque la fenetre est redimensionnée
+     */
+    public void redimensionner(){
+        int h = (int)(panel.getHeight()*(double)4/5);
+        pJoueur.redimensionner(h);
+        pIa.redimensionner(h);
+        panel.revalidate();;
     }
 }

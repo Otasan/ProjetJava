@@ -65,7 +65,7 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
             try {
                 int nb = grille.nbBateauRestant();
                 grille.tire(caseP.getCase());
-                caseP.updateImage();
+                updateGrille();
                 switch(grille.getCase(caseP.getCase()).getCase()){
                     case toucheVierge:
                         JOptionPane.showMessageDialog(this, "Raté", "Tour du joueur", JOptionPane.INFORMATION_MESSAGE);
@@ -79,7 +79,6 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
                         }
                         break;
                 }
-                //updateGrille();
                 etat=EtatsBN.touria;
                 notify();
             }

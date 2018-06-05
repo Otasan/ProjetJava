@@ -5,6 +5,7 @@
  */
 package BatailleNavale;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -74,6 +75,7 @@ public abstract class PanelGrilleBN extends javax.swing.JPanel{
     public void redimensionner(int l){
         setSize(l, l);
         int nl = l/11;
+        setPreferredSize(new Dimension(l,l));
         for(int i=0;i<100;i++){
             grilleB.get(i).redimensionner(nl);
         }

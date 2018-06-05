@@ -53,3 +53,47 @@ une GrilleBN a:
 	la grille a être représentée
 	un etat qui varie selon le moment du jeu
 
+-Classe FrameChoixBateau
+Permet a l'utilisateur de placer des bateaux sur la grille
+
+-Classe PanelGrilleBNJ
+Affiche la grille du joueur, cette grille affiche tous les types de case differemment.
+une grilleBNJ remplace les PanelCaseBN du PanelGrilleBN par des PanelCaseBNJ.
+Ouvre une FrameChoixBateau à son lancement.
+
+-Classe PanelGrilleBNIA
+Affiche la grille adversaire, cette grille affiche les bateaux comme des cases vierges.
+
+-Classe BNIA
+Cette classe représente l'adversaire de l'utilisateur durant la bataille navale.
+une BNIA a:
+	une méthode lui permettant de tirer sur la grille du joueur
+	une méthode lui permettant de placer des bateaux sur sa grille
+	une GrilleBN représentant le plateau du joueur(pour pouvoir tirer dessus)
+	une GrilleBN représentant son plateau (pour pouvoir placer des bateaux)
+
+-Classe EasyBNIA
+Cette classe est l'adversaire le plus simple: il tire au hasard sur la grille du joueur jusqu'à gagner ou perdre.
+
+-Classe MediumBNIA
+Cette classe est l'adversaire intermédiaire: il tire au hasard jusqu'à trouver un bateau, puis le suit jusqu'à l'avoir coulé et recommence.
+une MediumBNIA a:
+	une case représentant la ou le bateau a été trouvé pour la première fois (si un bateau a été trouvé)
+	une direction représentant la direction dans laquelle le bateau est supposé être placé.
+	une distance entre la première case reprérée et la dernière case sur laquelle il a tiré.
+
+-Classe HardBNIA
+Cette classe est l'adversaire le plus difficile: il tire sur les cases "paires" au hasard jusqu'à trouver un bateau puis le suit jusqu'à l'avoir coulé et recommence.
+une HardBNIA a:
+	une case représentant la ou le bateau a été trouvé pour la première fois (si un bateau a été trouvé)
+	une direction représentant la direction dans laquelle le bateau est supposé être placé.
+	une distance entre la première case reprérée et la dernière case sur laquelle il a tiré.
+
+-Classe BatailleNavale
+Cette classe a pour but de faire jouer au jeu: elle afficher les deux grilles, gère les actions du joueur et de l'adversaire et sait quand la partie est finie, et qui a gagné.
+une BatailleNavale a:
+	deux GrillesBN: une pour le joueur et une pour l'adversaire.
+	un Membre ou Utilisateur représentant le joueur.
+	un PanelGrilleBNJ et un PanelGrilleBNIA Affichant respectivement la grille du joueur et la grille de l'adversaire.
+	un adversaire dont la difficulté peut être choisie.
+	un état permettant de bloquer ou autoriser certaines actions du joueur.
