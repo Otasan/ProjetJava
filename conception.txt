@@ -1,33 +1,88 @@
--- Package BatailleNavale
+--------------------- Package ProjetJava ---------------------------------------
+
+-class Membre
+	HÃ©rite de Utilisateur.
+	Classe de Membres inscrits. Contient les scores pour chaque jeu.
+
+-class Utilisateur
+	Classe des utilisateurs qui ne veulent pas nÃ©cessairement Ãªtres inscrits.
+
+-class Identification
+	Contient une collection de Membre.
+	Permet de SÃ©rializer et deserializer ainsi que de gÃ©rer les connexions et la liste des utilisateurs.
+
+-class Main
+	Classe contenant une JFrame qui sert pour tous les Panels. Classe qui gÃ¨re toutes
+	les interactions entre les diffÃ©rentes interfaces utilisateur
+
+-class AdminPanel
+	JPanel personnalisÃ© Ã  l'aide de Netbeans.
+	Contient 5 boutons et une Text Area qui permet de selectionner le Membre que l'on souhaite supprimer.
+
+-class ChangerMdpPannel
+	JPanel personnalisÃ© Ã  l'aide de Netbeans.
+	VÃ©rifie l'Ã©galitÃ© des deux nouveaux mots de passe.
+
+-class ChoixJeuPanel
+	JPanel personnalisÃ© Ã  l'aide de Netbeans.
+	Panel permettant de choisir le jeu auquel on veut jouer.
+
+-class ConnexionPanel
+	JPanel personnalisÃ© Ã  l'aide de Netbeans.
+	Panel permettant de se connecter ou de s'inscrire.
+
+
+-class ImageJeuPanel
+	JPanel personnalisÃ© Ã  l'aide de Netbeans.
+	Panel contenant l'image d'un jeu et son titre (si le boolean titre est Ã  true)
+	Les images doivent Ãªtre dans le package ProjetJava.images
+
+-class InfoJeuPanel
+	JPanel personnalisÃ© Ã  l'aide de Netbeans.
+	Panel donnant les informations sur un jeu (description avec rÃ¨gles, scores des Membres).
+	Il permet Ã©galement de lancer le jeu en question et de choisir la difficultÃ©.
+
+-class InscriptionPanel
+	JPanel personnalisÃ© Ã  l'aide de Netbeans.
+	Panel permettant Ã  un nouveau Membre de s'inscrire.
+
+-class JeuPanel
+	JPanel personnalisÃ© Ã  l'aide de Netbeans.
+	Panel contenant le panel du jeu en question avec un titre et un bouton pour quitter.
+
+	-interface Jeu
+		Interface qui force les jeux Ã  avoir une mÃ©thode quitter.
+
+--------------------- Package BatailleNavale -----------------------------------
 
 -Enum TypeCase
-enumération de tout les états possible d'une case
-	vierge si elle n'a jamais été touchée et ne contient pas de bateau
-	bateau si elle n'a jamais été touchée et qu'elle contient un bateau
-	toucheVierge si elle a été touchée mais ne contient pas de bateau
-	touche si elle a étée touchée et contient un bateau
+enumÃ©ration de tout les Ã©tats possible d'une case
+	vierge si elle n'a jamais Ã©tÃ© touchÃ©e et ne contient pas de bateau
+	bateau si elle n'a jamais Ã©tÃ© touchÃ©e et qu'elle contient un bateau
+	toucheVierge si elle a Ã©tÃ© touchÃ©e mais ne contient pas de bateau
+	touche si elle a Ã©tÃ©e touchÃ©e et contient un bateau
 
 -Enum Direction
-enumération représentant les directions possibles pour un bateau
+enumÃ©ration reprï¿½sentant les directions possibles pour un bateau
 
 -Classe CaseBN
-Représente une case de la grille (plateau de jeu)
+ReprÃ©sente une case de la grille (plateau de jeu)
 une CaseBN a:
-	une position (représentée par x et y)
+	une position (reprÃ©sentÃ©e par x et y)
 	un type (TypeCase)
 
 -Classe Bateau
-Cette classe représente un bateau quelconque
+Cette classe reprÃ©sente un bateau quelconque
 une bateau a:
-	une taille (int allant de 2 à 5)
+	une taille (int allant de 2 Ã  5)
 	une Direction (horizontal ou vertical)
-	une case initiale (la caseBN la plus en haut ou à gauche du bateau)
+	une case initiale (la caseBN la plus en haut Ã  gauche du bateau)
 
 -Classes ContreTorpilleur, Croiseur, PorteAvion, SousMarin, Torpilleur
-Ces classes représentent un bateau en partculier. Il s'agit de classes filles de Bateau.
+Ces classes reprÃ©sentent un bateau en partculier. Il s'agit de classes filles de Bateau.
 
 -Classe GrilleBN
-Cette classe représente la grille(plateau de jeu) de la bataille navale.
+Cette classe reprÃ©sente la grille(plateau de jeu) de la bataille navale.
 Une grille a:
 	une liste de 100 casesBN (grille de 10*10 cases)
 	une liste des bateaux encore en jeu
@@ -39,18 +94,18 @@ une CaseBN a:
 	une CaseBN (la case a afficher)
 
 -Classe PanelCaseBNJ
-Affiche une case spécifiquement pour la grille du joueur.
-Cette Classe affiche tout les types de cases différemment.
+Affiche une case spÃ©cifiquement pour la grille du joueur.
+Cette Classe affiche tout les types de cases diffÃ©remment.
 
 -Classe PanelCaseBNIA
-Affiche une case spécifiquement pour la grille de l'adversaire.
-Cette Classe affiche les bateaux et les cases "vierges" de la même façon.
+Affiche une case spÃ©cifiquement pour la grille de l'adversaire.
+Cette Classe affiche les bateaux et les cases "vierges" de la mÃªme faÃ§on.
 
 -Classe PanelGrilleBN
 Affiche une GrilleBN via les CaseBN.
 une GrilleBN a:
-	une liste de PanelCaseBN à afficher
-	la grille a être représentée
+	une liste de PanelCaseBN Ã  afficher
+	la grille a Ãªtre reprÃ©sentÃ©e
 	un etat qui varie selon le moment du jeu
 
 -Classe FrameChoixBateau
@@ -59,41 +114,41 @@ Permet a l'utilisateur de placer des bateaux sur la grille
 -Classe PanelGrilleBNJ
 Affiche la grille du joueur, cette grille affiche tous les types de case differemment.
 une grilleBNJ remplace les PanelCaseBN du PanelGrilleBN par des PanelCaseBNJ.
-Ouvre une FrameChoixBateau à son lancement.
+Ouvre une FrameChoixBateau Ã  son lancement.
 
 -Classe PanelGrilleBNIA
 Affiche la grille adversaire, cette grille affiche les bateaux comme des cases vierges.
 
 -Classe BNIA
-Cette classe représente l'adversaire de l'utilisateur durant la bataille navale.
+Cette classe reprÃ©sente l'adversaire de l'utilisateur durant la bataille navale.
 une BNIA a:
-	une méthode lui permettant de tirer sur la grille du joueur
-	une méthode lui permettant de placer des bateaux sur sa grille
-	une GrilleBN représentant le plateau du joueur(pour pouvoir tirer dessus)
-	une GrilleBN représentant son plateau (pour pouvoir placer des bateaux)
+	une mÃ©thode lui permettant de tirer sur la grille du joueur
+	une mÃ©thode lui permettant de placer des bateaux sur sa grille
+	une GrilleBN reprï¿½sentant le plateau du joueur(pour pouvoir tirer dessus)
+	une GrilleBN reprï¿½sentant son plateau (pour pouvoir placer des bateaux)
 
 -Classe EasyBNIA
-Cette classe est l'adversaire le plus simple: il tire au hasard sur la grille du joueur jusqu'à gagner ou perdre.
+Cette classe est l'adversaire le plus simple: il tire au hasard sur la grille du joueur jusqu'Ã  gagner ou perdre.
 
 -Classe MediumBNIA
-Cette classe est l'adversaire intermédiaire: il tire au hasard jusqu'à trouver un bateau, puis le suit jusqu'à l'avoir coulé et recommence.
+Cette classe est l'adversaire intermÃ©diaire: il tire au hasard jusqu'Ã  trouver un bateau, puis le suit jusqu'Ã  l'avoir coulÃ© et recommence.
 une MediumBNIA a:
-	une case représentant la ou le bateau a été trouvé pour la première fois (si un bateau a été trouvé)
-	une direction représentant la direction dans laquelle le bateau est supposé être placé.
-	une distance entre la première case reprérée et la dernière case sur laquelle il a tiré.
+	une case reprÃ©sentant la ou le bateau a Ã©tÃ© trouvÃ© pour la premiÃ¨re fois (si un bateau a Ã©tÃ© trouvÃ©)
+	une direction reprÃ©sentant la direction dans laquelle le bateau est supposÃ© Ãªtre placÃ©.
+	une distance entre la premiÃ¨re case reprÃ©rÃ©e et la derniÃ¨re case sur laquelle il a tirÃ©.
 
 -Classe HardBNIA
-Cette classe est l'adversaire le plus difficile: il tire sur les cases "paires" au hasard jusqu'à trouver un bateau puis le suit jusqu'à l'avoir coulé et recommence.
+Cette classe est l'adversaire le plus difficile: il tire sur les cases "paires" au hasard jusqu'Ã  trouver un bateau puis le suit jusqu'Ã  l'avoir coulÃ© et recommence.
 une HardBNIA a:
-	une case représentant la ou le bateau a été trouvé pour la première fois (si un bateau a été trouvé)
-	une direction représentant la direction dans laquelle le bateau est supposé être placé.
-	une distance entre la première case reprérée et la dernière case sur laquelle il a tiré.
+	une case reprÃ©sentant la ou le bateau a Ã©tÃ© trouvÃ© pour la premiÃ¨re fois (si un bateau a Ã©tÃ© trouvÃ©)
+	une direction reprÃ©sentant la direction dans laquelle le bateau est supposÃ© Ãªtre placÃ©.
+	une distance entre la premiÃ¨re case repÃ©rÃ©e et la derniÃ¨re case sur laquelle il a tirÃ©.
 
 -Classe BatailleNavale
-Cette classe a pour but de faire jouer au jeu: elle afficher les deux grilles, gère les actions du joueur et de l'adversaire et sait quand la partie est finie, et qui a gagné.
+Cette classe a pour but de faire jouer au jeu: elle afficher les deux grilles, gÃ¨re les actions du joueur et de l'adversaire et sait quand la partie est finie, et qui a gagnÃ©.
 une BatailleNavale a:
 	deux GrillesBN: une pour le joueur et une pour l'adversaire.
-	un Membre ou Utilisateur représentant le joueur.
+	un Membre ou Utilisateur reprÃ©sentant le joueur.
 	un PanelGrilleBNJ et un PanelGrilleBNIA Affichant respectivement la grille du joueur et la grille de l'adversaire.
-	un adversaire dont la difficulté peut être choisie.
-	un état permettant de bloquer ou autoriser certaines actions du joueur.
+	un adversaire dont la difficultÃ© peut Ãªtre choisie.
+	un Ã©tat permettant de bloquer ou autoriser certaines actions du joueur.
