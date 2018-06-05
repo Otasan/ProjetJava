@@ -44,7 +44,6 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
             }
         });
         this.requestFocusInWindow();
-        System.out.println(this.isFocusOwner());
     }
 
     /**
@@ -104,11 +103,7 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
             JLabel lettre = new JLabel(jeu.derniereLettreMauvaises());
             lettre.setFont(new java.awt.Font("Ubuntu", 0, 24));
             lettre.setForeground(new java.awt.Color(169, 234, 254));
-            
-            this.lettrePanel.add(lettre);
-            
         }
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

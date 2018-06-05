@@ -44,3 +44,6 @@ nbactions.xml
 # End of https://www.gitignore.io/api/java,netbeans,code-java
 
 private.xml
+.save
+*.docx
+

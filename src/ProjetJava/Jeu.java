@@ -14,5 +14,5 @@ public interface Jeu {
      * Qui sera appelee a la fin du jeu lorsque le joueur aura gagne ou perdu.
      */
     public void quitter();
-    
+        
 }

@@ -10,7 +10,6 @@ import ProjetJava.Utilisateur;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
@@ -194,6 +193,10 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu {
     }
 
     @Override
-    public void quitter() {
+    public void quitter(){}
+
+    public static String description() {
+        return "Règles du jeu \n"
+                + "Premièrement il ne faut surtout pas que ça dépasse du cadre, sinon ça vas être super relou de le recadrer";
     }
 }

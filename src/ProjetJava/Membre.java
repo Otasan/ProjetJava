@@ -46,7 +46,7 @@ public class Membre extends Utilisateur implements Serializable {
      * @return Entier résultat du hashage du mot de passe.
      */
     private int keyGen(String pseudo, String mdp) {
-        String key = pseudo + mdp;
+        String key = pseudo + mdp +pseudo;
         return key.hashCode() * 73 + 37;
     }
 
@@ -116,7 +116,7 @@ public class Membre extends Utilisateur implements Serializable {
     public double getRatio(String jeu) throws ScoreException {
         int partiesJouees = scores.get(jeu)[0];
         if (partiesJouees > 0) {
-            double ratio = scores.get(jeu)[1] / partiesJouees;
+            double ratio = (double) scores.get(jeu)[1] / (double) partiesJouees;
             if (ratio >= 0 && ratio <= 1) {
                 return ratio;
             } else {

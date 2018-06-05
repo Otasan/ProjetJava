@@ -5,8 +5,7 @@
  */
 package ProjetJava;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.text.DecimalFormat;
 
 /**
  * Panel contenant les informations sur un jeu.
@@ -21,6 +20,8 @@ public class InfoJeuPanel extends javax.swing.JPanel {
     public InfoJeuPanel(Identification id, String jeu) {
         initComponents();
         scoreTextArea.setText("");
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(0);
         for (Membre m : id.getMembres()) {
             String victoires = "";
             try {
@@ -30,7 +31,7 @@ public class InfoJeuPanel extends javax.swing.JPanel {
             }
             String ratio = "";
             try {
-                ratio = padString(m.getRatio(jeu) + "", 10);
+                ratio = padString(df.format(m.getRatio(jeu) * 100) + "", 10);
             } catch (ScoreException ex) {
                 ratio = "###";
             }
@@ -40,6 +41,15 @@ public class InfoJeuPanel extends javax.swing.JPanel {
         }
         this.imagePanel.add(new ImageJeuPanel(jeu, false));
         nomJeuLabel.setText(jeu);
+
+        switch (jeu) {
+            case "Pendu":
+                reglesTextArea.setText(Pendu.JeuPendu.description());
+                break;
+            case "Bataille Navale":
+                reglesTextArea.setText(BatailleNavale.BatailleNavale.description());
+                break;
+        }
     }
 
     private String padString(String str, int n) {
@@ -104,6 +114,7 @@ public class InfoJeuPanel extends javax.swing.JPanel {
         reglesTextArea.setEditable(false);
         reglesTextArea.setBackground(new java.awt.Color(238, 238, 238));
         reglesTextArea.setColumns(20);
+        reglesTextArea.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         reglesTextArea.setRows(5);
         reglesTextArea.setBorder(null);
         jScrollPane1.setViewportView(reglesTextArea);
@@ -131,7 +142,7 @@ public class InfoJeuPanel extends javax.swing.JPanel {
         scoreLabel.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         scoreLabel.setText(padString("Pseudo", 30) +
             padString("Victoires", 30) +
-            padString("Ratio", 10)
+            padString("% de victoire", 10)
         );
         scoreLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         gridBagConstraints = new java.awt.GridBagConstraints();

@@ -11,6 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
+import java.util.Observable;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,51 +22,48 @@ import javax.swing.JOptionPane;
 public class Main {
 
     private Identification id;
-    private Membre m;
     private javax.swing.JFrame mainFrame;
 
     /**
      * Creates new form ConnexionGUI
      */
     public Main() {
-        java.awt.EventQueue.invokeLater(new Runnable() {
+
+        mainFrame = new javax.swing.JFrame();
+        mainFrame.setExtendedState(mainFrame.MAXIMIZED_BOTH);
+
+        //Tentative de lire dans le ficher de sauvegarde, sinon cree une liste 
+        //d'utilisateurs vierge.
+        try {
+            id = new Identification(".save");
+        } catch (FileNotFoundException ex) {
+            id = new Identification();
+        }
+
+        //Nouvelle methode pour quitter permettant de sauvegarder avant de quitter.
+        mainFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        mainFrame.setTitle("Boite De Jeux");
+        mainFrame.setMaximumSize(new java.awt.Dimension(1280, 720));
+        mainFrame.setMinimumSize(new java.awt.Dimension(640, 360));
+        mainFrame.setPreferredSize(new java.awt.Dimension(854, 480));
+        mainFrame.getContentPane().setLayout(new java.awt.BorderLayout(5, 5));
+
+        WindowListener exitListener = new WindowAdapter() {
+
             @Override
-            public void run() {
-                mainFrame = new javax.swing.JFrame();
-                mainFrame.setExtendedState(mainFrame.MAXIMIZED_BOTH);
-
-                //Tentative de lire dans le ficher de sauvegarde, sinon cree une liste 
-                //d'utilisateurs vierge.
-                try {
-                    id = new Identification(".save");
-                } catch (FileNotFoundException ex) {
-                    id = new Identification();
-                }
-
-                //Nouvelle methode pour quitter permettant de sauvegarder avant de quitter.
-                mainFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-                mainFrame.setTitle("Boite De Jeux");
-                mainFrame.setMaximumSize(new java.awt.Dimension(1280, 720));
-                mainFrame.setMinimumSize(new java.awt.Dimension(640, 360));
-                mainFrame.setPreferredSize(new java.awt.Dimension(854, 480));
-                mainFrame.getContentPane().setLayout(new java.awt.BorderLayout(5, 5));
-
-                WindowListener exitListener = new WindowAdapter() {
-
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        id.sauvegarde(".save");
-                        System.exit(0);
-                    }
-                };
-
-                mainFrame.addWindowListener(exitListener);
-                interfaceConnexion();
-
-                mainFrame.setVisible(true);
-                mainFrame.requestFocus();
+            public void windowClosing(WindowEvent e) {
+                id.sauvegarde(".save");
+                System.exit(0);
             }
-        });
+        };
+
+        mainFrame.addWindowListener(exitListener);
+        interfaceConnexion();
+
+        mainFrame.setVisible(true);
+        mainFrame.requestFocus();
+        System.out.println(mainFrame.isFocusOwner());
+
     }
 
     /**
@@ -128,7 +126,7 @@ public class Main {
             if (id.membreExiste(pseudo)) {
                 JOptionPane.showMessageDialog(null, "Pseudo déjà utilisé");
             } else if (id.addMembre(pseudo, mdp, admin)) {
-                id.sauvegarde("Sauvegarde.save");
+                id.sauvegarde(".save");
                 interfaceConnexion();
 
             } else {
@@ -227,10 +225,16 @@ public class Main {
                     Pendu.JeuPendu pendu = new Pendu.JeuPendu(u, diff) {
                         @Override
                         public void quitter() {
-                            interfaceInfoJeu(jeu, m);
+                            interfaceInfoJeu(jeu, u);
                         }
                     };
-                    Pendu.PenduPanel panelJeu = new Pendu.PenduPanel(pendu);
+                    Pendu.PenduPanel panelJeu = new Pendu.PenduPanel(pendu) {
+                        @Override
+                        public void update(Observable o, Object arg) {
+                            super.update(o, arg);
+                            mainFrame.pack();
+                        }
+                    };
                     pendu.addObserver(panelJeu);
 
                     java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
@@ -247,7 +251,7 @@ public class Main {
                     });
                     GUI.add(panelJeu, gridBagConstraints);
                 } catch (FileNotFoundException ex) {
-                    JOptionPane.showMessageDialog(null, "Dictionnaire abscent.");
+                    JOptionPane.showMessageDialog(null, "Dictionnaire absent.");
                     interfaceInfoJeu(jeu, u);
                 }
                 break;
@@ -259,7 +263,7 @@ public class Main {
                             @Override
                             public void quitter() {
                                 super.quitter();
-                                interfaceInfoJeu(jeu, m);
+                                interfaceInfoJeu(jeu, u);
                             }
                         };
                         java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
@@ -285,6 +289,13 @@ public class Main {
                 break;
         }
 
+        GUI.getQuitButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            if (u instanceof Membre) {
+                Membre m = (Membre) u;
+                m.incrementPerdu(jeu);
+            }
+            interfaceInfoJeu(jeu, u);
+        });
         mainFrame.getContentPane().add(GUI);
         mainFrame.pack();
     }
