@@ -37,7 +37,9 @@ public class MediumBNIA extends BNIA {
         int x=0,y=0;
         int i=0, c=0;
         String bateau="";
+        //place tout les bateaux a tour de rôle
         while(i<5){
+            //essaie de placer un bateau a des positions possibles
             switch(i){
                 case 0:
                     bateau="porteavion";
@@ -115,7 +117,7 @@ public class MediumBNIA extends BNIA {
             c++;
         }
     }
-
+    
     /**
      * tire sur une case au hasard jusqu'à trouver un bateau puis détermine le sens du bateau
      * @return la case sur laquelle l'IA a tiré
@@ -123,9 +125,14 @@ public class MediumBNIA extends BNIA {
     @Override
     public CaseBN tirer() {
         CaseBN res = null;
+        //permet de verifier si un bateau a ete coule dans ce tour
         nbBateauRestant=joueur.nbBateauRestant();
         if(bateauTrouve){
             switch(direct){
+                //tire sur une case a une distance de 1 dans une direction cardinale (Nord vers le haut de la grille)
+                //si un bateau est trouvé, alors on remplace la direction cardinale par horizontal ou vertical et la direction prend un signe correspondant
+                //sinon, on tourne dans le sens trigo
+                //si aucun bateau n'est trouvé au bout de 4 essai, on recommance a tirer au hasard
                 case nord:
                     try{
                         joueur.tire(caseTrouvee.getX(), caseTrouvee.getY()-1);
@@ -200,6 +207,7 @@ public class MediumBNIA extends BNIA {
             }
         }
         else{
+            //tire au hasard (identique a EasyBNIA)
             Random rand=new Random();
             int x=0,y=0;
             boolean aTire = false;
@@ -215,6 +223,7 @@ public class MediumBNIA extends BNIA {
                 }
             }
             res = joueur.getCase(x, y);
+            //si une un bateau est trouve, on change les atributs de cette façon
             if(joueur.getCase(x, y).getCase()==TypeCase.touche){
                 caseTrouvee=joueur.getCase(x,y);
                 deplacement=0;

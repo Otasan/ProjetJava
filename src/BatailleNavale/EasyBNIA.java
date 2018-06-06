@@ -26,7 +26,9 @@ public class EasyBNIA extends BNIA{
         int x=0,y=0;
         int i=0, c=0;
         String bateau="";
+        //place tout les bateaux a tour de rôle
         while(i<5){
+            //essaie de placer un bateau a des positions possibles
             switch(i){
                 case 0:
                     bateau="porteavion";
@@ -114,6 +116,7 @@ public class EasyBNIA extends BNIA{
         Random rand=new Random();
         int x=0,y=0;
         boolean aTire = false;
+        //tire au hasard
         while(!aTire){
             x=rand.nextInt(10);
             y=rand.nextInt(10);
