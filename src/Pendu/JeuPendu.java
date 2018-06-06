@@ -138,6 +138,7 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu {
      * Verifie l'etat de la partie (en cours, perdue, gagnee)
      */
     public void status() {
+        // notify le panel du pendu
         notifyObservers();
         if (perdu()) {
             if (u instanceof Membre) {
@@ -196,7 +197,11 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu {
     public void quitter(){}
 
     public static String description() {
-        return "Règles du jeu \n"
-                + "Premièrement il ne faut surtout pas que ça dépasse du cadre, sinon ça vas être super relou de le recadrer";
+        return "But du jeu : Il faut deviner un mot secret sans se faire pendre\n" +
+                "Un mot choisi au hasard dans un dictionnaire\n" +
+                "Le nombre de lettres sera modélisé par des étoiles\n" +
+                "Le joueur choisi une lettre : Si elle appartient au mot la lettre se place sur l'étoiles correspondante, et\n" +
+                "autant de fois qu’elle apparait dans le mot. Si non, un trait du pendu est dessiné.\n" +
+                "La potence est la base du dessin. Chaque partie commence avec la potence déjà dessiné.";
     }
 }

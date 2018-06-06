@@ -207,7 +207,7 @@ public class BatailleNavale implements ProjetJava.Jeu{
      * @return une description du jeu
      */
     public static String description(){
-        return "Placez vos bateaux stratégiquement et essayez de couler les navires ennemis\nPour jouer:\n\t-Dans une première phase, placez vos cinq bateaux sur votre grille\n\t-Puis cliquez sur la grille de l'adversaire pour tirer sur la case séléctionnée.\nVous gagnez si il vous reste au moins un bateau et que vous avez coulé tout les bateaux ennemis.\nBonne chance, commandant!";
+        return "Placez vos bateaux stratégiquement et essayez de couler les navires ennemis\nPour jouer:\n  - Dans une première phase, placez vos cinq bateaux sur votre grille\n  - Puis cliquez sur la grille de l'adversaire pour tirer sur la case séléctionnée.\nVous gagnez si il vous reste au moins un bateau et que vous avez coulé tout les bateaux ennemis.\nBonne chance, commandant!";
     }
 
     /**

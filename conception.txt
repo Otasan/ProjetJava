@@ -1,4 +1,4 @@
---------------------- Package ProjetJava ---------------------------------------
+﻿--------------------- Package ProjetJava ---------------------------------------
 
 -class Membre
 	Hérite de Utilisateur.
@@ -63,7 +63,7 @@ enumération de tout les états possible d'une case
 	touche si elle a étée touchée et contient un bateau
 
 -Enum Direction
-enumération repr�sentant les directions possibles pour un bateau
+enumération représentant les directions possibles pour un bateau
 
 -Classe CaseBN
 Représente une case de la grille (plateau de jeu)
@@ -124,8 +124,8 @@ Cette classe représente l'adversaire de l'utilisateur durant la bataille navale
 une BNIA a:
 	une méthode lui permettant de tirer sur la grille du joueur
 	une méthode lui permettant de placer des bateaux sur sa grille
-	une GrilleBN repr�sentant le plateau du joueur(pour pouvoir tirer dessus)
-	une GrilleBN repr�sentant son plateau (pour pouvoir placer des bateaux)
+	une GrilleBN représentant le plateau du joueur(pour pouvoir tirer dessus)
+	une GrilleBN représentant son plateau (pour pouvoir placer des bateaux)
 
 -Classe EasyBNIA
 Cette classe est l'adversaire le plus simple: il tire au hasard sur la grille du joueur jusqu'à gagner ou perdre.
@@ -152,3 +152,13 @@ une BatailleNavale a:
 	un PanelGrilleBNJ et un PanelGrilleBNIA Affichant respectivement la grille du joueur et la grille de l'adversaire.
 	un adversaire dont la difficulté peut être choisie.
 	un état permettant de bloquer ou autoriser certaines actions du joueur.
+
+-----------------------------------Package pendu-----------------------------------------------------------------  
+-Class JeuPendu():
+Cette classe est le back end du jeu, elle permet de faire fonctionner le pendu. Elle vérifie les caractères saisis par l’utilisateur soient conforme et appartiennent au mot à deviner. Elle vérifie aussi si la partie est gagnée ou perdue.
+
+-Class Dictionnaire():
+Cette classe récupère dans une Arraylist une liste de mots et permet de choisir un mot au hasard dans cette Arraylist pour le faire deviner.
+
+-Class PenduPanel():
+Cette classe construit l’interface graphique du jeu. Elle est modifiée à chaque tour de jeu. Soit la lettre saisie est bonne et est remplacée dans le mot à deviner soit la lettre est fausse et le pendu se met à jour.
