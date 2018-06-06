@@ -12,7 +12,7 @@ import java.util.HashMap;
  * Identification du joueur avec memorisation de ses scores et de ses
  * identifiants.
  *
- * @author Dobby
+ * @author edeux
  */
 public class Membre extends Utilisateur implements Serializable {
 

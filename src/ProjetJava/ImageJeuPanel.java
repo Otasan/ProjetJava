@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 /**
  * Panel de l'image d'un jeu.
  *
- * @author deux
+ * @author edeux
  */
 public class ImageJeuPanel extends javax.swing.JPanel {
 

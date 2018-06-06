@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author KREATURE
+ * @author achelle
  */
 public class PenduPanel extends javax.swing.JPanel implements Observer {
 

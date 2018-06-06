@@ -18,7 +18,7 @@ import java.util.HashSet;
 /**
  * Sauvegarde tous les utilisateurs. Et gere les connexions.
  *
- * @author Dobby
+ * @author edeux
  */
 public class Identification {
 

@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author KREATURE
+ * @author achelle
  */
 public class JeuPendu extends Observable implements ProjetJava.Jeu {
 

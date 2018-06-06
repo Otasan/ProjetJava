@@ -7,7 +7,7 @@ package ProjetJava;
 
 /**
  *
- * @author Dobby
+ * @author edeux
  */
 public class ScoreException extends Exception {
 

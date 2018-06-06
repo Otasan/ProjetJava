@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * Utilisateur ne possedant pas de compte ("Invite")
  *
- * @author Dobby
+ * @author edeux
  */
 public class Utilisateur implements Serializable {
 

@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author KREATURE
+ * @author achelle
  */
 public class Pendu {
 

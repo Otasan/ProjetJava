@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author KREATURE
+ * @author achelle
  */
 public class Dictionnaire {
 
