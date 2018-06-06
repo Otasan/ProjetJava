@@ -15,9 +15,12 @@ import javax.swing.JOptionPane;
  */
 public class AdminPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form adminPanel
-     */
+   /**
+    * Cree le JPanel d'administration et remplie la liste des Membres qu'il est
+    * possible de supprimer avec l'Identification.
+    *
+    * @param id Identification des Membres.
+    */
     public AdminPanel(Identification id) {
         initComponents();
         DefaultListModel dlm = new DefaultListModel();
@@ -28,6 +31,7 @@ public class AdminPanel extends javax.swing.JPanel {
         }
         membresList.setModel(dlm);
 
+        //Action Listener qui permet de sélectionner un Membre et de le supprimer.
         suprimerButton.addActionListener((java.awt.event.ActionEvent evt) -> {
             String pseudo = membresList.getSelectedValue();
             int result = JOptionPane.showConfirmDialog(null,
@@ -35,6 +39,7 @@ public class AdminPanel extends javax.swing.JPanel {
             if (result == JOptionPane.YES_OPTION) {
                 id.removeMembre(pseudo);
                 dlm.clear();
+                //N'ajoute que les Membres qui ne sont pas admin.
                 for (Membre m : id.getMembres()) {
                     if (!m.estAdmin()) {
                         dlm.addElement(m.getPseudo());

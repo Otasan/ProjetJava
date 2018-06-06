@@ -19,6 +19,7 @@ public class Membre extends Utilisateur implements Serializable {
     private HashMap<String, Integer[]> scores;
     private int mdp;
     private boolean admin;
+    private String[] jeux = {"Bataille Navale", "Pendu"};
 
     /**
      * Creation d'un Membre avec un score null.
@@ -32,7 +33,6 @@ public class Membre extends Utilisateur implements Serializable {
         this.admin = admin;
 
         scores = new HashMap<>();
-        String[] jeux = {"Bataille Navale", "Pendu"};
         resetScore(jeux);
         this.mdp = this.keyGen(pseudo, mdp);
 
@@ -46,7 +46,7 @@ public class Membre extends Utilisateur implements Serializable {
      * @return Entier résultat du hashage du mot de passe.
      */
     private int keyGen(String pseudo, String mdp) {
-        String key = pseudo + mdp +pseudo;
+        String key = pseudo + mdp + pseudo;
         return key.hashCode() * 73 + 37;
     }
 
@@ -117,6 +117,34 @@ public class Membre extends Utilisateur implements Serializable {
         int partiesJouees = scores.get(jeu)[0];
         if (partiesJouees > 0) {
             double ratio = (double) scores.get(jeu)[1] / (double) partiesJouees;
+            if (ratio >= 0 && ratio <= 1) {
+                return ratio;
+            } else {
+                throw new ScoreException("Le ratio n'est pas conforme.");
+            }
+        } else if (partiesJouees == 0) {
+            return 0;
+        } else {
+            throw new ScoreException("Le nombre de parties jouees est inferieur a 0.");
+        }
+    }
+
+    /**
+     * Renvoie le ratio (partiesJouees/partiesGagnees) de tous les jeux du Membre.
+     * @return Double entre 0 et 1.
+     * @throws ScoreException Le score est impossible.
+     */
+    public double getRatioTotal() throws ScoreException {
+        int partiesJouees = 0;
+        int partiesGagnees = 0;
+        // Calcule le total des nombre de parties jouees et nombre de parties gagnees.
+        for (String j : jeux) {
+            partiesJouees += this.getScore(j)[0];
+            partiesGagnees += this.getScore(j)[1];
+        }
+        if (partiesJouees > 0) {
+            double ratio =  partiesGagnees/partiesJouees ;
+            // Teste si le ratio est bien entre 0 et 1;
             if (ratio >= 0 && ratio <= 1) {
                 return ratio;
             } else {

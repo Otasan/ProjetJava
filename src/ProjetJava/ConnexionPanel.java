@@ -142,6 +142,10 @@ public class ConnexionPanel extends javax.swing.JPanel {
         return jTextFieldPseudo.getText();
     }
     
+    /**
+     * Transforme le champ password en String.
+     * @return String correspondant au mdp rentre dans le champ password.
+     */
     public String getPasswordField(){
         String pwd = "";
         for(char c : jPasswordField.getPassword()){

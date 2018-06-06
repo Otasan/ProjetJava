@@ -10,7 +10,6 @@ import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
@@ -20,9 +19,11 @@ import javax.swing.JLabel;
 public class PenduPanel extends javax.swing.JPanel implements Observer {
 
     private JeuPendu jeu;
+    private String derniereLettre = "";
 
     /**
-     *Initialise le jeuPanel
+     * Initialise le jeuPanel
+     *
      * @throws FileNotFoundException
      */
     public PenduPanel(JeuPendu jeu) throws FileNotFoundException {
@@ -43,6 +44,7 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
             public void keyTyped(KeyEvent e) {
             }
         });
+        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pendu/Images/PenduImage" + jeu.nbErreurs() + ".png")));
         this.requestFocusInWindow();
     }
 
@@ -91,18 +93,26 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
 
         imageLabel.setBackground(new java.awt.Color(255, 255, 255));
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(imageLabel, new java.awt.GridBagConstraints());
+        imageLabel.setDoubleBuffered(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        add(imageLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
     public void update(Observable o, Object arg) {
-        //imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/ProjetJava/src/Pendu" + jeu.nbErreurs()+jeu.getDiff() + ".jpg")));
+        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pendu/Images/PenduImage" + jeu.nbErreurs() + ".png")));
         this.motLabel.setText(jeu.getValue());
-        if (jeu.derniereLettreMauvaises() != null) {
-            System.out.println(jeu.derniereLettreMauvaises());
-            JLabel lettre = new JLabel(jeu.derniereLettreMauvaises());
-            lettre.setFont(new java.awt.Font("Ubuntu", 0, 24));
-            lettre.setForeground(new java.awt.Color(169, 234, 254));
+        String lettreMauvaise = jeu.derniereLettreMauvaises();
+        if (lettreMauvaise != null) {
+            if (!lettreMauvaise.equals(derniereLettre)) {
+                JLabel lettre = new JLabel(jeu.derniereLettreMauvaises());
+                lettre.setFont(new java.awt.Font("Ubuntu", 0, 24));
+                lettre.setForeground(new java.awt.Color(169, 234, 254));
+                lettrePanel.add(lettre);
+                derniereLettre = lettreMauvaise;
+            }
         }
     }
 

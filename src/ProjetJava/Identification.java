@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * Sauvegarde tous les utilisateurs.
+ * Sauvegarde tous les utilisateurs. Et gere les connexions.
  *
  * @author Dobby
  */
@@ -135,6 +135,12 @@ public class Identification {
         return retour;
     }
 
+    /**
+     * Recupere la HashSet des Membres pour permettre de lister tous les
+     * Membres.
+     *
+     * @return HashSet des Membres de l'objet.
+     */
     public HashSet<Membre> getMembres() {
         HashSet<Membre> membres = new HashSet<>();
         for (String n : comptes.keySet()) {
@@ -143,7 +149,98 @@ public class Identification {
         return membres;
     }
 
+    /**
+     * Vérifie si un pseudo correspond à un Membre ou non.
+     *
+     * @param pseudo Pseudo de l'utilisateur à tester.
+     * @return le Membre si le pseudo correspond à un Membre ou null sinon.
+     */
     public boolean membreExiste(String pseudo) {
         return comptes.containsKey(pseudo);
+    }
+
+    /**
+     * Recupere le Membre avec le plus grand nombre de victoires.
+     * @param jeu Nom du jeu pour lequel on veut le meilleur joueur ou "Total" pour avoir la 
+     * somme de tous les jeux.
+     * @return Le Membre avec le meilleur score ou null s'il n'y a aucun joueurs.
+     */
+    public Membre meilleurPartiesGagnees(String jeu) {
+        Membre mr = new Membre("membrenull","membrenull",false);;
+        if (!jeu.equals("Total")) {
+            for (Membre m : this.getMembres()) {
+                try {
+                    // Le meilleur joueur devient celui qui a le meilleur score pour
+                    // un jeu donne.
+                    if (m.getScore(jeu)[1] >= mr.getScore(jeu)[1]) {
+                        mr = m;
+                    }
+                } catch (ScoreException ex) {
+                    //Si le Membre m n'as pas un score possible, on ne fait rien
+                }
+            }
+            return mr;
+
+        } else {
+            String[] listeJeux = {"Pendu", "Bataille Navale"};
+            int score = 0;
+            int sc = 0;
+
+            for (Membre m : this.getMembres()) {
+                try {
+
+                    // Additionne le nombre de parties gagnées pour chaque jeu.
+                    for (String j : listeJeux) {
+                        sc += m.getScore(j)[1];
+                    }
+
+                    // On garde le Membre avec le plus haut nombre de victoires en tout.
+                    if (sc >= score) {
+                        mr = m;
+                        score = sc;
+                    }
+                } catch (ScoreException ex) {
+                    //Si le Membre m n'as pas un score possible, on ne fait rien
+                }
+            }
+            return mr;
+        }
+    }
+
+    /**
+     * Recupere le joueur avec le meilleur ratio.
+     * @param jeu Nom du jeu pour lequel on veut le meilleur joueur ou "Total" pour avoir
+     * le meilleur ratio de tous les jeux.
+     * @return Le Membre avec le meilleur ratio ou null s'il n'y a aucun joueurs.
+     */
+    public Membre meilleurRatio(String jeu) {
+        Membre mr = new Membre("membrenull","membrenull",false);
+        if (!jeu.equals("Total")) {
+            for (Membre m : this.getMembres()) {
+                try {
+                    // Le meilleur joueur devient celui qui a le meilleur ratio pour
+                    // un jeu donne.
+                    if (m.getRatio(jeu) >= mr.getRatio(jeu)) {
+                        mr = m;
+                    }
+                } catch (ScoreException ex) {
+                    //Si le Membre m n'as pas un score possible, on ne fait rien
+                }
+            }
+            
+        } else {
+            for (Membre m : this.getMembres()) {
+                try {
+
+                    // On garde le Membre avec le plus haut ratio de victoire pour tous les jeux.
+                    if (m.getRatioTotal()>= mr.getRatioTotal()) {
+                        mr = m;
+                    }
+                } catch (ScoreException ex) {
+                    //Si le Membre m n'as pas un score possible, on ne fait rien
+                }
+            }
+        }
+        return mr;
     }
 }

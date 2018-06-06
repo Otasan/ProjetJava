@@ -33,6 +33,7 @@ public class ChoixJeuPanel extends javax.swing.JPanel {
         groupeJeuPanel = new javax.swing.JPanel();
         retourButton = new javax.swing.JButton();
         chgPwdButton = new javax.swing.JButton();
+        statistiquesButton = new javax.swing.JButton();
 
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
         layout.columnWeights = new double[] {0.4, 0.6};
@@ -45,7 +46,7 @@ public class ChoixJeuPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(jLabel1, gridBagConstraints);
 
@@ -53,7 +54,7 @@ public class ChoixJeuPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(groupeJeuPanel, gridBagConstraints);
 
@@ -69,9 +70,17 @@ public class ChoixJeuPanel extends javax.swing.JPanel {
         chgPwdButton.setText("Changer de mot de passe");
         chgPwdButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         add(chgPwdButton, gridBagConstraints);
+
+        statistiquesButton.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        statistiquesButton.setText("Statistiques");
+        statistiquesButton.setMargin(new java.awt.Insets(3, 20, 3, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        add(statistiquesButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     public javax.swing.JPanel getGroupeJeuPanel(){
@@ -82,6 +91,9 @@ public class ChoixJeuPanel extends javax.swing.JPanel {
         return retourButton;
     }
     
+    public javax.swing.JButton getStatistiquesButton(){
+        return statistiquesButton;
+    }
     public javax.swing.JButton getChgPwdButton(){
         return chgPwdButton;
     }
@@ -90,5 +102,6 @@ public class ChoixJeuPanel extends javax.swing.JPanel {
     private javax.swing.JPanel groupeJeuPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton retourButton;
+    private javax.swing.JButton statistiquesButton;
     // End of variables declaration//GEN-END:variables
 }

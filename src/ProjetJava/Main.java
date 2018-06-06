@@ -22,6 +22,7 @@ public class Main {
 
     private Identification id;
     private javax.swing.JFrame mainFrame;
+    private String[] jeux = {"Pendu", "Bataille Navale"};
 
     /**
      * Creates new form ConnexionGUI
@@ -61,7 +62,6 @@ public class Main {
 
         mainFrame.setVisible(true);
         mainFrame.requestFocus();
-        System.out.println(mainFrame.isFocusOwner());
 
     }
 
@@ -149,8 +149,6 @@ public class Main {
         ChoixJeuPanel choix = new ChoixJeuPanel();
 
         //Tableau contenant tous les jeux.
-        String jeux[] = {"Pendu", "Bataille Navale"};
-
         //Ajout d'une image pour chaque jeu.
         for (String jeu : jeux) {
             ImageJeuPanel img = new ImageJeuPanel(jeu, true);
@@ -183,6 +181,9 @@ public class Main {
             chPwd.setEnabled(false);
         }
 
+        choix.getStatistiquesButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+            new StatsFrame(id);
+        });
         mainFrame.getContentPane().add(choix);
         mainFrame.pack();
     }
@@ -278,7 +279,7 @@ public class Main {
                             b.quitter();
                             interfaceInfoJeu(jeu, u);
                         });
-                        GUI.add(b.getPanel(),gridBagConstraints);
+                        GUI.add(b.getPanel(), gridBagConstraints);
                         mainFrame.getContentPane().add(GUI);
                         mainFrame.pack();
                         b.jeu();

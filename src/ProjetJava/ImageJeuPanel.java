@@ -5,7 +5,7 @@
  */
 package ProjetJava;
 
-import java.awt.event.MouseListener;
+import javax.swing.JOptionPane;
 
 /**
  * Panel de l'image d'un jeu.
@@ -20,7 +20,14 @@ public class ImageJeuPanel extends javax.swing.JPanel {
      */
     public ImageJeuPanel(String nomJeu, boolean titre) {
         initComponents();
-        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/" + nomJeu + ".jpg")));
+        // Cherche les images dans le package ProjetJava.images
+        // L'image doit être au format .jpg et avoir comme titre celui d'un jeu présent.
+        javax.swing.ImageIcon icone = new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/images/" + nomJeu + ".jpg"));
+        if (icone != null) {
+            imageLabel.setIcon(icone);
+        } else {
+            JOptionPane.showMessageDialog(null, "L'image du jeu " + nomJeu + "N'as pas pu être chargée");
+        }
         if (!titre) {
             this.titleLabel = null;
         } else {

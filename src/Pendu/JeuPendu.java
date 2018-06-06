@@ -95,7 +95,7 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu {
      */
     public boolean perdu() {
         //La difficlte est un entier de 0 a 2 (difficulte facile 0 difficulte moyenne 1, difficute difficile 2)
-        if (lettresMauvaises.size() + difficulte > 9) {
+        if ( this.nbErreurs() >= 9) {
             return true;
         }
         return false;
@@ -160,7 +160,7 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu {
         if (this.lettresMauvaises.isEmpty()) {
             return 0;
         } else {
-            return lettresMauvaises.size(); //le nombre d'erreurs est egale au nombre de lettre saisi qui n'appartiennent pas au mot a deviner
+            return lettresMauvaises.size()+difficulte; //le nombre d'erreurs est egale au nombre de lettre saisi qui n'appartiennent pas au mot a deviner
         }
     }
 

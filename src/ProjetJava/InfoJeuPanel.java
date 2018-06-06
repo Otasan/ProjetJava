@@ -115,6 +115,7 @@ public class InfoJeuPanel extends javax.swing.JPanel {
         reglesTextArea.setBackground(new java.awt.Color(238, 238, 238));
         reglesTextArea.setColumns(20);
         reglesTextArea.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        reglesTextArea.setLineWrap(true);
         reglesTextArea.setRows(5);
         reglesTextArea.setBorder(null);
         jScrollPane1.setViewportView(reglesTextArea);
