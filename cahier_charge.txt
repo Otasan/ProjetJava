@@ -1,0 +1,4 @@
+Compte administrateur <proposition validée par le client le (02/02/2018)>
+Hashage des mots de passe <proposition validée par le client le (02/02/2018)>
+choix de la difficultés des jeux <décision unilatérale groupe>
+interfaces graphiques <décision unilatérale groupe>

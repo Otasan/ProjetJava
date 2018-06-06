@@ -33,7 +33,7 @@ public class IdentificationTest {
         Membre m = new Membre(pseudo, mdp, false);
 
         i.addMembre(pseudo, mdp, false);
-        i.sauvegarde(path);
+        i.sauvegarde();
 
         try {
             Identification i2 = new Identification(path);

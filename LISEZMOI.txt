@@ -1,0 +1,60 @@
+Comment démarrer la boite de jeux ?
+étapes pour lancer l’application
+
+Pour Windows:
+-Ouvrez le dossier dist
+-Clic droit sur le fichier ProjetJava.jar
+-Ouvrir avec: Java
+
+Pour Linux:
+-Se placer dans le dossier “dist” avec le terminal
+-lancer la commande “java -jar ProjetJava.jar”
+
+Pour Apple:
+
+---------------
+Compte administrateur: 
+identifiant: admin
+mot de passe : administrateur
+---------------
+
+bibliothèque
+JavaSE
+configuration
+fichier liste_francais.csv
+
+Contributeurs
+Développeurs :
+ABDO Alexandre
+CHELLE Auriane
+DEUX Etienne
+
+couverture fonctionnelle
+
+-fonctionnalités implémentées
+
+Quitter le programme
+Connexion en tant qu’Administrateur (supprime des comptes, créer des comptes administrateur)
+Changer de mot de passe
+Connexion en tant qu’Utilisateur
+Connexion en tant qu’Invité
+Création d’un nouveau compte
+Jeu du pendu fonctionnel (3 niveaux de difficultés)
+bataille navale fonctionnelle (3 niveaux de difficultés)
+Statistiques :
+joueur avec le plus grand nombre de victoire au total
+joueur avec le meilleur ratio au total 
+Nombre de parties jouées par utilisateur
+Nombre de parties gagnées par utilisateur
+Nombre de victoires par joueur par jeu
+ratio par joueur par jeu
+
+-fonctionnalités qui reste à implémenter
+
+Statistiques:
+Identifiant du joueur qui a gagnées le plus de parties par jeu
+Identifiant du joueur ayant le meilleur ratio
+Nombre de parties jouées par jeu
+Nombre de parties gagnées par jeu
+
+Ajouter un focus automatique du panel pendu. 

@@ -1,0 +1,10 @@
+Pour le package  ProjetJava
+Des tests unitaires pour vérifier les mots de passe et pseudo ont été faits. Des tests sur les scores ont également été réalisés pour les Membres.
+Pour la partie Identification, des tests unitaires ont été réalisés pour vérifier l’ajout et la suppression de Membres.
+-----------------------------------------------------------------------------------------------------------------
+Pour le package BatailleNavale
+Des tests unitaires sur chacunes des méthodes des classes Bateau et CaseBN ont été effectuées.
+Les autres classes ont étés testées manuellement avec des scénari.
+-----------------------------------------------------------------------------------------------------------------
+Pour le package Pendu 
+seul des scénari effectués en manuel ont été réalisés pour tester ce package.
