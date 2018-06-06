@@ -12,9 +12,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.HashSet;
-
 /**
  * Sauvegarde tous les utilisateurs. Et gere les connexions.
  *
@@ -44,7 +44,7 @@ public class Identification {
         this.comptes = new HashMap<>();
 
         try {
-            File f = new File(path);
+            File f = new File(getClass().getResource("/ProjetJava/.save").toURI());
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(f));
             this.comptes = (HashMap<String, Membre>) in.readObject();
 
@@ -52,6 +52,7 @@ public class Identification {
             this.comptes = new HashMap<>();
             this.addMembre("admin", "administrateur", true);
 
+        } catch (URISyntaxException ex) {
         }
     }
 
@@ -117,12 +118,14 @@ public class Identification {
      * @param path Chemin du fichier dans lequel sauvegarder les donnees
      * Serializees.
      */
-    public void sauvegarde(String path) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));) {
+    public void sauvegarde() {
+        try {
 
+            File f = new File(getClass().getResource("/ProjetJava/.save").toURI());
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
             oos.writeObject(this.comptes);
 
-        } catch (IOException ex) {
+        } catch (IOException | URISyntaxException ex) {
         }
     }
 
