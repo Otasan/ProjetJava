@@ -16,7 +16,7 @@ public  abstract class PanelCaseBN extends javax.swing.JButton{
     protected ImageIcon image;
     
     /**
-     * crée un JButton à partir de la case c et charge l'image correspondante
+     * cree un JButton a partir de la case c et charge l'image correspondante
      * @param c la case a afficher
      */
     public PanelCaseBN(CaseBN c){
@@ -27,7 +27,7 @@ public  abstract class PanelCaseBN extends javax.swing.JButton{
     }
     
     /**
-     * mets à jour l'image de la case
+     * mets a jour l'image de la case
      */
     abstract public void updateImage();
     
@@ -41,7 +41,7 @@ public  abstract class PanelCaseBN extends javax.swing.JButton{
     
     /**
      * touche la case logique puis update l'image
-     * @throws BNException si la case a déjà été touché
+     * @throws BNException si la case a deja ete touche
      */
     public void touche() throws BNException{
         caseBN.touche();
@@ -62,7 +62,6 @@ public  abstract class PanelCaseBN extends javax.swing.JButton{
      * @param l nouvelle longueur
      */
     public void redimensionner(int l){
-        //this.setSize(l, l);
         image.setImage(image.getImage().getScaledInstance(l, l, Image.SCALE_DEFAULT));
     }
 

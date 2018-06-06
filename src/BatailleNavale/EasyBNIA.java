@@ -17,7 +17,7 @@ public class EasyBNIA extends BNIA{
     }
 
     /**
-     * essaie de placer les bateaux au hasard (sans toucher les bords de la grille) jusqu'à ce que tous soient placés.
+     * essaie de placer les bateaux au hasard (sans toucher les bords de la grille) jusqu'a ce que tous soient places.
      */
     @Override
     public void placerBateaux() {
@@ -26,7 +26,9 @@ public class EasyBNIA extends BNIA{
         int x=0,y=0;
         int i=0, c=0;
         String bateau="";
+        //place tout les bateaux a tour de rôle
         while(i<5){
+            //essaie de placer un bateau a des positions possibles
             switch(i){
                 case 0:
                     bateau="porteavion";
@@ -106,14 +108,15 @@ public class EasyBNIA extends BNIA{
     }
 
     /**
-     * tire sur une case au hasard. si cette case était déja touchée, recommence avec une nouvelle case au hasard
-     * @return La case sur laquelle l'IA a tiré
+     * tire sur une case au hasard. si cette case etait deja touchee, recommence avec une nouvelle case au hasard
+     * @return La case sur laquelle l'IA a tire
      */
     @Override
     public CaseBN tirer() {
         Random rand=new Random();
         int x=0,y=0;
         boolean aTire = false;
+        //tire au hasard
         while(!aTire){
             x=rand.nextInt(10);
             y=rand.nextInt(10);

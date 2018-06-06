@@ -6,7 +6,6 @@
 package BatailleNavale;
 
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.TreeSet;
 import javax.swing.JLabel;
@@ -27,8 +26,8 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
     }
     
     /**
-     * modifie l'état de la bataille navale
-     * génère une FrameChoixBateau si val=placerBateau et que cette frame n'a pas encore été créé.
+     * modifie l'etat de la bataille navale
+     * genère une FrameChoixBateau si val=placerBateau et que cette frame n'a pas encore ete cree.
      * @param val 
      */
     @Override
@@ -40,8 +39,8 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
     }
     
     /**
-     * génère la grille à afficher. utile uniquement dans le constructeur
-     * affiche tout ce qui est présent sur la grille.
+     * genère la grille a afficher. utile uniquement dans le constructeur
+     * affiche tout ce qui est present sur la grille.
      */
     @Override
     protected void createGrille(){
@@ -51,15 +50,19 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
         int o=0;
         while(it.hasNext()){
             if(i==0){
+                //une case vide en haut a gauche
                 add(new JLabel(""));
             }
             else if(i<11){
+                //des cases numerotees de A a J en haut
                 add(new JLabel(Character.toString((char) (i+64)),SwingConstants.CENTER));
             }
             else if(i%11==0){
+                //des cases numerotees de 1 a 10 a gauche
                 add(new JLabel(Integer.toString(i/11),SwingConstants.CENTER));
             }
             else{
+                //une grille de 10*10 PanelCaseBNJ ailleurs
                 grilleB.add(new PanelCaseBNJ((CaseBN)it.next(), grille.getBateaux()));
                 add(grilleB.get(o));
                 PanelCaseBN caseB=grilleB.get(o);
@@ -71,19 +74,22 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
     }
     
     public void quitter(){
+        //force la FrameChoixBateau a se fermer lorsque la bataille navale est fermee
         choix.dispatchEvent(new WindowEvent(choix, WindowEvent.WINDOW_CLOSING));
     }
     
     /**
-     * méthode appelée lorsque l'utilisateaur clique sur une case.
+     * methode appelee lorsque l'utilisateaur clique sur une case.
      * Si l'utilisateur doit placer des bateaux, alors il pourra.
-     * @param caseP la case sur laquelle l'utilisateur a cliqué
+     * @param caseP la case sur laquelle l'utilisateur a clique
      */
     private synchronized void caseClick(PanelCaseBN caseP){
-        //System.out.println(etat);
         if(etat==EtatsBN.placerBateau){
+            //verifie si l'utilisateur a valide son choix
             if(choix.getValide()){
                 try{
+                    //essaie de placer un bateau ou l'utilisateur a clique
+                    //affiche un message sinon
                     grille.placerBateau(choix.getBateau(),caseP.getCase(),choix.getSens());
                     updateGrille();
                 }
@@ -92,10 +98,12 @@ public class PanelGrilleBNJ extends PanelGrilleBN {
                 }
             }
             if(grille.getBateaux().size()<5){
+                //demande un nouveau bateau si pas assez de bateaux ont etes places
                 choix.nouveauBateau(grille.getBateaux());
                 notify();
             }
             else{
+                //force la fermeture de la FrameChoixBateau a la fin du placement des bateaux
                 choix.dispatchEvent(new WindowEvent(choix, WindowEvent.WINDOW_CLOSING));
                 etat=EtatsBN.tourj;
                 notify();

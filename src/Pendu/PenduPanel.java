@@ -99,7 +99,11 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
         gridBagConstraints.gridy = 1;
         add(imageLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * mets a jour le panel
+     * @param o JeuPendu observe
+     * @param arg argument de notification
+     */
     @Override
     public void update(Observable o, Object arg) {
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pendu/Images/PenduImage" + jeu.nbErreurs() + ".png")));

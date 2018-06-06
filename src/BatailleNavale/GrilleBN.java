@@ -15,7 +15,7 @@ public class GrilleBN {
     private HashSet<Bateau> lesBateaux;
     
     /**
-     * crée une grille de 10*10 cases vierges
+     * cree une grille de 10*10 cases vierges
      */
     public GrilleBN(){
         lesBateaux=new HashSet();
@@ -26,15 +26,16 @@ public class GrilleBN {
     }
     
     /**
-     * place un bateau du type typeBateau dont la case la plus en haut ou à gauche est cI et dont la direction est s
-     * lève une BNException si une des cases occupées par le nouveau bateau est déjà occupée ou en dehors de la grille
+     * place un bateau du type typeBateau dont la case la plus en haut ou a gauche est cI et dont la direction est s
+     * lève une BNException si une des cases occupees par le nouveau bateau est deja occupee ou en dehors de la grille
      * @param typeBateau string du nom de classe du bateau (ne respecte pas la case)
-     * @param cI case la plus en haut ou à gauche du bateau
+     * @param cI case la plus en haut ou a gauche du bateau (ou case initiale)
      * @param d direction du bateau
      * @throws BNException 
      */
     public void placerBateau(String typeBateau, CaseBN cI, Direction d)throws BNException{
         Bateau b;
+        //verifie si la case initiale du du bateau n'est pas occupe
         if(lesCases.ceiling(cI).getCase()==TypeCase.bateau){
             throw new BNException("Bateaux en collision : "+lesCases.ceiling(cI));
         }
@@ -42,6 +43,7 @@ public class GrilleBN {
             lesCases.ceiling(cI).setCase(TypeCase.bateau);
         }
         if(cI.getX()<10 && cI.getY()<10){
+            //selectionne le bateau voulu
             typeBateau=typeBateau.toLowerCase();
             switch(typeBateau){
                 case "contretorpilleur":
@@ -62,12 +64,14 @@ public class GrilleBN {
                 default:
                     throw new BNException("Bateau type : "+typeBateau+" n'existe pas");
             }
+            //verifie que le bateau n'existe pas deja
             if(lesBateaux.contains(b)){
                 lesCases.ceiling(cI).setCase(TypeCase.vierge);
-                throw new BNException("Bateau déjà existant sur cete grille : "+typeBateau+" : "+lesBateaux.toString());
+                throw new BNException("Bateau deja existant sur cete grille : "+typeBateau+" : "+lesBateaux.toString());
             }
             else{
                 switch(d){
+                    //place le bateau dans la direction voulue et verifie que chaque case sous le bateau n'est pas deja occupee
                     case horizontal:
                         if(cI.getX()+b.getTaille()>10){
                             lesCases.ceiling(cI).setCase(TypeCase.vierge);
@@ -107,20 +111,21 @@ public class GrilleBN {
                         }
                         break;
                 }
+                //on ajoute le bateau a la liste
                 lesBateaux.add(b);
             }
         }
         else{
-            throw new BNException("Case externe à la grille:"+cI.toString());
+            throw new BNException("Case externe a la grille:"+cI.toString());
         }
         
     }
     
     /**
-     * "touche" la case [x;y] et vérifie si un bateau à été coulé.
-     * Lance une BNException si la case est déjà touchée
-     * @param x coordonnée x de la case visée
-     * @param y coordonnée y de la case visée
+     * "touche" la case [x;y] et verifie si un bateau a ete coule.
+     * Lance une BNException si la case est deja touchee
+     * @param x coordonnee x de la case visee
+     * @param y coordonnee y de la case visee
      * @throws BNException 
      */
     public void tire(int x, int y) throws BNException{
@@ -135,9 +140,9 @@ public class GrilleBN {
     }
     
     /**
-     * "touche" une case à la même position que c et vérifie si un bateau à été coulé.
-     * Lance une BNException si la case est déjà touchée
-     * @param c case à la même position que celle visée
+     * "touche" une case a la même position que c et verifie si un bateau a ete coule.
+     * Lance une BNException si la case est deja touchee
+     * @param c case a la même position que celle visee
      * @throws BNException 
      */
     public void tire(CaseBN c) throws BNException{
@@ -152,10 +157,12 @@ public class GrilleBN {
     }
     
     /**
-     * vérifie si UN bateau est coulé et le retire de la hashset lesBateaux
+     * verifie si UN bateau est coule et le retire de la hashset lesBateaux
      */
     public void chkBateauCoule(){
         Bateau bat = null;
+        //pour chaque bateau dans la liste, on verifie le type de case
+        //si toutes les cases sont de type "touche", alors le bateau a ete coule et sera supprime de la liste
         for(Bateau b : lesBateaux){
             int nbTouche=0;
             switch(b.getSens()){
@@ -179,7 +186,7 @@ public class GrilleBN {
             }
         }
         if(bat != null){
-            lesBateaux.remove(bat);//supprimer bateau après iteration sinon ConcurrentModificationException sera levée
+            lesBateaux.remove(bat);//supprimer bateau après iteration sinon ConcurrentModificationException sera levee
         }
     }
     
@@ -193,7 +200,7 @@ public class GrilleBN {
     
     /**
      * 
-     * @return une HashSet contenant les bateaux non coulés
+     * @return une HashSet contenant les bateaux non coules
      */
     public HashSet<Bateau> getBateaux(){
         return lesBateaux;
@@ -209,9 +216,9 @@ public class GrilleBN {
     
     /**
      * 
-     * @param x coordonnée x de la case voulue
-     * @param y coordonnée y de la case voulue
-     * @return la case à la position [x;y]
+     * @param x coordonnee x de la case voulue
+     * @param y coordonnee y de la case voulue
+     * @return la case a la position [x;y]
      */
     public CaseBN getCase(int x, int y){
         return lesCases.ceiling(new CaseBN(x,y));
@@ -219,8 +226,8 @@ public class GrilleBN {
     
     /**
      * 
-     * @param c case à la même position que la case voulue
-     * @return la case à la même position que c
+     * @param c case a la même position que la case voulue
+     * @return la case a la même position que c
      */
     public CaseBN getCase(CaseBN c){
         return lesCases.ceiling(c);

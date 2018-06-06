@@ -118,15 +118,20 @@ public class HardBNIA extends BNIA{
     }
 
     /**
-     * tire sur une case sur deux jusqu'à trouver un bateau puis détermine le sens du bateau
-     * @return la case sur laquelle l'IA a tiré
+     * tire sur une case sur deux jusqu'a trouver un bateau puis determine le sens du bateau
+     * @return la case sur laquelle l'IA a tire
      */
     @Override
     public CaseBN tirer() {
         CaseBN res = null;
+        //permet de verifier si un bateau a ete coule dans ce tour
         nbBateauRestant=joueur.nbBateauRestant();
         if(bateauTrouve){
             switch(direct){
+                //tire sur une case a une distance de 1 dans une direction cardinale (Nord vers le haut de la grille)
+                //si un bateau est trouve, alors on remplace la direction cardinale par horizontal ou vertical et la direction prend un signe correspondant
+                //sinon, on tourne dans le sens trigo
+                //si aucun bateau n'est trouve au bout de 4 essai, on recommance a tirer sur les cases paires
                 case nord:
                     try{
                         joueur.tire(caseTrouvee.getX(), caseTrouvee.getY()-1);
@@ -201,6 +206,7 @@ public class HardBNIA extends BNIA{
             }
         }
         else{
+            //tire sur une case paire au hasard (identique a EasyBNIA)
             Random rand=new Random();
             int x=0,y=0;
             boolean aTire = false;
@@ -219,6 +225,7 @@ public class HardBNIA extends BNIA{
                 }
             }
             res = joueur.getCase(x, y);
+            //si une un bateau est trouve, on change les atributs de cette facon
             if(joueur.getCase(x, y).getCase()==TypeCase.touche){
                 caseTrouvee=joueur.getCase(x,y);
                 deplacement=0;
@@ -230,11 +237,15 @@ public class HardBNIA extends BNIA{
     }
     
     /**
-     * complément de la fonction tire, suit le bateau une fois qu'il a été trouvé
-     * @return la case sur laquelle l'IA a tiré
+     * complement de la fonction tire, suit le bateau une fois qu'il a ete trouve
+     * @return la case sur laquelle l'IA a tire
      */
     private CaseBN tireTrouve(){
         CaseBN res=null;
+        //tire sur une case decalee de distance par rapport a la case d'origine dans la direction trouvee dans la methode tirer()
+        //si le bateau n'est pas coule mais que l'on tombe dans l'eau ou sur une case deja touchee, alors on reprend dans le sens inverse.
+        //si le bateau est coule ou qu'un probleme fait qu'il nest pas possible de le couler dans l'immediat, on recommence a tirer au hasard.
+        //(identique a MediumBNIA)
         switch(direct){
             case vertical:
                 if(deplacement<0){

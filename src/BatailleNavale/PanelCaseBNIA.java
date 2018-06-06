@@ -19,6 +19,8 @@ public class PanelCaseBNIA extends PanelCaseBN{
 
     public PanelCaseBNIA(CaseBN c){
         super(c);
+        //affiche les cases "bateau" commme des cases "vierge" 
+        //essaie de charger les images, si c'est impossible, remplace les cases "vierge" par du bleu, "toucheVierge" par du vert, "touche" par du rouge
         try{
             if(caseBN.getCase()==TypeCase.bateau){
                 image.setImage(ImageIO.read(getClass().getResourceAsStream("/BatailleNavaleIMG/vierge.png")));
@@ -54,11 +56,12 @@ public class PanelCaseBNIA extends PanelCaseBN{
     }
 
     /**
-     * mets à jour l'image de la case
+     * mets a jour l'image de la case
      * affiche les bateaux comme des cases vierges
      */
     @Override
     public void updateImage(){
+        //essaie de charger l'image, si impossible affiche, remplace les cases "vierge" par du bleu, "toucheVierge" par du vert, "touche" par du rouge
         int lo=this.getSize().height;
         try{
             if(caseBN.getCase()==TypeCase.bateau){
