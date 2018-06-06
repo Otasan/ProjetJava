@@ -21,7 +21,7 @@ public abstract class BNIA {
     }
     
     /**
-     * change l'état de la partie
+     * change l'etat de la partie
      * @param state 
      */
     public void setTour(EtatsBN state){
@@ -29,13 +29,13 @@ public abstract class BNIA {
     }
     
     /**
-     * demande à l'IA de placer les bateaux
+     * demande a l'IA de placer les bateaux
      */
     abstract public void placerBateaux();
     
     /**
-     * demande à l'IA de tirer sur une case
-     * @return la case sur laquelle l'IA a tirée
+     * demande a l'IA de tirer sur une case
+     * @return la case sur laquelle l'IA a tiree
      */
     abstract public CaseBN tirer();
 }

@@ -17,7 +17,7 @@ public class EasyBNIA extends BNIA{
     }
 
     /**
-     * essaie de placer les bateaux au hasard (sans toucher les bords de la grille) jusqu'à ce que tous soient placés.
+     * essaie de placer les bateaux au hasard (sans toucher les bords de la grille) jusqu'a ce que tous soient places.
      */
     @Override
     public void placerBateaux() {
@@ -108,8 +108,8 @@ public class EasyBNIA extends BNIA{
     }
 
     /**
-     * tire sur une case au hasard. si cette case était déja touchée, recommence avec une nouvelle case au hasard
-     * @return La case sur laquelle l'IA a tiré
+     * tire sur une case au hasard. si cette case etait deja touchee, recommence avec une nouvelle case au hasard
+     * @return La case sur laquelle l'IA a tire
      */
     @Override
     public CaseBN tirer() {

@@ -93,7 +93,11 @@ public class PenduPanel extends javax.swing.JPanel implements Observer {
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         add(imageLabel, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * mets a jour le panel
+     * @param o JeuPendu observe
+     * @param arg argument de notification
+     */
     @Override
     public void update(Observable o, Object arg) {
         //imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjetJava/ProjetJava/src/Pendu" + jeu.nbErreurs()+jeu.getDiff() + ".jpg")));

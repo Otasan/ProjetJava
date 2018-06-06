@@ -22,6 +22,7 @@ public class PanelCaseBNJ extends PanelCaseBN {
     public PanelCaseBNJ(CaseBN c, HashSet<Bateau> b){
         super(c);
         lesBateaux=b;
+        //essaie de charger les images, si c'est impossible, remplace les cases "vierge" par du bleu, "toucheVierge" par du vert, "touche" par du rouge et les cases "bateau" par du gris
         try{
             image.setImage(ImageIO.read(getClass().getResourceAsStream("/BatailleNavaleIMG/"+caseBN.getCase().toString()+".png")));
         }
@@ -49,7 +50,7 @@ public class PanelCaseBNJ extends PanelCaseBN {
     }
     
     /**
-     * mets à jour l'image de la case
+     * mets a jour l'image de la case
      * affiche les bateaux
      */
     @Override
@@ -60,6 +61,7 @@ public class PanelCaseBNJ extends PanelCaseBN {
             nomFic+=caseBN.getCase().toString();
         }
         else{
+            //trouve le nom de l'image approprie pour afficher les bateaux
             Bateau bat = null;
             int i=0;
             for(Bateau b:lesBateaux){
@@ -83,6 +85,7 @@ public class PanelCaseBNJ extends PanelCaseBN {
             }
         }
         nomFic+=".png";
+        //essaie de charger les images, si c'est impossible, remplace les cases "vierge" par du bleu, "toucheVierge" par du vert, "touche" par du rouge et les cases "bateau" par du gris
         try{
             image.setImage(ImageIO.read(getClass().getResourceAsStream(nomFic)));
         }
