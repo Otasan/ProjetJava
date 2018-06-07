@@ -7,6 +7,7 @@ package Pendu;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.text.Normalizer;
 import java.util.ArrayList;
@@ -27,20 +28,14 @@ public class Dictionnaire {
      * @throws FileNotFoundException
      */
     public Dictionnaire() throws FileNotFoundException {
-        try {
-            dico = new ArrayList<>();
-
-            Scanner sc;
-
-            File f = new File(getClass().getResource("/Pendu/liste_francais.csv").toURI());
-            sc = new Scanner(f);
-            String ligne;
-            while (sc.hasNextLine()) {
-                ligne = sc.nextLine();
-                dico.add(ligne);
-            }
-        } catch (URISyntaxException ex) {
-
+        dico = new ArrayList<>();
+        Scanner sc;
+        InputStream f = getClass().getResourceAsStream("/Pendu/liste_francais.csv");
+        sc = new Scanner(f);
+        String ligne;
+        while (sc.hasNextLine()) {
+            ligne = sc.nextLine();
+            dico.add(ligne);
         }
     }
 
