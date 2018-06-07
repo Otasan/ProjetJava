@@ -188,7 +188,7 @@
         <Property name="editable" type="boolean" value="false"/>
         <Property name="columns" type="int" value="20"/>
         <Property name="rows" type="int" value="5"/>
-        <Property name="text" type="java.lang.String" value="S&#xe9;l&#xe9;ctionnez le bateau que vous voulez ainsi que la direction,&#xa;cliquez sur valider puis cliquez sur la grille de gauche pour&#xa;placer le bateau"/>
+        <Property name="text" type="java.lang.String" value="S&#xe9;lectionnez le bateau que vous voulez ainsi que la direction,&#xa;cliquez sur valider puis cliquez sur la grille de gauche pour&#xa;placer le bateau&#xa;"/>
       </Properties>
     </Component>
   </SubComponents>

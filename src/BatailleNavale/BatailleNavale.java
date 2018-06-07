@@ -141,7 +141,7 @@ public class BatailleNavale implements ProjetJava.Jeu{
             }
         }
         //debut du jeu
-        JOptionPane.showMessageDialog(pIa, "A l'attaque, commandant!!!", "[INFO]",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(pIa, "A l'attaque, commandant !", "[INFO]",JOptionPane.INFORMATION_MESSAGE);
         setTour(EtatsBN.tourj);
         synchronized(pIa){
             while(gJoueur.nbBateauRestant()>0 && gIa.nbBateauRestant()>0){
@@ -159,18 +159,13 @@ public class BatailleNavale implements ProjetJava.Jeu{
                     CaseBN c =ia.tirer();
                     pJoueur.updateGrille();
                     //affiche un message selon la case touchee
-                    switch(c.getCase()){
-                        case toucheVierge:
-                            JOptionPane.showMessageDialog(pJoueur, "Raté", "Tour de l'adversaire", JOptionPane.INFORMATION_MESSAGE);
-                            break;
-                        case touche:
+                    if(c.getCase()==TypeCase.touche){
                             if(nb==gJoueur.nbBateauRestant()){
                                 JOptionPane.showMessageDialog(pJoueur, "Touché", "Tour de l'adversaire", JOptionPane.INFORMATION_MESSAGE);
                             }
                             else{
                                 JOptionPane.showMessageDialog(pJoueur, "Coulé", "Tour de l'adversaire", JOptionPane.INFORMATION_MESSAGE);
                             }
-                            break;
                     }
                     //tour du joueur
                     setTour(EtatsBN.tourj);

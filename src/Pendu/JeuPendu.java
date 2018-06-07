@@ -74,7 +74,7 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu {
     public boolean estLettreValide(char lettre) {
         for (char s : lettresUtilisees) {
             if (lettre == s) {
-                JOptionPane.showMessageDialog(null, "La lettre a déjà été utilisées.");
+                JOptionPane.showMessageDialog(null, "La lettre a déjà été utilisée.");
                 return false;
             }
         }
@@ -82,7 +82,7 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu {
         if (lettre >= 'A' && lettre <= 'Z') {
             return true;
         } else {
-            JOptionPane.showMessageDialog(null, "Le caractere saisi n'est pas valide.");
+            JOptionPane.showMessageDialog(null, "Le caractère saisi n'est pas valide.");
         }
         return false;
     }
@@ -152,7 +152,7 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu {
                 Membre m = (Membre) u;
                 m.incrementGagne("Pendu");
             }
-            JOptionPane.showMessageDialog(null, "Vous avez Gagné !!!");
+            JOptionPane.showMessageDialog(null, "Vous avez gagné !");
             quitter();
         }
     }
@@ -200,8 +200,8 @@ public class JeuPendu extends Observable implements ProjetJava.Jeu {
         return "But du jeu : Il faut deviner un mot secret sans se faire pendre\n" +
                 "Un mot choisi au hasard dans un dictionnaire\n" +
                 "Le nombre de lettres sera modélisé par des étoiles\n" +
-                "Le joueur choisi une lettre : Si elle appartient au mot la lettre se place sur l'étoiles correspondante, et\n" +
-                "autant de fois qu’elle apparait dans le mot. Si non, un trait du pendu est dessiné.\n" +
-                "La potence est la base du dessin. Chaque partie commence avec la potence déjà dessiné.";
+                "Le joueur choisit une lettre : Si elle appartient au mot la lettre se place sur l'étoile correspondante, et\n" +
+                "autant de fois qu’elle apparaît dans le mot. Sinon, un trait du pendu est dessiné.\n" +
+                "La potence est la base du dessin. Chaque partie commence avec la potence déjà dessinée.";
     }
 }

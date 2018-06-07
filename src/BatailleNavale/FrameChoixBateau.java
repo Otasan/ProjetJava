@@ -120,7 +120,7 @@ public class FrameChoixBateau extends javax.swing.JDialog {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Séléctionnez le bateau que vous voulez ainsi que la direction,\ncliquez sur valider puis cliquez sur la grille de gauche pour\nplacer le bateau");
+        jTextArea1.setText("Sélectionnez le bateau que vous voulez ainsi que la direction,\ncliquez sur valider puis cliquez sur la grille de gauche pour\nplacer le bateau\n");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

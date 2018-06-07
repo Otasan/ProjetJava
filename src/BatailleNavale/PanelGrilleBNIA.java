@@ -72,19 +72,13 @@ public class PanelGrilleBNIA extends PanelGrilleBN{
                 grille.tire(caseP.getCase());
                 //mets a jour les images de la grille
                 updateGrille();
-                switch(grille.getCase(caseP.getCase()).getCase()){
-                    //choisi le message selon la case touchee
-                    case toucheVierge:
-                        JOptionPane.showMessageDialog(this, "Raté", "Tour du joueur", JOptionPane.INFORMATION_MESSAGE);
-                        break;
-                    case touche:
+                if(grille.getCase(caseP.getCase()).getCase()==TypeCase.touche){
                         if(nb==grille.nbBateauRestant()){
                             JOptionPane.showMessageDialog(this, "Touché", "Tour du joueur", JOptionPane.INFORMATION_MESSAGE);
                         }
                         else{
                             JOptionPane.showMessageDialog(this, "Coulé", "Tour du joueur", JOptionPane.INFORMATION_MESSAGE);
                         }
-                        break;
                 }
                 //change l'etat de la grille et resume l'exectution de la bataille navale
                 etat=EtatsBN.touria;
