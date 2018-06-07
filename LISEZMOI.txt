@@ -1,4 +1,4 @@
-Comment démarrer la boite de jeux ?
+﻿Comment démarrer la boite de jeux ?
 étapes pour lancer l’application
 
 Pour Windows:
@@ -11,6 +11,8 @@ Pour Linux:
 -lancer la commande “java -jar ProjetJava.jar”
 
 Pour Apple:
+-Ouvrez le dossier dist
+-Executer le fichier ProjetJava.jar
 
 ---------------
 Compte administrateur: 
@@ -18,10 +20,10 @@ identifiant: admin
 mot de passe : administrateur
 ---------------
 
-bibliothèque
+Bibliothèque
 JavaSE
-configuration
-fichier liste_francais.csv
+
+Configuration
 
 Contributeurs
 Développeurs :

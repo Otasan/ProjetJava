@@ -76,10 +76,10 @@ public class InfoJeuPanel extends javax.swing.JPanel {
         imagePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reglesTextArea = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        scoreTextArea = new javax.swing.JTextArea();
         scoreLabel = new javax.swing.JLabel();
+        scoreTextArea = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         difficulteComboBox = new javax.swing.JComboBox<>();
         jouerButton = new javax.swing.JButton();
@@ -127,18 +127,6 @@ public class InfoJeuPanel extends javax.swing.JPanel {
         jPanel2Layout.rowWeights = new double[] {0.1, 0.9};
         jPanel2.setLayout(jPanel2Layout);
 
-        scoreTextArea.setEditable(false);
-        scoreTextArea.setColumns(3);
-        scoreTextArea.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
-        scoreTextArea.setRows(5);
-        jScrollPane2.setViewportView(scoreTextArea);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel2.add(jScrollPane2, gridBagConstraints);
-
         scoreLabel.setBackground(new java.awt.Color(255, 255, 255));
         scoreLabel.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         scoreLabel.setText(padString("Pseudo", 30) +
@@ -152,7 +140,19 @@ public class InfoJeuPanel extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel2.add(scoreLabel, gridBagConstraints);
 
-        jPanel1.add(jPanel2);
+        scoreTextArea.setEditable(false);
+        scoreTextArea.setColumns(3);
+        scoreTextArea.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
+        scoreTextArea.setRows(5);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        jPanel2.add(scoreTextArea, gridBagConstraints);
+
+        jScrollPane3.setViewportView(jPanel2);
+
+        jPanel1.add(jScrollPane3);
 
         java.awt.GridBagLayout jPanel3Layout = new java.awt.GridBagLayout();
         jPanel3Layout.columnWeights = new double[] {0.5, 0.5};
@@ -202,7 +202,7 @@ public class InfoJeuPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jouerButton;
     private javax.swing.JLabel nomJeuLabel;
     private javax.swing.JTextArea reglesTextArea;
