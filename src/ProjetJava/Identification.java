@@ -15,6 +15,8 @@ import java.io.ObjectOutputStream;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  * Sauvegarde tous les utilisateurs. Et gere les connexions.
  *
@@ -41,18 +43,18 @@ public class Identification {
      * avec l'utilisateur administrateur est cree.
      */
     public Identification(String path) throws FileNotFoundException {
-        this.comptes = new HashMap<>();
-
+        ObjectInputStream in = null;
         try {
-            File f = new File(getClass().getResource("/ProjetJava/.save").toURI());
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream(f));
+            this.comptes = new HashMap<>();
+            File f = new File(path);
+            in = new ObjectInputStream(new FileInputStream(f));
             this.comptes = (HashMap<String, Membre>) in.readObject();
-
-        } catch (IOException | ClassNotFoundException ex) {
+            in.close();
+        }catch (IOException | ClassNotFoundException ex) {
             this.comptes = new HashMap<>();
             this.addMembre("admin", "administrateur", true);
 
-        } catch (URISyntaxException ex) {
+        
         }
     }
 
@@ -118,14 +120,14 @@ public class Identification {
      * @param path Chemin du fichier dans lequel sauvegarder les donnees
      * Serializees.
      */
-    public void sauvegarde() {
+    public void sauvegarde(String path) {
         try {
 
-            File f = new File(getClass().getResource("/ProjetJava/.save").toURI());
+            File f = new File(path);
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
             oos.writeObject(this.comptes);
 
-        } catch (IOException | URISyntaxException ex) {
+        } catch (IOException ex) {
         }
     }
 

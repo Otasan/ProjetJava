@@ -52,7 +52,7 @@ public class Main {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                id.sauvegarde();
+                id.sauvegarde(".save");
                 System.exit(0);
             }
         };
@@ -125,7 +125,7 @@ public class Main {
             if (id.membreExiste(pseudo)) {
                 JOptionPane.showMessageDialog(null, "Pseudo déjà utilisé");
             } else if (id.addMembre(pseudo, mdp, admin)) {
-                id.sauvegarde();
+                id.sauvegarde(".save");
                 interfaceConnexion();
 
             } else {
