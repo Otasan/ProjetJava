@@ -250,6 +250,13 @@ public class Main {
                         interfaceInfoJeu(jeu, u);
                     });
                     GUI.add(panelJeu, gridBagConstraints);
+                    GUI.getQuitButton().addActionListener((java.awt.event.ActionEvent evt) -> {
+                        if (u instanceof Membre) {
+                            Membre m = (Membre) u;
+                            m.incrementPerdu(jeu);
+                        }
+                        pendu.quitter();
+                    });
                 } catch (FileNotFoundException ex) {
                     JOptionPane.showMessageDialog(null, "Dictionnaire absent.");
                     interfaceInfoJeu(jeu, u);
@@ -277,7 +284,6 @@ public class Main {
                                 m.incrementPerdu(jeu);
                             }
                             b.quitter();
-                            interfaceInfoJeu(jeu, u);
                         });
                         GUI.add(b.getPanel(), gridBagConstraints);
                         mainFrame.getContentPane().add(GUI);
@@ -289,13 +295,6 @@ public class Main {
                 break;
         }
 
-        GUI.getQuitButton().addActionListener((java.awt.event.ActionEvent evt) -> {
-            if (u instanceof Membre) {
-                Membre m = (Membre) u;
-                m.incrementPerdu(jeu);
-            }
-            interfaceInfoJeu(jeu, u);
-        });
         mainFrame.getContentPane().add(GUI);
         mainFrame.pack();
     }

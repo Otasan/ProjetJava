@@ -125,7 +125,6 @@ public class BatailleNavale implements ProjetJava.Jeu{
         JOptionPane.showMessageDialog(panel, "Bienvenu(e) dans la bataille navale", "[INFO]",JOptionPane.INFORMATION_MESSAGE);
         JOptionPane.showMessageDialog(pJoueur, "Votre grille est sur la gauche.\nC'est là que vous allez placer vos bateaux", "[INFO]" ,JOptionPane.INFORMATION_MESSAGE);
         JOptionPane.showMessageDialog(pIa, "La grille de l'adversaire est sur la droite.\nC'est là que vous allez pouvoir tirer sur l'ennemi.", "[INFO]", JOptionPane.INFORMATION_MESSAGE);
-        JOptionPane.showMessageDialog(panel, "Bonne chance", "[INFO]", JOptionPane.INFORMATION_MESSAGE);
         //autorise le joueur a placer des bateaux
         setTour(EtatsBN.placerBateau);
         ia.placerBateaux();
@@ -142,6 +141,7 @@ public class BatailleNavale implements ProjetJava.Jeu{
             }
         }
         //debut du jeu
+        JOptionPane.showMessageDialog(pIa, "A l'attaque, commandant!!!", "[INFO]",JOptionPane.INFORMATION_MESSAGE);
         setTour(EtatsBN.tourj);
         synchronized(pIa){
             while(gJoueur.nbBateauRestant()>0 && gIa.nbBateauRestant()>0){

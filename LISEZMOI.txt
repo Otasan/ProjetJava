@@ -23,7 +23,8 @@ mot de passe : administrateur
 Bibliothèque
 JavaSE
 
-Configuration
+Configuration :
+Après s'etre connecté une première fois, il faut garder le fichier .save a cote du fichier ProjetJava.jar
 
 Contributeurs
 Développeurs :
