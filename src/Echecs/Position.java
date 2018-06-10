@@ -22,6 +22,10 @@ public class Position implements Comparable {
         y=p.y;
     }
     
+    public boolean estCasePaire(){
+        return (x+y)%2==0;
+    }
+    
     @Override
     public boolean equals(Object o){
         Position p=(Position)o;
@@ -45,5 +49,10 @@ public class Position implements Comparable {
         else{
             return y-p.y;
         }
+    }
+    
+    @Override
+    public String toString(){
+        return "["+x+";"+y+"]";
     }
 }

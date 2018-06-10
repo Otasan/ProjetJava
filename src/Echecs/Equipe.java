@@ -48,5 +48,52 @@ public class Equipe {
         }
     }
     
+    public Piece pieceA(Position pos) throws EchecsException{
+        Piece pi = null;
+        for(Piece p:lesPieces){
+            if(pos.equals(p.getPos())){
+                pi=p;
+            }
+        }
+        if(pi!=null){
+            return pi;
+        }
+        else{
+            throw(new EchecsException("Pas de piece à cette position : "+pos));
+        }
+    }
     
+    public void deplacer(Position pos, Position dep) throws EchecsException{
+        pieceA(pos).deplacer(dep);
+    }
+    
+    public ArrayList<Position> deplacementPossible(Position pos) throws EchecsException{
+        return pieceA(pos).deplacementPossible();
+    }
+    
+    public ArrayList<Position> mangerPossible(Position pos) throws EchecsException{
+        return pieceA(pos).mangerPossible();
+    }
+    
+    public ArrayList<Position> coupSpecialPossible(Position pos) throws EchecsException{
+        return pieceA(pos).coupSpecial();
+    }
+    
+    public ArrayList<Piece> getPieces(){
+        return lesPieces;
+    }
+    
+    public boolean aRoi(){
+        boolean res = false;
+        for(Piece p:lesPieces){
+            if(p instanceof Roi){
+                res=true;
+            }
+        }
+        return res;
+    }
+    
+    public Couleur getCouleur(){
+        return c;
+    }
 }

@@ -36,4 +36,13 @@ public class Roi extends Piece{
         return res;
     }
     
+    @Override
+    public ArrayList<Position> coupSpecial(){
+        ArrayList<Position> res = new ArrayList();
+        if(!bouge){
+            res.add(new Position(pos.x,pos.y+2));
+            res.add(new Position(pos.x,pos.y-2));
+        }
+        return res;
+    }
 }

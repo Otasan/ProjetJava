@@ -17,8 +17,7 @@ public abstract class Piece {
     protected boolean bouge;
     
     public Piece(int x, int y,Couleur co){
-        pos.x=x;
-        pos.y=y;
+        pos = new Position(x,y);
         c=co;
         bouge=false;
     }
@@ -30,7 +29,7 @@ public abstract class Piece {
     }
     
     public Position getPos(){
-        return pos;
+        return new Position(pos);
     }
     
     public ArrayList<Position> mangerPossible(){
@@ -49,12 +48,18 @@ public abstract class Piece {
     public void deplacer(Position p) throws EchecsException{
         ArrayList<Position> possible=new ArrayList(deplacementPossible());
         possible.addAll(mangerPossible());
+        possible.addAll(coupSpecial());
         if(possible.contains(p)){
+            bouge=true;
             pos=new Position(p);
         }
         else{
             throw(new EchecsException("Déplacement Impossible"));
         }
+    }
+    
+    public ArrayList<Position> coupSpecial(){
+        return new ArrayList();
     }
     
     public boolean aBouge(){

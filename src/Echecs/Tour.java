@@ -34,4 +34,18 @@ public class Tour extends Piece{
         res=dansLaGrille(res);
         return res;
     }
+    
+    @Override
+    public ArrayList<Position> coupSpecial(){
+        ArrayList<Position> res = new ArrayList();
+        if(!bouge){
+            if(pos.y==7){
+                res.add(new Position(pos.x,pos.y-2));
+            }
+            else if(pos.y==0){
+                res.add(new Position(pos.x,pos.y+3));
+            }
+        }
+        return res;
+    }
 }

@@ -22,6 +22,21 @@ public class Pion extends Piece{
     @Override
     public ArrayList<Position> deplacementPossible() {
         ArrayList<Position> res = new ArrayList();
+        switch (c) {
+            case blanc:
+                res.add(new Position(pos.x+1, pos.y));
+                break;
+            case noir:
+                res.add(new Position(pos.x-1, pos.y));
+                break;
+        }
+        res=dansLaGrille(res);
+        return res;
+    }
+    
+    @Override
+    public ArrayList<Position> coupSpecial(){
+        ArrayList<Position> res = new ArrayList();
         if(!bouge){
             switch(c){
                 case blanc:
@@ -32,15 +47,6 @@ public class Pion extends Piece{
                     break;
             }
         }
-        switch (c) {
-            case blanc:
-                res.add(new Position(pos.x+1, pos.y));
-                break;
-            case noir:
-                res.add(new Position(pos.x-1, pos.y));
-                break;
-        }
-        res=dansLaGrille(res);
         return res;
     }
     
